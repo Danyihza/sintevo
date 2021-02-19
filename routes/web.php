@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [UserController::class, 'index']);
+Route::get('/add', [UserController::class, 'store']);
