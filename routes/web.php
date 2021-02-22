@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UserController::class, 'index']);
 
 Route::get('/home', [UserController::class, 'index']);
 Route::get('/add', [UserController::class, 'store']);
+Route::view('/login', 'login');
+Route::post('/signin', [UserController::class, 'login']);

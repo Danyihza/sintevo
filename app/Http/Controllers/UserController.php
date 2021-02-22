@@ -13,6 +13,26 @@ class UserController extends Controller
         return view('home', $data);
     }
 
+    public function login(Request $request)
+    {
+        $input = $request->all();
+        $data = User::where('email', $input['email'])->first();
+        if ($data) {
+            if ($data->password === $input['password']) {
+                session([
+                    'id' => $data->id,
+                    'name' => $data->name,
+                    'email' => $data->email
+                ]);
+                return redirect('home');
+            } else {
+                return redirect('login')->with('error', 'Wrong password');
+            }
+        } else {
+            return redirect('login')->with('error', 'User Not Found');
+        }
+    }
+
     public function store()
     {
         User::create([
