@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
+use App\Models\Prodi;
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,33 +16,45 @@ class UserController extends Controller
         return view('home', $data);
     }
 
-    public function login(Request $request)
-    {
-        $input = $request->all();
-        $data = User::where('email', $input['email'])->first();
-        if ($data) {
-            if ($data->password === $input['password']) {
-                session([
-                    'id' => $data->id,
-                    'name' => $data->name,
-                    'email' => $data->email
-                ]);
-                return redirect('home');
-            } else {
-                return redirect('login')->with('error', 'Wrong password');
-            }
-        } else {
-            return redirect('login')->with('error', 'User Not Found');
-        }
-    }
-
     public function store()
     {
-        User::create([
-            'email' => 'danyihza99@gmail.com',
-            'name' => 'Dany Ahmad',
-            'password' => '11223344'
-        ]);
+        // $data = [
+        //     'Pangan',
+        //     'Energi',
+        //     'Rekayasa Keteknikan',
+        //     'Biomedis',
+        //     'Material Maju',
+        //     'Sosial & Budaya',
+        //     'Transportasi',
+        //     'Material',
+        //     'Pertahanan'
+        // ];
+
+        // $data = [
+        //     'D4 Manajemen Bisnis',
+        //     'D4 Teknik Bangunan Kapal',
+        //     'D4 Teknik K3',
+        //     'D4 Teknik Permesinan Kapal'
+        // ];
+
+        $data = [
+            'Mahasiswa',
+            'Dosen',
+            'Alumni',
+            'Mitra'
+        ];
+
+        
+        // foreach ($data as $value) {
+            User::create([
+                'id_user' => 'MHS0001',
+                'email' => 'danyahmadihza99@gmail.com',
+                'password' => hash('sha256', '11223344'),
+                'role' => 1,
+                'detail' => 1,
+                'token' => substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,8)
+            ]); 
+        // }
 
         echo 'Success';
     }
