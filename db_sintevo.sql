@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2021 at 06:48 AM
+-- Generation Time: Apr 02, 2021 at 03:27 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `detail_users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_detail` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kategori` int(11) NOT NULL,
   `nama_brand` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `deskripsi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `detail_users` (
   `nama_ketua` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `no_whatsapp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL,
-  `prodi` int(11) NOT NULL,
+  `prodi` int(11) DEFAULT NULL,
   `website` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `instagram` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -47,8 +47,9 @@ CREATE TABLE `detail_users` (
 -- Dumping data for table `detail_users`
 --
 
-INSERT INTO `detail_users` (`id`, `kategori`, `nama_brand`, `deskripsi`, `alamat`, `nama_ketua`, `no_whatsapp`, `status`, `prodi`, `website`, `instagram`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Aftermeet Academy', 'test', 'Testing', 'Dany', '082331147549', 1, 2, 'www.mediarraihan.com', '@danyihza', '2021-03-14 05:12:21', '2021-03-14 05:12:21');
+INSERT INTO `detail_users` (`id_detail`, `kategori`, `nama_brand`, `deskripsi`, `alamat`, `nama_ketua`, `no_whatsapp`, `status`, `prodi`, `website`, `instagram`, `created_at`, `updated_at`) VALUES
+('DOS0001', 3, 'Aftermeet Academy 2.0', 'fes', 'Desa Rondokuning Kraksaan Kabupaten Probolinggo Jawa Timur', 'Arini', '082331147549', 2, NULL, 'www.mediarraihan.com', '@danyihza', '2021-03-17 06:01:32', '2021-03-17 06:01:32'),
+('MHS0001', 1, 'Aftermeet Academy', 'des', 'Testing', 'Dany', '082331147549', 1, 1, 'www.mediarraihan.com', '@danyihza', '2021-03-17 05:58:20', '2021-03-17 05:58:20');
 
 -- --------------------------------------------------------
 
@@ -117,7 +118,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2021_02_24_031838_create_kategori_table', 1),
 (11, '2021_02_24_224813_create_prodis_table', 1),
 (12, '2021_02_26_085816_create_detail_users_table', 1),
-(13, '2021_02_26_091300_create_statuses_table', 1);
+(13, '2021_02_26_091300_create_statuses_table', 1),
+(14, '2021_03_14_124618_delete_column_users_table', 2);
 
 -- --------------------------------------------------------
 
@@ -188,7 +190,6 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int(11) NOT NULL,
-  `detail` int(11) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -200,8 +201,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `email`, `password`, `role`, `detail`, `email_verified_at`, `token`, `remember_token`, `created_at`, `updated_at`) VALUES
-('MHS0001', 'danyahmadihza99@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 1, 1, NULL, 'MA4Z3BOR', NULL, '2021-03-14 05:12:21', '2021-03-14 05:12:21');
+INSERT INTO `users` (`id_user`, `email`, `password`, `role`, `email_verified_at`, `token`, `remember_token`, `created_at`, `updated_at`) VALUES
+('DOS0001', 'google@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 2, NULL, '3NEJL7KP', NULL, '2021-03-17 06:01:32', '2021-03-17 06:01:32'),
+('MHS0001', 'danyahmadihza99@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 1, NULL, 'RZBSCOQE', NULL, '2021-03-17 05:58:20', '2021-03-17 05:58:20');
 
 --
 -- Indexes for dumped tables
@@ -211,7 +213,7 @@ INSERT INTO `users` (`id_user`, `email`, `password`, `role`, `detail`, `email_ve
 -- Indexes for table `detail_users`
 --
 ALTER TABLE `detail_users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_detail`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -262,12 +264,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `detail_users`
---
-ALTER TABLE `detail_users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -283,7 +279,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `prodis`
