@@ -22,4 +22,21 @@ class Detail_user extends Model
         'website',
         'instagram'
     ];
+    public $primaryKey = 'id_detail';
+    
+
+    public function kategoris()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori');
+    }
+
+    public function prodis()
+    {
+        return $this->belongsTo(Prodi::class, 'prodi');
+    }
+
+    public function statuses()
+    {
+        return $this->belongsTo(Status::class, 'status');
+    }
 }

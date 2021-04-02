@@ -51,11 +51,11 @@
                         class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                         aria-label="submenu">
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'usaha' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/profile/usaha">Profil Usaha</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'tim' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/profile/tim">
                                 Profil Tim
                             </a>
@@ -91,11 +91,11 @@
                         class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                         aria-label="submenu">
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'pengumuman' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/informasi/pengumuman">Pengumuman</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'download' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/informasi/download">
                                 Download
                             </a>
@@ -131,29 +131,29 @@
                         class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                         aria-label="submenu">
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'produk' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/monev/produk">Produk</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'pelanggan' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/monev/pelanggan">
                                 Pelanggan
                             </a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'pemasaran' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/monev/pemasaran">Pemasaran</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'operasional' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/monev/operasional">Operasional</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'finansial' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/monev/finansial">Finansial</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'kendala' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/monev/kendala">Kendala</a>
                         </li>
                     </ul>

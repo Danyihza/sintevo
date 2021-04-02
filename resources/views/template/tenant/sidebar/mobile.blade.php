@@ -22,7 +22,7 @@
                     aria-hidden="true"></span>
                 @endif
                 <a class="inline-flex items-center w-full text-sm font-semibold {{ $title == 'home' ? 'text-gray-800' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                    href="index.html">
+                    href="/tenant/home">
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path
@@ -63,11 +63,11 @@
                         aria-label="submenu">
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/login.html">Profil Usaha</a>
+                            <a class="w-full" href="/tenant/profile/usaha">Profil Usaha</a>
                         </li>
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/create-account.html">
+                            <a class="w-full" href="/tenant/profile/tim">
                                 Profil Tim
                             </a>
                         </li>
@@ -103,11 +103,11 @@
                         aria-label="submenu">
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/login.html">Pengumuman</a>
+                            <a class="w-full" href="/tenant/informasi/pengumuman">Pengumuman</a>
                         </li>
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/create-account.html">
+                            <a class="w-full" href="/tenant/informasi/download">
                                 Download
                             </a>
                         </li>
@@ -143,29 +143,29 @@
                         aria-label="submenu">
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/login.html">Produk</a>
+                            <a class="w-full" href="/tenant/monev/produk">Produk</a>
                         </li>
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/create-account.html">
+                            <a class="w-full" href="/tenant/monev/pelanggan">
                                 Pelanggan
                             </a>
                         </li>
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/login.html">Pemasaran</a>
+                            <a class="w-full" href="/tenant/monev/pemasaran">Pemasaran</a>
                         </li>
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/login.html">Operasional</a>
+                            <a class="w-full" href="/tenant/monev/operasional">Operasional</a>
                         </li>
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/login.html">Finansial</a>
+                            <a class="w-full" href="/tenant/monev/finansial">Finansial</a>
                         </li>
                         <li
                             class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="pages/login.html">Kendala</a>
+                            <a class="w-full" href="/tenant/monev/kendala">Kendala</a>
                         </li>
                     </ul>
                 </template>
@@ -176,7 +176,7 @@
                     aria-hidden="true"></span>
                 @endif
                 <a class="inline-flex items-center w-full text-sm font-semibold {{ $title == 'upload_file' ? 'text-gray-800' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    href="forms.html">
+                    href="/tenant/upload_file">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                     <span class="ml-4">Upload File</span>
                 </a>
@@ -187,7 +187,7 @@
                     aria-hidden="true"></span>
                 @endif
                 <a class="inline-flex items-center w-full text-sm font-semibold {{ $title == 'buku_kas' ? 'text-gray-800' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    href="cards.html">
+                    href="/tenant/buku_kas">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     <span class="ml-4">Buku Kas</span>
                 </a>
@@ -198,7 +198,7 @@
                     aria-hidden="true"></span>
                 @endif
                 <a class="inline-flex items-center w-full text-sm font-semibold {{ $title == 'prestasi' ? 'text-gray-800' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    href="charts.html">
+                    href="/tenant/prestasi">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
                     <span class="ml-4">Prestasi</span>
                 </a>
@@ -209,7 +209,7 @@
                     aria-hidden="true"></span>
                 @endif
                 <a class="inline-flex items-center w-full text-sm font-semibold {{ $title == 'kelulusan' ? 'text-gray-800' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    href="buttons.html">
+                    href="/tenant/kelulusan">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path></svg>
                     <span class="ml-4">Kelulusan</span>
                 </a>

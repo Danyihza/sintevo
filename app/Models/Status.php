@@ -13,4 +13,10 @@ class Status extends Model
     protected $fillable = [
         'jenis_status'
     ];
+    public $primaryKey = 'id_status';
+
+    public function detail_user()
+    {
+        return $this->hasMany(Detail_user::class, 'status', 'id_status');
+    }
 }

@@ -13,4 +13,10 @@ class Prodi extends Model
     protected $fillable =[
         'nama_prodi'
     ];
+    public $primaryKey = 'id_prodi';
+
+    public function detail_user()
+    {
+        return $this->hasMany(Detail_user::class, 'prodi', 'id_prodi');
+    }
 }

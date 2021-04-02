@@ -45,6 +45,7 @@ function data() {
     closeProfileMenu() {
       this.isProfileMenuOpen = false
     },
+    
     isPagesMenuOpen: false,
     togglePagesMenu() {
       this.isPagesMenuOpen = !this.isPagesMenuOpen
@@ -59,14 +60,20 @@ function data() {
     },
     // Modal
     isModalOpen: false,
-    
     openModal() {
       this.isModalOpen = true
-      
     },
     closeModal() {
       this.isModalOpen = false
-      
+    },
+
+    // Modal Confirm
+    isModalConfirmOpen: false,
+    openModalConfirm() {
+      this.isModalConfirmOpen = true
+    },
+    closeModalConfirm() {
+      this.isModalConfirmOpen = false
     },
     // Logout
     // logout(){

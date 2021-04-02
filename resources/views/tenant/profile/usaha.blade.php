@@ -4,544 +4,235 @@
 
 @section('body')
 
-    <body>
-        <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
-            @include('template.tenant.sidebar.desktop')
-            @include('template.tenant.sidebar.mobile')
-            
-            <div class="flex flex-col flex-1 w-full">
-                @include('template.tenant.topbar')
-                {{-- Content --}}
-                <main class="h-full overflow-y-auto">
-                    <div class="container px-6 mx-auto grid">
-                        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                            Profil -> Usaha
-                        </h2>
-                        <!-- CTA -->
-                        {{-- <a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-lightBlue-100 bg-lightBlue-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-lightBlue"
+<body>
+    <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
+        @include('template.tenant.sidebar.desktop')
+        @include('template.tenant.sidebar.mobile')
+
+        <div class="flex flex-col flex-1 w-full">
+            @include('template.tenant.topbar')
+            {{-- Content --}}
+            <main class="h-full overflow-y-auto">
+                <div class="container px-6 mx-auto grid">
+                    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                        Profil -> Usaha
+                    </h2>
+                    <!-- CTA -->
+                    {{-- <a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-lightBlue-100 bg-lightBlue-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-lightBlue"
                             href="https://github.com/estevanmaito/windmill-dashboard">
                             <div class="flex items-center">
                                 <span>Aftermeet</span>
                             </div>
                         </a> --}}
-                        <!-- Cards -->
-                        <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-                            <!-- Card -->
-                            <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                                <div
-                                    class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path><path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path></svg>
-                                </div>
-                                <div>
-                                    <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                        Nama Brand
-                                    </p>
-                                    <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                        Aftermeet Academy
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Card -->
-                            <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                                <div
-                                    class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
-                                    <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 14.062V20h2v-5.938c3.946.492 7 3.858 7 7.938H4a8.001 8.001 0 0 1 7-7.938zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z"/></svg>
-                                    {{-- <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg> --}}
-                                </div>
-                                <div>
-                                    <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                        Nama Ketua
-                                    </p>
-                                    <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                        Muhammad Fauzi
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Card -->
-                            <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                                <div
-                                    class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
-                                    <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
-                                    {{-- <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0-2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.25a1.25 1.25 0 0 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM12 4c-2.474 0-2.878.007-4.029.058-.784.037-1.31.142-1.798.332-.434.168-.747.369-1.08.703a2.89 2.89 0 0 0-.704 1.08c-.19.49-.295 1.015-.331 1.798C4.006 9.075 4 9.461 4 12c0 2.474.007 2.878.058 4.029.037.783.142 1.31.331 1.797.17.435.37.748.702 1.08.337.336.65.537 1.08.703.494.191 1.02.297 1.8.333C9.075 19.994 9.461 20 12 20c2.474 0 2.878-.007 4.029-.058.782-.037 1.309-.142 1.797-.331.433-.169.748-.37 1.08-.702.337-.337.538-.65.704-1.08.19-.493.296-1.02.332-1.8.052-1.104.058-1.49.058-4.029 0-2.474-.007-2.878-.058-4.029-.037-.782-.142-1.31-.332-1.798a2.911 2.911 0 0 0-.703-1.08 2.884 2.884 0 0 0-1.08-.704c-.49-.19-1.016-.295-1.798-.331C14.925 4.006 14.539 4 12 4zm0-2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2z"/></svg> --}}
-                                </div>
-                                <div>
-                                    <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                        Instagram
-                                    </p>
-                                    <a href="https://www.instagram.com" class="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-lightBlue-600">
-                                        {{ '@aftermeet' }} 
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Card -->
-                            <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                                <div
-                                    class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
-                                    <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M2.05 13h5.477a17.9 17.9 0 0 0 2.925 8.88A10.005 10.005 0 0 1 2.05 13zm0-2a10.005 10.005 0 0 1 8.402-8.88A17.9 17.9 0 0 0 7.527 11H2.05zm19.9 0h-5.477a17.9 17.9 0 0 0-2.925-8.88A10.005 10.005 0 0 1 21.95 11zm0 2a10.005 10.005 0 0 1-8.402 8.88A17.9 17.9 0 0 0 16.473 13h5.478zM9.53 13h4.94A15.908 15.908 0 0 1 12 20.592 15.908 15.908 0 0 1 9.53 13zm0-2A15.908 15.908 0 0 1 12 3.408 15.908 15.908 0 0 1 14.47 11H9.53z"/></svg>
-                                </div>
-                                <div>
-                                    <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                        Website
-                                    </p>
-                                    <p class="text-md font-semibold text-gray-700 dark:text-gray-500">
-                                        Belum Tersedia
-                                    </p>
-                                </div>
+                        <div class="md:grid md:gap-6 mb-8">
+                            <div class="mt-5 md:mt-0 md:col-span-2 animate__animated" id="form_regis">
+                                <form action="#" method="POST" id="form_register">
+                                    @csrf
+                                    <div class="shadow sm:rounded-md sm:overflow-hidden">
+                                        <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                                            <div class="grid grid-cols-3 gap-6">
+                                                <div class="col-span-6 sm:col-span-3">
+                                                    <label for="status"
+                                                        class="block text-sm font-medium text-gray-700">Status</label>
+                                                    <select id="status" name="status" disabled
+                                                        class="mt-1 block w-full py-2 disabled px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
+                                                        <option value="{{ $usaha->status }}" disabled selected>{{ $usaha->statuses->jenis_status }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            @if($usaha->prodi)
+                                            <div class="grid grid-cols-3 gap-6">
+                                                <div class="col-span-6 sm:col-span-3">
+                                                    <label for="status"
+                                                        class="block text-sm font-medium text-gray-700">Prodi</label>
+                                                    <select id="status" name="status" 
+                                                        class="mt-1 block w-full py-2 disabled px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
+                                                        <option value="{{ $usaha->prodi }}" selected>{{ $usaha->prodis->nama_prodi }}</option>
+                                                        @for ($i = 0; $i < count($prodi); $i++)
+                                                            @if ($prodi[$i]['id_prodi'] !== $usaha->prodi)
+                                                                <option value="{{ $prodi[$i]['id_prodi'] }}">{{ $prodi[$i]['nama_prodi'] }}</option>
+                                                            @endif
+                                                        @endfor
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            @endif
+            
+                                            <div class="grid grid-cols-3 gap-6">
+                                                <div class="col-span-6 sm:col-span-3">
+                                                    <label for="kategori" class="block text-sm font-medium text-gray-700">Kategori
+                                                        Usaha</label>
+                                                    <select id="kategori" name="kategori"
+                                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
+                                                        <option value="{{ $usaha->kategori }}" selected>{{ $usaha->kategoris->nama_kategori }}</option>
+                                                        @for ($i = 0; $i < count($kategori); $i++)
+                                                            @if ($kategori[$i]['id_kategori'] !== $usaha->kategori)
+                                                                <option value="{{ $kategori[$i]['id_kategori'] }}">{{ $kategori[$i]['nama_kategori'] }}</option>
+                                                            @endif
+                                                        @endfor
+                                                    </select>
+                                                </div>
+                                            </div>
+            
+                                            <div class="col-span-6 sm:col-span-4">
+                                                <label for="nama_brand" class="block text-sm font-medium text-gray-700">Nama Brand /
+                                                    Usaha</label>
+                                                <input required type="text" name="nama_brand" id="nama_brand"
+                                                    placeholder="Contoh: Aftermeet Academy"
+                                                    class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    value="{{ $usaha->nama_brand }}">
+                                            </div>
+            
+                                            <div>
+                                                <label for="deskripsi" class="block text-sm font-medium text-gray-700">
+                                                    Deskripsi Usaha
+                                                </label>
+                                                <div class="mt-1">
+                                                    <textarea id="deskripsi" name="deskripsi" rows="5"
+                                                        class="shadow-sm focus:ring-lightBlue-500 focus:border-lightBlue-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"
+                                                        placeholder="Deskripsikan Usaha / Produk / Layanan Usaha Anda">{{ $usaha->deskripsi }}</textarea>
+                                                </div>
+                                            </div>
+            
+                                            <div class="col-span-6 sm:col-span-4">
+                                                <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
+                                                <input required type="text" name="alamat" id="alamat"
+                                                    placeholder="Masukkan Alamat Usaha Anda"
+                                                    class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    value="{{ $usaha->alamat }}">
+                                            </div>
+            
+                                            <div class="col-span-6 sm:col-span-4">
+                                                <label for="nama_ketua" class="block text-sm font-medium text-gray-700">Nama
+                                                    Ketua</label>
+                                                <input required type="text" name="nama_ketua" id="nama_ketua"
+                                                    placeholder="Masukkan Nama Lengkap Ketua Usaha / Tim"
+                                                    class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    value="{{ $usaha->nama_ketua }}">
+                                            </div>
+            
+                                            <div class="col-span-6 sm:col-span-4">
+                                                <label for="no_whatsapp" class="block text-sm font-medium text-gray-700">Nomor
+                                                    WhatsApp</label>
+                                                <input required type="text" name="no_whatsapp" id="no_whatsapp"
+                                                    placeholder="Masukkan Nomor WhatsApp Ketua Usaha / Tim"
+                                                    class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    value="{{ $usaha->no_whatsapp }}">
+                                            </div>
+            
+                                            <div class="col-span-6 sm:col-span-4">
+                                                <label for="website" class="block text-sm font-medium text-gray-700">
+                                                    Website
+                                                </label>
+                                                <div class="mt-1 flex rounded-md shadow-sm">
+                                                    <span
+                                                        class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                                        http://
+                                                    </span>
+                                                    <input type="text" name="website" id="website"
+                                                        class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                                                        placeholder="www.example.com"
+                                                        value="{{ $usaha->website }}">
+                                                </div>
+                                                <p class="text-xs italic md ml-2 text-gray-300">
+                                                    opsional
+                                                </p>
+                                            </div>
+            
+                                            <div class="col-span-6 sm:col-span-4">
+                                                <label for="instagram"
+                                                    class="block text-sm font-medium text-gray-700">Instagram</label>
+                                                <input type="text" name="instagram" id="instagram"
+                                                    placeholder="Masukkan Username Instagram Usaha (Kosongkan Jika Tidak Ada)"
+                                                    class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    value="{{ $usaha->instagram }}">
+                                                <p class="text-xs italic md ml-2 text-gray-300">
+                                                    opsional
+                                                </p>
+                                            </div>
+                                            <p class="mt-2 text-sm text-gray-500">
+                                                Keterangan: *Wajib Diisi
+                                            </p>
+            
+                                        </div>
+                                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                            <button type="button" id="btn-continue" @click="openModalConfirm"
+                                                class="disabled:opacity-50 disabled:cursor-not-allowed inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightBlue-500">
+                                                Simpan
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
-                        <!-- New Table -->
-                        <div class="w-full overflow-hidden rounded-lg shadow-xs">
-                            <div class="w-full overflow-x-auto">
-                                <table class="w-full whitespace-no-wrap">
-                                    <thead>
-                                        <tr
-                                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                            <th class="px-4 py-3">Client</th>
-                                            <th class="px-4 py-3">Amount</th>
-                                            <th class="px-4 py-3">Status</th>
-                                            <th class="px-4 py-3">Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Hans Burger</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            10x Developer
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 863.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Approved
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&facepad=3&fit=facearea&s=707b9c33066bf8808c934c8ab394dff6"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Jolina Angelie</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Unemployed
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 369.95
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">
-                                                    Pending
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1551069613-1904dbdcda11?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Sarah Curry</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Designer
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 86.00
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">
-                                                    Denied
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1551006917-3b4c078c47c9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Rulia Joberts</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Actress
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 1276.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Approved
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1546456073-6712f79251bb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Wenzel Dashington</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Actor
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 863.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700">
-                                                    Expired
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1502720705749-871143f0e671?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=b8377ca9f985d80264279f277f3a67f5"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Dave Li</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Influencer
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 863.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Approved
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Maria Ramovic</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Runner
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 863.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Approved
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1566411520896-01e7ca4726af?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Hitney Wouston</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Singer
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 863.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Approved
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Hans Burger</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            10x Developer
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 863.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Approved
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div
-                                class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
-                                <span class="flex items-center col-span-3">
-                                    Showing 21-30 of 100
-                                </span>
-                                <span class="col-span-2"></span>
-                                <!-- Pagination -->
-                                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                                    <nav aria-label="Table navigation">
-                                        <ul class="inline-flex items-center">
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-lightBlue"
-                                                    aria-label="Previous">
-                                                    <svg aria-hidden="true" class="w-4 h-4 fill-current"
-                                                        viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                                            clip-rule="evenodd" fill-rule="evenodd"></path>
-                                                    </svg>
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-lightBlue">
-                                                    1
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-lightBlue">
-                                                    2
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 text-white transition-colors duration-150 bg-lightBlue-600 border border-r-0 border-lightBlue-600 rounded-md focus:outline-none focus:shadow-outline-lightBlue">
-                                                    3
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-lightBlue">
-                                                    4
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <span class="px-3 py-1">...</span>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-lightBlue">
-                                                    8
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-lightBlue">
-                                                    9
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-lightBlue"
-                                                    aria-label="Next">
-                                                    <svg class="w-4 h-4 fill-current" aria-hidden="true"
-                                                        viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                            clip-rule="evenodd" fill-rule="evenodd"></path>
-                                                    </svg>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Charts -->
-                        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                            Charts
-                        </h2>
-                        <div class="grid gap-6 mb-8 md:grid-cols-2">
-                            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                                    Revenue
-                                </h4>
-                                <canvas id="pie"></canvas>
-                                <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-                                    <!-- Chart legend -->
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"></span>
-                                        <span>Shirts</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                                        <span>Shoes</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-lightBlue-600 rounded-full"></span>
-                                        <span>Bags</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                                    Traffic
-                                </h4>
-                                <canvas id="line"></canvas>
-                                <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-                                    <!-- Chart legend -->
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                                        <span>Organic</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-lightBlue-600 rounded-full"></span>
-                                        <span>Paid</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-                {{-- End of Content --}}
-            </div>
+                </div>
+            </main>
+            {{-- End of Content --}}
         </div>
-    </body>
-    
+    </div>
+</body>
 
-    @include('template.tenant.modalLogout')
+    <!-- Modal backdrop. This what you want to place close to the closing body tag -->
+    <div x-show="isModalConfirmOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-60 sm:items-center sm:justify-center">
+        <!-- Modal -->
+        <div x-show="isModalConfirmOpen" x-transition:enter="transition ease-out duration-150"
+            x-transition:enter-start="opacity-0 transform translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0  transform translate-y-4 sm:translate-y-0 sm:scale-95" @click.away="closeModalConfirm"
+            @keydown.escape="closeModalConfirm"
+            class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
+            role="dialog" id="modal">
+            <!-- Remove header if you don't want a close icon. Use modal body to place modal tile. -->
+            <header class="flex justify-end">
+                <button
+                    class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
+                    aria-label="close" @click="closeModalConfirm">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
+                        <path
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd" fill-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </header>
+            <!-- Modal body -->
+            <div class="mt-4 mb-6">
+                <!-- Modal title -->
+                <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
+                    Konfirmasi
+                </p>
+                <!-- Modal description -->
+                <p class="text-sm text-gray-700 dark:text-gray-400">
+                    Simpan perubahan ?
+                </p>
+            </div>
+            <footer
+                class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
+                <button @click="closeModalConfirm"
+                    class="w-full px-5 py-3 text-sm font-medium leading-5 text-white text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+                    Batal
+                </button>
+                <a href="/signout"
+                    class="w-full text-center px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-lightBlue-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:shadow-outline-lightBlue">
+                    Simpan
+                </a>
+            </footer>
+        </div>
+    </div>
+    <!-- End of modal backdrop -->
+
+@include('template.tenant.modalLogout')
 
 @endsection
 
 @section('script')
-    <script>
-        
-    </script>
+<script>
 
-    </html>
+</script>
+
+</html>
 @endsection

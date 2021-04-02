@@ -13,5 +13,11 @@ class Kategori extends Model
     protected $fillable = [
         'nama_kategori'
     ];
+    public $primaryKey = 'id_kategori';
+
     
+    public function detail_user()
+    {
+        return $this->hasMany(Detail_user::class, 'kategori', 'id_kategori');
+    }
 }
