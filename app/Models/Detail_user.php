@@ -22,7 +22,8 @@ class Detail_user extends Model
         'website',
         'instagram'
     ];
-    public $primaryKey = 'id_detail';
+    protected $primaryKey = 'id_detail';
+    protected $keyType = 'string';
     
 
     public function kategoris()

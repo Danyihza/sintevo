@@ -47,6 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $primaryKey ='id_user';
+    protected $keyType = 'string';
+
     public static function generateId($role)
     {
         $last_id = DB::table('users')->where('role', $role)->latest()->first();

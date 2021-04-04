@@ -13,6 +13,50 @@
             @include('template.tenant.topbar')
             {{-- Content --}}
             <main class="h-full overflow-y-auto">
+                @if(session('success') || session('error'))
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                <div class="notification-bar bg-{{ session('success') ? 'green' : 'yellow' }}-600 animate__animated animate__fadeInDown">
+                    <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+                        <div class="flex items-center justify-between flex-wrap">
+                            <div class="w-0 flex-1 flex items-center">
+                                <span class="flex p-2 rounded-lg bg-{{ session('success') ? 'green' : 'yellow' }}-800">
+                                    @if(session('success'))
+                                    <!-- Heroicon name: outline/speakerphone -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    @endif
+                                    @if (session('error'))
+                                    <!-- Heroicon name: outline/speakerphone -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                    @endif
+                                </span>
+                                <p class="ml-3 font-medium text-white truncate">
+                                    {{-- <span class="md:hidden">
+                                        We announced a new product!
+                                    </span> --}}
+                                    <span class="md:inline">
+                                        {{ session('success') }}
+                                        {{ session('error') }}
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
+                                <button onclick="onCloseNotif()" type="button" class="-mr-1 flex p-2 rounded-md hover:bg-{{ session('success') ? 'green' : 'yellow' }}-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2">
+                                    <span class="sr-only">Dismiss</span>
+                                        <!-- Heroicon name: outline/x -->
+                                        <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                
                 <div class="container px-6 mx-auto grid">
                     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                         Profil -> Usaha
@@ -26,8 +70,9 @@
                         </a> --}}
                         <div class="md:grid md:gap-6 mb-8">
                             <div class="mt-5 md:mt-0 md:col-span-2 animate__animated" id="form_regis">
-                                <form action="#" method="POST" id="form_register">
+                                <form action="/tenant/updateProfileUsaha" method="POST" id="formUpdateUsaha">
                                     @csrf
+                                    <input type="text" name="id_detail" value="{{ $usaha->getKey() }}" hidden>
                                     <div class="shadow sm:rounded-md sm:overflow-hidden">
                                         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                             <div class="grid grid-cols-3 gap-6">
@@ -128,7 +173,7 @@
                                                 <div class="mt-1 flex rounded-md shadow-sm">
                                                     <span
                                                         class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                                                        http://
+                                                        https://
                                                     </span>
                                                     <input type="text" name="website" id="website"
                                                         class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
@@ -151,9 +196,6 @@
                                                     opsional
                                                 </p>
                                             </div>
-                                            <p class="mt-2 text-sm text-gray-500">
-                                                Keterangan: *Wajib Diisi
-                                            </p>
             
                                         </div>
                                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -216,10 +258,10 @@
                     class="w-full px-5 py-3 text-sm font-medium leading-5 text-white text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
                     Batal
                 </button>
-                <a href="/signout"
+                <button type="button" id="btn_submit" onclick="submit()"
                     class="w-full text-center px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-lightBlue-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:shadow-outline-lightBlue">
                     Simpan
-                </a>
+                </button>
             </footer>
         </div>
     </div>
@@ -230,8 +272,19 @@
 @endsection
 
 @section('script')
-<script>
 
+<script>
+function submit() {
+    $('#formUpdateUsaha').submit();
+}
+
+function onCloseNotif() {
+    $('.notification-bar').addClass('animate__fadeOutUp');
+    setTimeout(() => {
+        $('.notification-bar').addClass('hidden');
+    }, 500);
+    
+}
 </script>
 
 </html>

@@ -6,6 +6,7 @@ use App\Models\Detail_user;
 use App\Models\Kategori;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class TenantController extends Controller
 {
@@ -20,12 +21,13 @@ class TenantController extends Controller
     {
         $data['title'] = 'profile';
         $session = session()->get('login-data');
-        $data['usaha'] = Detail_user::with('kategoris', 'prodis', 'statuses')->where('id_detail', $session['id'])->first();
         $data['prodi'] = Prodi::all();
         $data['kategori'] = Kategori::all();
         switch ($params) {
             case 'usaha':
                 $data['state'] = 'usaha';
+                $data['usaha'] = Detail_user::where('id_detail', $session['id'])->first();
+                // dd($data['usaha']);
                 return view('tenant.profile.usaha', $data);
                 break;
             case 'tim':
@@ -36,6 +38,40 @@ class TenantController extends Controller
                 abort(404);
                 break;
         }
+    }
+
+    function updateUsaha(Request $request)
+    {
+        $id_detail = $request->id_detail;
+        $prodi = $request->prodi;
+        // dd($prodi);
+        $kategori = $request->kategori;
+        $nama_brand = $request->nama_brand;
+        $deskripsi = $request->deskripsi;
+        $alamat = $request->alamat;
+        $nama_ketua = $request->nama_ketua;
+        $no_whatsapp = $request->no_whatsapp;
+        $website = $request->website;
+        $instagram = $request->instagram;
+
+        $profil = Detail_user::find($id_detail);
+        if ($prodi) {
+            $profil->prodi = $prodi;
+        }
+        $profil->kategori = $kategori;
+        $profil->nama_brand = $nama_brand;
+        $profil->deskripsi = $deskripsi;
+        $profil->alamat = $alamat;
+        $profil->nama_ketua = $nama_ketua;
+        $profil->no_whatsapp = $no_whatsapp;
+        $profil->website = $website;
+        $profil->instagram = $instagram;
+        if ($profil->isClean() == true) {
+            return Redirect::back()->with('error', 'Data tidak ada yang berubah');
+        }
+        $profil->save();
+
+        return Redirect::back()->with('success', 'Sukses! Data berhasil diperbarui');
     }
 
     public function informasi($params = null)

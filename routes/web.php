@@ -41,6 +41,7 @@ Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin'], function () {
     Route::any('/buku_kas', [TenantController::class, 'buku_kas']);
     Route::any('/prestasi', [TenantController::class, 'prestasi']);
     Route::any('/kelulusan', [TenantController::class, 'kelulusan']);
+    Route::post('/updateProfileUsaha', [TenantController::class, 'updateUsaha']);
 });
 // Route::view('/tenant', 'tenant/home');
 // Route::view('/signup2', 'signup2');
