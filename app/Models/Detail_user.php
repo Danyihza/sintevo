@@ -40,4 +40,6 @@ class Detail_user extends Model
     {
         return $this->belongsTo(Status::class, 'status');
     }
+
+    
 }

@@ -29,9 +29,6 @@ Route::any('/signup2', [AuthController::class, 'signup2']);
 Route::post('/registration', [AuthController::class, 'registration']);
 Route::post('/signin', [AuthController::class, 'signin']);
 
-Route::post('/api/getEmail', [ApiAuth::class, 'getEmail']);
-Route::post('/api/getProdi', [ApiData::class, 'getProdi']);
-
 Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin'], function () {
     Route::any('/home', [TenantController::class, 'index']);
     Route::any('/profile/{params?}', [TenantController::class, 'profile']);
@@ -41,7 +38,15 @@ Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin'], function () {
     Route::any('/buku_kas', [TenantController::class, 'buku_kas']);
     Route::any('/prestasi', [TenantController::class, 'prestasi']);
     Route::any('/kelulusan', [TenantController::class, 'kelulusan']);
+
+    
     Route::post('/updateProfileUsaha', [TenantController::class, 'updateUsaha']);
+    Route::post('/tambahAnggota', [TenantController::class, 'tambahAnggota']);
+});
+
+Route::group(['prefix' => 'api'], function () {
+    Route::post('/getEmail', [ApiAuth::class, 'getEmail']);
+    Route::post('/getProdi', [ApiData::class, 'getProdi']);
 });
 // Route::view('/tenant', 'tenant/home');
 // Route::view('/signup2', 'signup2');

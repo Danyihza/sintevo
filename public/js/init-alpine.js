@@ -75,6 +75,15 @@ function data() {
     closeModalConfirm() {
       this.isModalConfirmOpen = false
     },
+
+    // Modal Tim
+    isModalTimOpen: false,
+    openModalTim() {
+      this.isModalTimOpen = true
+    },
+    closeModalTim() {
+      this.isModalTimOpen = false
+    },
     // Logout
     // logout(){
     //   const protocol = window.location.protocol;

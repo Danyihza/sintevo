@@ -50,6 +50,11 @@ class User extends Authenticatable
     protected $primaryKey ='id_user';
     protected $keyType = 'string';
 
+    public function belongAnggota()
+    {
+        return $this->hasMany(Anggota::class, 'id_user');
+    }
+
     public static function generateId($role)
     {
         $last_id = DB::table('users')->where('role', $role)->latest()->first();

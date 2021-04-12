@@ -1,6 +1,6 @@
 @extends('template.tenant.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Profil Usaha')
 
 @section('body')
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Detail_user;
 use App\Models\Kategori;
 use App\Models\Prodi;
+use App\Models\Status;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -32,12 +34,18 @@ class TenantController extends Controller
                 break;
             case 'tim':
                 $data['state'] = 'tim';
+                $data['tim'] = User::where('id_user', $session['id'])->first();
+                $data['status'] = Status::all();
                 return view('tenant.profile.tim', $data);
                 break;
             default:
                 abort(404);
                 break;
         }
+    }
+
+    function tambahAnggota(Request $request){
+        
     }
 
     function updateUsaha(Request $request)
