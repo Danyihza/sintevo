@@ -278,13 +278,6 @@ function submit() {
     $('#formUpdateUsaha').submit();
 }
 
-function onCloseNotif() {
-    $('.notification-bar').addClass('animate__fadeOutUp');
-    setTimeout(() => {
-        $('.notification-bar').addClass('hidden');
-    }, 500);
-    
-}
 </script>
 
 </html>

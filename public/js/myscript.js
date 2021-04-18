@@ -181,3 +181,11 @@ async function checkEmail(element){
     }
     // console.log(await getEmail.json());
 }
+
+function onCloseNotif() {
+    $('.notification-bar').addClass('animate__fadeOutUp');
+    setTimeout(() => {
+        $('.notification-bar').addClass('hidden');
+    }, 500);
+    
+}

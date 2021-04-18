@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anggota;
 use App\Models\Detail_user;
 use App\Models\Kategori;
 use App\Models\Prodi;
@@ -12,6 +13,14 @@ use Illuminate\Support\Facades\Redirect;
 
 class TenantController extends Controller
 {
+    // TESTING FUNCTION
+    public function test()
+    {
+        $test= session('login-data');
+        return $test;
+    }
+    // TESTING FUNCTION
+
 
     public function index()
     {
@@ -44,8 +53,51 @@ class TenantController extends Controller
         }
     }
 
+    function deleteAnggota($id_anggota)
+    {
+        try {
+            Anggota::where('id_anggota', $id_anggota)->delete();
+        } catch (\Throwable $th) {
+            return Redirect::back()->with('error', 'Something went wrong, Error: '.$th->getMessage());
+        }
+        return Redirect::back()->with('success', 'Data Anggota berhasil dihapus');
+    }
+
     function tambahAnggota(Request $request){
+        $validated = $request->validate([
+            'nama' => 'required',
+            'no_identify' => 'required|numeric',
+            'jabatan' => 'required'
+        ]);
         
+        if ($request->isMahasiswa == 'true') {
+            $data = $request->except(['_token', 'isMahasiswa']);
+        } else {
+            $data = $request->except(['_token', 'isMahasiswa', 'prodi']);
+        }
+
+        try {
+            Anggota::create($data);
+        } catch (\Throwable $th) {
+            return Redirect::back()->with('error', 'Something Went Wrong: ' . $th->getMessage());
+        }
+        return Redirect::back()->with('success', 'Anggota baru berhasil ditambahkan');
+    }
+
+    function updateAnggota(Request $request){
+        if ($request->isMahasiswa == 'true') {
+            $data = $request->except(['_token', 'isMahasiswa', 'id_user']);
+        } else {
+            $data = $request->except(['_token', 'isMahasiswa', 'id_user']);
+            $data['prodi'] = null;
+        }
+        try {
+            Anggota::where('id_anggota', $request->id_anggota)
+                    ->update($data);
+        } catch (\Throwable $th) {
+            return Redirect::back()->with('error', 'Something Went Wrong: '.$th->getMessage());
+        }
+        return Redirect::back()->with('success', 'Data berhasil diubah');
     }
 
     function updateUsaha(Request $request)
@@ -104,17 +156,9 @@ class TenantController extends Controller
     {
         $data['title'] = 'monev';
         switch ($params) {
-            case 'finansial':
-                $data['state'] = 'finansial';
-                return view('tenant.monev.finansial', $data);
-                break;
-            case 'kendala':
-                $data['state'] = 'kendala';
-                return view('tenant.monev.kendala', $data);
-                break;
-            case 'operasional':
-                $data['state'] = 'operasional';
-                return view('tenant.monev.operasional', $data);
+            case 'produk':
+                $data['state'] = 'produk';
+                return view('tenant.monev.produk', $data);
                 break;
             case 'pelanggan':
                 $data['state'] = 'pelanggan';
@@ -124,9 +168,17 @@ class TenantController extends Controller
                 $data['state'] = 'pemasaran';
                 return view('tenant.monev.pemasaran', $data);
                 break;
-            case 'produk':
-                $data['state'] = 'produk';
-                return view('tenant.monev.produk', $data);
+            case 'operasional':
+                $data['state'] = 'operasional';
+                return view('tenant.monev.operasional', $data);
+                break;
+            case 'finansial':
+                $data['state'] = 'finansial';
+                return view('tenant.monev.finansial', $data);
+                break;
+            case 'kendala':
+                $data['state'] = 'kendala';
+                return view('tenant.monev.kendala', $data);
                 break;
             default:
                 abort(404);

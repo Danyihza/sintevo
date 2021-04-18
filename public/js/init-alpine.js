@@ -84,6 +84,25 @@ function data() {
     closeModalTim() {
       this.isModalTimOpen = false
     },
+
+    // Modal Tim->Delete
+    isModalTimDeleteOpen: false,
+    openModalTimDelete() {
+      this.isModalTimDeleteOpen = true
+    },
+    closeModalTimDelete() {
+      this.isModalTimDeleteOpen = false
+    },
+    
+    // Modal Tim->Edit
+    isModalTimEditOpen: false,
+    openModalTimEdit() {
+      this.isModalTimEditOpen = true
+    },
+    closeModalTimEdit() {
+      this.isModalTimEditOpen = false
+    },
+    
     // Logout
     // logout(){
     //   const protocol = window.location.protocol;

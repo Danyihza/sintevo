@@ -34,14 +34,14 @@
             </li>
         </ul>
         <ul>
-            <li class="relative px-6 py-3">
+            <li class="relative px-6 py-3" x-data='{ isPagesMenuOpen:{{ $title == 'profile' ? 'true' : 'false' }} }'>
                 @if ($title == 'profile')
                 <span class="absolute inset-y-0 left-0 w-1 bg-lightBlue-600 rounded-tr-lg rounded-br-lg"
                     aria-hidden="true"></span>
                 @endif
                 <button
                     class="inline-flex items-center justify-between w-full text-sm font-semibold {{ $title == 'profile' ? 'text-gray-800' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    @click="togglePagesMenu" aria-haspopup="true">
+                    @click="isPagesMenuOpen = !isPagesMenuOpen" aria-haspopup="true">
                     <span class="inline-flex items-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                         <span class="ml-4">Profil</span>
@@ -62,11 +62,11 @@
                         class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                         aria-label="submenu">
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'usaha' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/profile/usaha">Profil Usaha</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'tim' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/profile/tim">
                                 Profil Tim
                             </a>
@@ -74,14 +74,14 @@
                     </ul>
                 </template>
             </li>
-            <li class="relative px-6 py-3">
+            <li class="relative px-6 py-3" x-data='{ isPagesMenuOpen2:{{ $title == 'informasi' ? 'true' : 'false' }} }'>
                 @if ($title == 'informasi')
                 <span class="absolute inset-y-0 left-0 w-1 bg-lightBlue-600 rounded-tr-lg rounded-br-lg"
                     aria-hidden="true"></span>
                 @endif
                 <button
                     class="inline-flex items-center justify-between w-full text-sm font-semibold {{ $title == 'informasi' ? 'text-gray-800' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    @click="togglePagesMenu2" aria-haspopup="true">
+                    @click="isPagesMenuOpen2 = !isPagesMenuOpen2" aria-haspopup="true">
                     <span class="inline-flex items-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
                         <span class="ml-4">Informasi</span>
@@ -102,11 +102,11 @@
                         class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                         aria-label="submenu">
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'pengumuman' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/informasi/pengumuman">Pengumuman</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'download' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/informasi/download">
                                 Download
                             </a>
@@ -114,14 +114,14 @@
                     </ul>
                 </template>
             </li>
-            <li class="relative px-6 py-3">
+            <li class="relative px-6 py-3" x-data='{ isPagesMenuOpen3:{{ $title == 'monev' ? 'true' : 'false' }} }'>
                 @if ($title == 'monev')
                 <span class="absolute inset-y-0 left-0 w-1 bg-lightBlue-600 rounded-tr-lg rounded-br-lg"
                     aria-hidden="true"></span>
                 @endif
                 <button
                     class="inline-flex items-center justify-between w-full text-sm font-semibold {{ $title == 'monev' ? 'text-gray-800' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    @click="togglePagesMenu3" aria-haspopup="true">
+                    @click="isPagesMenuOpen3 = !isPagesMenuOpen3" aria-haspopup="true">
                     <span class="inline-flex items-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
                         <span class="ml-4">Monev</span>
@@ -142,29 +142,29 @@
                         class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                         aria-label="submenu">
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'produk' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/monev/produk">Produk</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'pelanggan' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/monev/pelanggan">
                                 Pelanggan
                             </a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'pemasaran' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/monev/pemasaran">Pemasaran</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'operasional' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/monev/operasional">Operasional</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'finansial' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/monev/finansial">Finansial</a>
                         </li>
                         <li
-                            class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            class="px-2 py-1 transition-colors duration-150 {{ isset($state) && $state == 'kendala' ? 'text-gray-800' : '' }} hover:text-gray-800 dark:hover:text-gray-200">
                             <a class="w-full" href="/tenant/monev/kendala">Kendala</a>
                         </li>
                     </ul>

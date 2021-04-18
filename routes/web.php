@@ -39,15 +39,21 @@ Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin'], function () {
     Route::any('/prestasi', [TenantController::class, 'prestasi']);
     Route::any('/kelulusan', [TenantController::class, 'kelulusan']);
 
-    
+
     Route::post('/updateProfileUsaha', [TenantController::class, 'updateUsaha']);
     Route::post('/tambahAnggota', [TenantController::class, 'tambahAnggota']);
+    Route::get('/deleteAnggota/{id_anggota?}', [TenantController::class, 'deleteAnggota']);
+    Route::post('/updateAnggota', [TenantController::class, 'updateAnggota']);
 });
 
 Route::group(['prefix' => 'api'], function () {
     Route::post('/getEmail', [ApiAuth::class, 'getEmail']);
     Route::post('/getProdi', [ApiData::class, 'getProdi']);
+    Route::post('/getStatus', [ApiData::class, 'getStatus']);
+    Route::post('/getDetailAnggota/{id_anggota?}', [ApiData::class, 'getAnggota']);
 });
+
+
 // Route::view('/tenant', 'tenant/home');
 // Route::view('/signup2', 'signup2');
-// Route::get('/test/{params}', [TenantController::class, 'profile']);
+Route::get('/test', [TenantController::class, 'test']);
