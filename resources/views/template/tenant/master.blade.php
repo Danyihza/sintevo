@@ -9,6 +9,7 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('') }}css/tailwind.output.css" />
     <link rel="stylesheet" href="{{ asset('') }}css/custom.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/remixicon.css" />
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"

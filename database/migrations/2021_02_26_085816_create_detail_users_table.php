@@ -14,7 +14,7 @@ class CreateDetailUsersTable extends Migration
     public function up()
     {
         Schema::create('detail_users', function (Blueprint $table) {
-            $table->id();
+            $table->string('id_detail', 50)->primary();
             $table->integer('kategori');
             $table->string('nama_brand');
             $table->string('deskripsi');
@@ -22,7 +22,7 @@ class CreateDetailUsersTable extends Migration
             $table->string('nama_ketua');
             $table->string('no_whatsapp');
             $table->integer('status');
-            $table->integer('prodi');
+            $table->integer('prodi')->nullable();
             $table->string('website')->nullable();
             $table->string('instagram')->nullable();
             $table->timestamps();

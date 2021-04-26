@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DeleteColumnUsersTable extends Migration
+class CreatePengumumenTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class DeleteColumnUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('detail');
+        Schema::create('pengumuman', function (Blueprint $table) {
+            $table->string('id_pengumuman')->primary();
+            $table->string('kode')->unique();
+            $table->string('pengumuman');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +28,6 @@ class DeleteColumnUsersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('pengumuman');
     }
 }

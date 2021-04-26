@@ -39,11 +39,12 @@ Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin'], function () {
     Route::any('/prestasi', [TenantController::class, 'prestasi']);
     Route::any('/kelulusan', [TenantController::class, 'kelulusan']);
 
-
     Route::post('/updateProfileUsaha', [TenantController::class, 'updateUsaha']);
     Route::post('/tambahAnggota', [TenantController::class, 'tambahAnggota']);
     Route::get('/deleteAnggota/{id_anggota?}', [TenantController::class, 'deleteAnggota']);
     Route::post('/updateAnggota', [TenantController::class, 'updateAnggota']);
+    Route::post('/monev/tambah/{sub_monev}', [TenantController::class, 'monev_tambah']);
+    Route::get('/download', [TenantController::class, 'downloadFile']);
 });
 
 Route::group(['prefix' => 'api'], function () {

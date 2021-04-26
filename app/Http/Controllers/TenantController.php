@@ -5,20 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Anggota;
 use App\Models\Detail_user;
 use App\Models\Kategori;
+use App\Models\Monev;
+use App\Models\Monev_Finansial;
 use App\Models\Prodi;
 use App\Models\Status;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class TenantController extends Controller
 {
     // TESTING FUNCTION
-    public function test()
-    {
-        $test= session('login-data');
-        return $test;
-    }
+    // public function test(Request $request)
+    // {
+    //     $id = $request->id;
+    // }
     // TESTING FUNCTION
 
 
@@ -58,18 +61,19 @@ class TenantController extends Controller
         try {
             Anggota::where('id_anggota', $id_anggota)->delete();
         } catch (\Throwable $th) {
-            return Redirect::back()->with('error', 'Something went wrong, Error: '.$th->getMessage());
+            return Redirect::back()->with('error', 'Something went wrong, Error: ' . $th->getMessage());
         }
         return Redirect::back()->with('success', 'Data Anggota berhasil dihapus');
     }
 
-    function tambahAnggota(Request $request){
+    function tambahAnggota(Request $request)
+    {
         $validated = $request->validate([
             'nama' => 'required',
             'no_identify' => 'required|numeric',
             'jabatan' => 'required'
         ]);
-        
+
         if ($request->isMahasiswa == 'true') {
             $data = $request->except(['_token', 'isMahasiswa']);
         } else {
@@ -84,7 +88,8 @@ class TenantController extends Controller
         return Redirect::back()->with('success', 'Anggota baru berhasil ditambahkan');
     }
 
-    function updateAnggota(Request $request){
+    function updateAnggota(Request $request)
+    {
         if ($request->isMahasiswa == 'true') {
             $data = $request->except(['_token', 'isMahasiswa', 'id_user']);
         } else {
@@ -93,9 +98,9 @@ class TenantController extends Controller
         }
         try {
             Anggota::where('id_anggota', $request->id_anggota)
-                    ->update($data);
+                ->update($data);
         } catch (\Throwable $th) {
-            return Redirect::back()->with('error', 'Something Went Wrong: '.$th->getMessage());
+            return Redirect::back()->with('error', 'Something Went Wrong: ' . $th->getMessage());
         }
         return Redirect::back()->with('success', 'Data berhasil diubah');
     }
@@ -155,6 +160,7 @@ class TenantController extends Controller
     public function monev($params = null)
     {
         $data['title'] = 'monev';
+        $data['history'] = Monev::where(['id_user' => session('login-data')['id'], 'jenis_monev' => $params])->orderBy('tanggal', 'DESC')->get();
         switch ($params) {
             case 'produk':
                 $data['state'] = 'produk';
@@ -174,6 +180,7 @@ class TenantController extends Controller
                 break;
             case 'finansial':
                 $data['state'] = 'finansial';
+                $data['finansial'] = Monev_Finansial::where(['id_user' => session('login-data')['id']])->orderBy('tanggal', 'DESC')->get();
                 return view('tenant.monev.finansial', $data);
                 break;
             case 'kendala':
@@ -184,6 +191,85 @@ class TenantController extends Controller
                 abort(404);
                 break;
         }
+    }
+
+    function downloadFile(Request $request)
+    {
+        $id_monev = $request->file;
+        if (strlen($id_monev) == 16) {
+            $data = Monev_Finansial::where('id_finansial', $id_monev)->first();
+            if ($data->id_user != session('login-data')['id']) {
+                abort(404);
+            }
+            return response()->download($data->path_file, $data->origin_file);
+        } else {
+            $data = Monev::where('id_monev', $id_monev)->first();
+            if ($data->id_user != session('login-data')['id']) {
+                abort(404);
+            }
+            return response()->download($data->path, $data->nama_file);
+        }
+    }
+
+    function monev_tambah($sub_monev, Request $request)
+    {
+        if ($sub_monev == 'finansial') {
+            return self::tambahMonevFinansial($request);
+        } else {
+            $request->validate([
+                'upload_file' => 'mimes:pdf'
+            ]);
+            // dd($request->file('upload_file'));
+            try {
+                $monev = new Monev;
+                $monev->id_monev = Str::random(8);
+                $monev->id_user = session('login-data')['id'];
+                $monev->jenis_monev = $sub_monev;
+                $monev->status_progress = $request->status_progress;
+                $monev->uraian = $request->uraian_progress;
+                $monev->tanggal = $request->tanggal;
+                $file = $request->file('upload_file');
+                if ($file) {
+                    $upload_path = 'assets/file/monev/';
+                    $file_name = Str::random(32);
+                    $monev->nama_file = $file->getClientOriginalName();
+                    $monev->path = $upload_path . $file_name;
+                    $file->move($upload_path, $file_name);
+                }
+                $monev->save();
+                return Redirect::back()->with('success', 'Sukses Menambahkan Data');
+            } catch (\Throwable $th) {
+                return Redirect::back()->with('error', 'Something went wrong: ' . $th->getMessage());
+            }
+        }
+    }
+
+    public static function tambahMonevFinansial($request)
+    {
+        $request->validate([
+            'bukti_transaksi' => 'required|mimes:jpg,jpeg,png,pdf,doc,docx,xlsx,ppt',
+            'jenis_transaksi' => 'required',
+            'keterangan_transaksi' => 'required',
+            'jumlah' => 'required'
+        ]);
+        $finansial = new Monev_Finansial;
+        $finansial->id_finansial = Str::random(16);
+        $finansial->id_user = session('login-data')['id'];
+        $finansial->tanggal = $request->tanggal;
+        $finansial->jenis_transaksi = $request->jenis_transaksi;
+        $finansial->keterangan_transaksi = $request->keterangan_transaksi;
+        $finansial->jumlah = $request->jumlah;
+
+        // Handle File
+        $bukti = $request->file('bukti_transaksi');
+        $upload_path = 'assets/file/monev/';
+        $file_name = Str::random(32);
+        $finansial->origin_file = $bukti->getClientOriginalName();
+        $finansial->path_file = $upload_path . $file_name;
+        $bukti->move($upload_path, $file_name);
+        
+        $finansial->save();
+        return Redirect::back()->with('success', 'Sukses Menambahkan Data');
     }
 
     public function upload_file()

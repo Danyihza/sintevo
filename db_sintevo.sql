@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2021 at 03:27 PM
+-- Generation Time: Apr 19, 2021 at 06:59 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_sintevo`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anggota`
+--
+
+CREATE TABLE `anggota` (
+  `id_anggota` bigint(20) UNSIGNED NOT NULL,
+  `id_user` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
+  `prodi` int(11) DEFAULT NULL,
+  `no_identify` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jabatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `anggota`
+--
+
+INSERT INTO `anggota` (`id_anggota`, `id_user`, `nama`, `status`, `prodi`, `no_identify`, `jabatan`, `created_at`, `updated_at`) VALUES
+(1, 'DOS0001', 'Dany Ahmad Ihza Prakoso', 1, 3, '1117040043', 'CEO', '2021-04-04 18:57:03', '2021-04-17 17:17:43'),
+(6, 'DOS0001', 'Joko Santoso', 3, NULL, '4343434', 'CEO', '2021-04-16 05:56:00', '2021-04-16 05:56:00'),
+(10, 'DOS0001', 'Kurniawan', 3, NULL, '1234', 'CFO', '2021-04-17 17:19:25', '2021-04-17 17:19:25');
 
 -- --------------------------------------------------------
 
@@ -48,7 +75,7 @@ CREATE TABLE `detail_users` (
 --
 
 INSERT INTO `detail_users` (`id_detail`, `kategori`, `nama_brand`, `deskripsi`, `alamat`, `nama_ketua`, `no_whatsapp`, `status`, `prodi`, `website`, `instagram`, `created_at`, `updated_at`) VALUES
-('DOS0001', 3, 'Aftermeet Academy 2.0', 'fes', 'Desa Rondokuning Kraksaan Kabupaten Probolinggo Jawa Timur', 'Arini', '082331147549', 2, NULL, 'www.mediarraihan.com', '@danyihza', '2021-03-17 06:01:32', '2021-03-17 06:01:32'),
+('DOS0001', 3, 'Aftermeet Academy 2.0', 'testing', 'Desa Rondokuning Kraksaan Kabupaten Probolinggo Jawa Timur', 'Arini', '082331147549', 2, NULL, 'www.mediarraihan.com', '@danyihza', '2021-03-17 06:01:32', '2021-04-10 18:17:47'),
 ('MHS0001', 1, 'Aftermeet Academy', 'des', 'Testing', 'Dany', '082331147549', 1, 1, 'www.mediarraihan.com', '@danyihza', '2021-03-17 05:58:20', '2021-03-17 05:58:20');
 
 -- --------------------------------------------------------
@@ -119,7 +146,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2021_02_24_224813_create_prodis_table', 1),
 (12, '2021_02_26_085816_create_detail_users_table', 1),
 (13, '2021_02_26_091300_create_statuses_table', 1),
-(14, '2021_03_14_124618_delete_column_users_table', 2);
+(14, '2021_03_14_124618_delete_column_users_table', 2),
+(16, '2021_04_05_014021_create_anggota_table', 3);
 
 -- --------------------------------------------------------
 
@@ -210,6 +238,12 @@ INSERT INTO `users` (`id_user`, `email`, `password`, `role`, `email_verified_at`
 --
 
 --
+-- Indexes for table `anggota`
+--
+ALTER TABLE `anggota`
+  ADD PRIMARY KEY (`id_anggota`);
+
+--
 -- Indexes for table `detail_users`
 --
 ALTER TABLE `detail_users`
@@ -264,6 +298,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `anggota`
+--
+ALTER TABLE `anggota`
+  MODIFY `id_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -279,7 +319,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `prodis`
