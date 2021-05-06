@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Anggota;
+use App\Models\Monev;
 use App\Models\Prodi;
 use App\Models\Status;
 use App\Models\User;
@@ -28,5 +29,27 @@ class Data extends Controller {
     {
         $result = Status::all();
         return response()->json($result, 200);
+    }
+
+    public function addFeedback(Request $request)
+    {
+        $id_monev = $request->id;
+        $feedback = $request->feedback;
+
+        try {
+            $monev = Monev::where('id_monev', $id_monev)->first();
+            $monev->feedback = $feedback;
+            $monev->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Data Updated'
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 }

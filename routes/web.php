@@ -67,6 +67,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/getProdi', [ApiData::class, 'getProdi']);
     Route::post('/getStatus', [ApiData::class, 'getStatus']);
     Route::post('/getDetailAnggota/{id_anggota?}', [ApiData::class, 'getAnggota']);
+    Route::get('/postFeedback', [ApiData::class, 'addFeedback'])->name('postFeedback');
 });
 
 
