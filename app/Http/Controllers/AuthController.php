@@ -33,15 +33,15 @@ class AuthController extends Controller
     public function registration(Request $request)
     {
         $form = session()->get('form-data');
-        $user = $request->except(['conf_password','_token']);
+        $user = $request->except(['conf_password', '_token']);
         $id = User::generateId($form['status']);
-        $form['id_detail'] = $id; 
-        
+        $form['id_detail'] = $id;
+
         $user['id_user'] = $id;
         $user['password'] = hash('sha256', $user['password']);
         $user['role'] = (int) $form['status'];
-        $user['token'] = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'),1,8);
-        
+        $user['token'] = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), 1, 8);
+
         User::create($user);
         Detail_user::create($form);
         session()->forget('form-data');
@@ -70,13 +70,28 @@ class AuthController extends Controller
         $input = $request->all();
         $data = User::where('email', $input['email'])->first();
         if ($data) {
-            if ($data->password === hash('sha256',$input['password'])) {
+            if ($data->password === hash('sha256', $input['password'])) {
                 $dataLogin = [
                     'id' => $data->id_user,
-                    'email' => $data->email
+                    'email' => $data->email,
+                    'role' => $data->role
                 ];
                 session(['login-data' => $dataLogin]);
-                return redirect('tenant/home');
+                switch ($data->role) {
+                    case 2:
+                        return redirect('tenant/home');
+                        break;
+                    case 1:
+                        return redirect('admin/dashboard');
+                        break;
+                    case 0:
+                        return redirect('admin/dashboard');
+                        break;
+
+                    default:
+                        return abort(404);
+                        break;
+                }
             } else {
                 return redirect('login')->with('error', 'Wrong password');
             }

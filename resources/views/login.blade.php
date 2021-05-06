@@ -27,7 +27,7 @@
                     <div class="{{ session('error') ? 'animate__animated animate__headShake' : '' }} rounded-md shadow-sm -space-y-px">
                         <div>
                             <label for="email-address" class="sr-only">Email address</label>
-                            <input id="email-address" name="email" type="email" autocomplete="email" required
+                            <input id="email-address" name="email" type="text" autocomplete="email" required
                                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-{{ session('error') ? 'red' : 'gray' }}-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 focus:z-10 sm:text-sm"
                                 placeholder="Email address" onchange="onChangeText(this)" value="{{old('email')}}">
                         </div>

@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Admin\TenantController as AdminTenant;
+use App\Http\Controllers\Admin\AdminController as AdminManager;
+use App\Http\Controllers\Admin\PengumumanController as AdminPengumuman;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\Auth as ApiAuth;
 use App\Http\Controllers\Api\Data as ApiData;
 use App\Http\Controllers\AuthController;
@@ -28,8 +33,9 @@ Route::get('/signout', [AuthController::class, 'signout']);
 Route::any('/signup2', [AuthController::class, 'signup2']);
 Route::post('/registration', [AuthController::class, 'registration']);
 Route::post('/signin', [AuthController::class, 'signin']);
+Route::get('/download', [TenantController::class, 'downloadFile']);
 
-Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin'], function () {
+Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin', 'as' => 'user'], function () {
     Route::any('/home', [TenantController::class, 'index']);
     Route::any('/profile/{params?}', [TenantController::class, 'profile']);
     Route::any('/informasi/{params?}', [TenantController::class, 'informasi']);
@@ -44,8 +50,17 @@ Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin'], function () {
     Route::get('/deleteAnggota/{id_anggota?}', [TenantController::class, 'deleteAnggota']);
     Route::post('/updateAnggota', [TenantController::class, 'updateAnggota']);
     Route::post('/monev/tambah/{sub_monev}', [TenantController::class, 'monev_tambah']);
-    Route::get('/download', [TenantController::class, 'downloadFile']);
 });
+
+Route::group(['prefix' => 'admin', 'middleware' => 'loggedin', 'as' => 'admin'], function() {
+    Route::get('/test', [AdminController::class, 'index']);
+    Route::get('/dashboard', [AdminDashboard::class, 'index']);
+    Route::get('/tenant', [AdminTenant::class, 'index']);
+    Route::get('/tenant/{id_tenant}', [AdminTenant::class, 'tenantDetail']);
+    Route::get('/adminmanager', [AdminManager::class, 'index']);
+    Route::get('/pengumuman', [AdminPengumuman::class, 'index']);
+});
+
 
 Route::group(['prefix' => 'api'], function () {
     Route::post('/getEmail', [ApiAuth::class, 'getEmail']);

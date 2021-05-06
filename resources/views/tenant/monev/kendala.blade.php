@@ -259,7 +259,7 @@
                                         </td>
                                         <td class="px-4 py-3 flex items-center text-sm">
                                             @if($his->nama_file)
-                                                <a href="/tenant/download?file={{ $his->id_monev }}" target="_blank">
+                                                <a href="/download?file={{ $his->id_monev }}" target="_blank">
                                                     <?php $get = explode('.', $his->nama_file); $extention = end($get); ?>
                                                     @switch($extention)
                                                         @case('pdf')

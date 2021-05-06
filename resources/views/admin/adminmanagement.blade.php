@@ -1,4 +1,4 @@
-@extends('template.tenant.master')
+@extends('template.admin.master')
 
 @section('title', 'Dashboard')
 
@@ -6,11 +6,11 @@
 
     <body>
         <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
-            @include('template.tenant.sidebar.desktop')
-            @include('template.tenant.sidebar.mobile')
+            @include('template.admin.sidebar.desktop')
+            @include('template.admin.sidebar.mobile')
             
             <div class="flex flex-col flex-1 w-full">
-                @include('template.tenant.topbar')
+                @include('template.admin.topbar')
                 {{-- Content --}}
                 <main class="h-full overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
@@ -36,8 +36,8 @@
                                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                                         Nama Brand
                                     </p>
-                                    <p class="text-md font-semibold text-gray-700 dark:text-gray-200">
-                                        {{ $owner->nama_brand }}
+                                    <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                        Aftermeet Academy
                                     </p>
                                 </div>
                             </div>
@@ -52,8 +52,8 @@
                                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                                         Nama Ketua
                                     </p>
-                                    <p class="text-md font-semibold text-gray-700 dark:text-gray-200">
-                                        {{ $owner->nama_ketua }}
+                                    <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                        Muhammad Fauzi
                                     </p>
                                 </div>
                             </div>
@@ -68,8 +68,8 @@
                                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                                         Instagram
                                     </p>
-                                    <a href="https://www.instagram.com/{{ str_replace('@','', $owner->instagram) }}" class="text-md font-semibold text-gray-700 dark:text-gray-200 hover:text-lightBlue-600">
-                                        {{ $owner->instagram }} 
+                                    <a href="https://www.instagram.com" class="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-lightBlue-600">
+                                        {{ '@aftermeet' }} 
                                     </a>
                                 </div>
                             </div>
@@ -83,9 +83,9 @@
                                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                                         Website
                                     </p>
-                                    <a target="_blank" href="https://{{ $owner->website }}" class="text-md font-semibold text-gray-700 dark:text-gray-500 hover:text-lightBlue-600">
-                                        Kunjungi Website
-                                    </a>
+                                    <p class="text-md font-semibold text-gray-700 dark:text-gray-500">
+                                        Belum Tersedia
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -534,7 +534,7 @@
     </body>
     
 
-    @include('template.tenant.modalLogout')
+    @include('template.admin.modalLogout')
 
 @endsection
 

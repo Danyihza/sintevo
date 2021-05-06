@@ -28,6 +28,7 @@ class TenantController extends Controller
     public function index()
     {
         $data['title'] = 'home';
+        $data['owner'] = Detail_user::where(['id_detail' => session('login-data')['id']])->first();
         return view('tenant.home', $data);
     }
 
@@ -160,7 +161,9 @@ class TenantController extends Controller
     public function monev($params = null)
     {
         $data['title'] = 'monev';
-        $data['history'] = Monev::where(['id_user' => session('login-data')['id'], 'jenis_monev' => $params])->orderBy('tanggal', 'DESC')->get();
+        if ($params != 'finansial') {
+            $data['history'] = Monev::where(['id_user' => session('login-data')['id'], 'jenis_monev' => $params])->orderBy('tanggal', 'DESC')->get();
+        }
         switch ($params) {
             case 'produk':
                 $data['state'] = 'produk';
@@ -198,15 +201,15 @@ class TenantController extends Controller
         $id_monev = $request->file;
         if (strlen($id_monev) == 16) {
             $data = Monev_Finansial::where('id_finansial', $id_monev)->first();
-            if ($data->id_user != session('login-data')['id']) {
-                abort(404);
-            }
+            // if ($data->id_user != session('login-data')['id']) {
+            //     abort(404);
+            // }
             return response()->download($data->path_file, $data->origin_file);
         } else {
             $data = Monev::where('id_monev', $id_monev)->first();
-            if ($data->id_user != session('login-data')['id']) {
-                abort(404);
-            }
+            // if ($data->id_user != session('login-data')['id']) {
+            //     abort(404);
+            // }
             return response()->download($data->path, $data->nama_file);
         }
     }

@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Route::group(['prefix' => 'api'], function () {
+//     Route::post('/getEmail', [ApiAuth::class, 'getEmail']);
+//     Route::post('/getProdi', [ApiData::class, 'getProdi']);
+//     Route::post('/getStatus', [ApiData::class, 'getStatus']);
+//     Route::post('/getDetailAnggota/{id_anggota?}', [ApiData::class, 'getAnggota']);
+// });
