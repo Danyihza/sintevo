@@ -227,7 +227,7 @@
                                     @foreach($history as $his)
                                     <tr class="text-gray-700 dark:text-gray-400">
                                         <td class="px-4 py-3 text-sm">
-                                            {{ $his->tanggal }}
+                                            {{ date('d/m/Y', strtotime($his->tanggal)) }}
                                         </td>
                                         <td class="px-4 py-3 text-xs">
                                             @switch($his->status_progress)
@@ -258,9 +258,9 @@
                                             {{ $his->uraian }}
                                         </td>
                                         <td class="px-4 py-3 flex items-center text-sm">
-                                            @if($his->nama_file)
-                                                <a href="/download?file={{ $his->id_monev }}" target="_blank">
-                                                    <?php $get = explode('.', $his->nama_file); $extention = end($get); ?>
+                                            @if($his->file)
+                                                <a href="/download?file={{ $his->file }}" target="_blank">
+                                                    <?php $get = explode('.', $his->hasFile->nama_file); $extention = end($get); ?>
                                                     @switch($extention)
                                                         @case('pdf')
                                                             <div data-tippy-content="{{ strtoupper($extention) }}">

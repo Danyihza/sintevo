@@ -27,7 +27,7 @@
                         </a> --}}
 
                     <div class="md:grid md:gap-6 mb-8">
-                        <div class="mt-5 md:mt-0 md:col-span-2 animate__animated" id="form_regis">
+                        <div class="mt-5 md:mt-0 md:col-span-2">
                             <form action="/tenant/monev/tambah/finansial" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="shadow sm:rounded-md sm:overflow-hidden">
@@ -243,10 +243,10 @@
                                     @foreach($finansial as $finan)
                                     <tr class="text-gray-700 dark:text-gray-400">
                                         <td class="px-4 py-3 text-sm">
-                                            {{ $finan->tanggal }}
+                                            {{ date('d/m/Y', strtotime($finan->tanggal)) }}
                                         </td>
                                         <td class="px-4 py-3 justify-center flex text-sm">
-                                            <a data-tippy-content="Lihat Bukti" href="/download?file={{ $finan->id_finansial }}">
+                                            <a data-tippy-content="Lihat Bukti" href="/download?file={{ $finan->file }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9C2.121 6.88 6.608 3 12 3zm0 16a9.005 9.005 0 0 0 8.777-7 9.005 9.005 0 0 0-17.554 0A9.005 9.005 0 0 0 12 19zm0-2.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-2a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="rgba(38,132,199,1)"/></svg>
                                             </a>
                                         </td>

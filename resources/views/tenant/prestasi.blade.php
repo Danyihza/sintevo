@@ -146,6 +146,11 @@
                                                     <select id="jenis_kegiatan" name="jenis_kegiatan"
                                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
                                                         <option value="0" disabled selected>Pilih Jenis Kegiatan</option>
+                                                        <option value="KIBM">KIBM</option>
+                                                        <option value="KBMI">KBMI</option>
+                                                        <option value="PKM">PKM</option>
+                                                        <option value="Business Plan">Business Plan</option>
+                                                        <option value="Lainnya">Lainnya</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -157,6 +162,13 @@
                                                     <select id="prestasi" name="prestasi"
                                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
                                                         <option value="0" disabled selected>Pilih Prestasi</option>
+                                                        <option value="Juara 1">Juara 1</option>
+                                                        <option value="Juara 2">Juara 2</option>
+                                                        <option value="Juara 3">Juara 3</option>
+                                                        <option value="Juara Harapan">Juara Harapan</option>
+                                                        <option value="Finalis">Finalis</option>
+                                                        <option value="Top 10">Top 10</option>
+                                                        <option value="Lainnya">Lainnya</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -168,6 +180,12 @@
                                                     <select id="tingkat_prestasi" name="tingkat_prestasi"
                                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
                                                         <option value="0" disabled selected>Pilih Tingkat Prestasi</option>
+                                                        <option value="Internasional">Internasional</option>
+                                                        <option value="Nasional">Nasional</option>
+                                                        <option value="Provinsi">Provinsi</option>
+                                                        <option value="Kota/Kabupaten">Kota/Kabupaten</option>
+                                                        <option value="Regional">Regional</option>
+                                                        <option value="Kampus">Kampus</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -177,7 +195,7 @@
                                                     Upload File
                                                 </label>
                                                 <label class="mt-1 flex rounded-md shadow-sm cursor-pointer">
-                                                    <input class="hidden" accept="application/pdf" type="file" name="upload_file" id="upload_file" oninput="showFileName(this)"
+                                                    <input class="hidden" type="file" name="upload_file" id="upload_file" oninput="showFileName(this)"
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300">
                                                     <input type="text" id="file_name"
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300"

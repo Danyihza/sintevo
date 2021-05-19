@@ -17,11 +17,15 @@ class Monev extends Model
         'status_progress',
         'uraian',
         'tanggal',
-        'path',
-        'nama_file',
+        'file',
         'feedback'
     ];
     public $primaryKey = 'id_monev';
     public $timestamps = false;
     public $keyType = 'string';
+
+    public function hasFile()
+    {
+        return $this->hasOne(File::class, 'id_file', 'file');
+    }
 }

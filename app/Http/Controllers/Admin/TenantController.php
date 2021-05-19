@@ -22,7 +22,8 @@ class TenantController extends Controller
     public function tenantDetail($id_detail)
     {
         $data['title'] = 'tenantmanagement';
-        $data['tim'] = User::where('id_user', $id_detail)->first();
+        $data['tim'] = User::where('id_user', $id_detail)->with('hasDetail', 'hasDetail.kategoris')->first();
+        // dd($data['tim']);
         $data['produk'] = Monev::where(['id_user' => $id_detail, 'jenis_monev' => 'produk'])->orderBy('tanggal', 'DESC')->get();
         $data['pelanggan'] = Monev::where(['id_user' => $id_detail, 'jenis_monev' => 'pelanggan'])->orderBy('tanggal', 'DESC')->get();
         $data['pemasaran'] = Monev::where(['id_user' => $id_detail, 'jenis_monev' => 'pemasaran'])->orderBy('tanggal', 'DESC')->get();

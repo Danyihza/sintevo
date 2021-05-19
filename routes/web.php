@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\Auth as ApiAuth;
 use App\Http\Controllers\Api\Data as ApiData;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,7 @@ Route::get('/signout', [AuthController::class, 'signout']);
 Route::any('/signup2', [AuthController::class, 'signup2']);
 Route::post('/registration', [AuthController::class, 'registration']);
 Route::post('/signin', [AuthController::class, 'signin']);
-Route::get('/download', [TenantController::class, 'downloadFile']);
+Route::get('/download', [FileController::class, 'downloadFile']);
 
 Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin', 'as' => 'user'], function () {
     Route::any('/home', [TenantController::class, 'index']);
@@ -52,10 +53,10 @@ Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin', 'as' => 'user'],
     Route::post('/monev/tambah/{sub_monev}', [TenantController::class, 'monev_tambah']);
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => 'loggedin', 'as' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'loggedin', 'as' => 'admin.'], function() {
     Route::get('/test', [AdminController::class, 'index']);
     Route::get('/dashboard', [AdminDashboard::class, 'index']);
-    Route::get('/tenant', [AdminTenant::class, 'index']);
+    Route::get('/tenant', [AdminTenant::class, 'index'])->name('listTenants');
     Route::get('/tenant/{id_tenant}', [AdminTenant::class, 'tenantDetail']);
     Route::get('/adminmanager', [AdminManager::class, 'index']);
     Route::get('/pengumuman', [AdminPengumuman::class, 'index']);

@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->hasMany(Anggota::class, 'id_user');
     }
 
+    public function hasDetail()
+    {
+        return $this->hasOne(Detail_user::class, 'id_detail');
+    }
+
     public static function generateId($role)
     {
         $last_id = DB::table('users')->where('role', $role)->latest()->first();

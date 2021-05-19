@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anggota;
-use App\Models\Detail_user;
-use App\Models\Kategori;
+use Exception;
+use Carbon\Carbon;
+use App\Models\File;
+use App\Models\User;
 use App\Models\Monev;
-use App\Models\Monev_Finansial;
 use App\Models\Prodi;
 use App\Models\Status;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\Anggota;
+use App\Models\Kategori;
+use App\Models\Prestasi;
+use App\Models\Detail_user;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\Monev_Finansial;
+use Illuminate\Support\Facades\Redirect;
 
 class TenantController extends Controller
 {
@@ -162,8 +165,9 @@ class TenantController extends Controller
     {
         $data['title'] = 'monev';
         if ($params != 'finansial') {
-            $data['history'] = Monev::where(['id_user' => session('login-data')['id'], 'jenis_monev' => $params])->orderBy('tanggal', 'DESC')->get();
+            $data['history'] = Monev::where(['id_user' => session('login-data')['id'], 'jenis_monev' => $params])->with('hasFile')->orderBy('tanggal', 'DESC')->get();
         }
+        // dd($data['history']);
         switch ($params) {
             case 'produk':
                 $data['state'] = 'produk';
@@ -183,7 +187,7 @@ class TenantController extends Controller
                 break;
             case 'finansial':
                 $data['state'] = 'finansial';
-                $data['finansial'] = Monev_Finansial::where(['id_user' => session('login-data')['id']])->orderBy('tanggal', 'DESC')->get();
+                $data['finansial'] = Monev_Finansial::where(['id_user' => session('login-data')['id']])->with('hasFile')->orderBy('tanggal', 'DESC')->get();
                 return view('tenant.monev.finansial', $data);
                 break;
             case 'kendala':
@@ -196,32 +200,11 @@ class TenantController extends Controller
         }
     }
 
-    function downloadFile(Request $request)
-    {
-        $id_monev = $request->file;
-        if (strlen($id_monev) == 16) {
-            $data = Monev_Finansial::where('id_finansial', $id_monev)->first();
-            // if ($data->id_user != session('login-data')['id']) {
-            //     abort(404);
-            // }
-            return response()->download($data->path_file, $data->origin_file);
-        } else {
-            $data = Monev::where('id_monev', $id_monev)->first();
-            // if ($data->id_user != session('login-data')['id']) {
-            //     abort(404);
-            // }
-            return response()->download($data->path, $data->nama_file);
-        }
-    }
-
     function monev_tambah($sub_monev, Request $request)
     {
         if ($sub_monev == 'finansial') {
             return self::tambahMonevFinansial($request);
         } else {
-            $request->validate([
-                'upload_file' => 'mimes:pdf'
-            ]);
             // dd($request->file('upload_file'));
             try {
                 $monev = new Monev;
@@ -230,14 +213,22 @@ class TenantController extends Controller
                 $monev->jenis_monev = $sub_monev;
                 $monev->status_progress = $request->status_progress;
                 $monev->uraian = $request->uraian_progress;
-                $monev->tanggal = $request->tanggal;
-                $file = $request->file('upload_file');
-                if ($file) {
-                    $upload_path = 'assets/file/monev/';
+                $tanggal = explode('/', $request->tanggal);
+                $res_tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
+                $monev->tanggal = $res_tanggal;
+                $upload = $request->file('upload_file');
+                if ($upload) {
+                    $file = new File;
+                    $upload_path = 'assets/file/';
                     $file_name = Str::random(32);
-                    $monev->nama_file = $file->getClientOriginalName();
-                    $monev->path = $upload_path . $file_name;
-                    $file->move($upload_path, $file_name);
+                    $file->id_file = $file_name;
+                    $file->uploader = session('login-data')['id'];
+                    $file->nama_file = $upload->getClientOriginalName();
+                    $file->path_file = $upload_path . $file_name;
+                    $file->save();
+
+                    $monev->file = $file_name;
+                    $upload->move($upload_path, $file_name);
                 }
                 $monev->save();
                 return Redirect::back()->with('success', 'Sukses Menambahkan Data');
@@ -246,33 +237,81 @@ class TenantController extends Controller
             }
         }
     }
+    // function monev_tambah($sub_monev, Request $request)
+    // {
+    //     if ($sub_monev == 'finansial') {
+    //         return self::tambahMonevFinansial($request);
+    //     } else {
+    //         $request->validate([
+    //             'upload_file' => 'mimes:pdf'
+    //         ]);
+    //         // dd($request->file('upload_file'));
+    //         try {
+    //             $monev = new Monev;
+    //             $monev->id_monev = Str::random(8);
+    //             $monev->id_user = session('login-data')['id'];
+    //             $monev->jenis_monev = $sub_monev;
+    //             $monev->status_progress = $request->status_progress;
+    //             $monev->uraian = $request->uraian_progress;
+    //             $monev->tanggal = $request->tanggal;
+    //             $file = $request->file('upload_file');
+    //             if ($file) {
+    //                 $upload_path = 'assets/file/monev/';
+    //                 $file_name = Str::random(32);
+    //                 $monev->nama_file = $file->getClientOriginalName();
+    //                 $monev->path = $upload_path . $file_name;
+    //                 $file->move($upload_path, $file_name);
+    //             }
+    //             $monev->save();
+    //             return Redirect::back()->with('success', 'Sukses Menambahkan Data');
+    //         } catch (\Throwable $th) {
+    //             return Redirect::back()->with('error', 'Something went wrong: ' . $th->getMessage());
+    //         }
+    //     }
+    // }
 
     public static function tambahMonevFinansial($request)
     {
         $request->validate([
-            'bukti_transaksi' => 'required|mimes:jpg,jpeg,png,pdf,doc,docx,xlsx,ppt',
+            'bukti_transaksi' => 'required',
             'jenis_transaksi' => 'required',
             'keterangan_transaksi' => 'required',
             'jumlah' => 'required'
         ]);
-        $finansial = new Monev_Finansial;
-        $finansial->id_finansial = Str::random(16);
-        $finansial->id_user = session('login-data')['id'];
-        $finansial->tanggal = $request->tanggal;
-        $finansial->jenis_transaksi = $request->jenis_transaksi;
-        $finansial->keterangan_transaksi = $request->keterangan_transaksi;
-        $finansial->jumlah = $request->jumlah;
+        try {
+            $finansial = new Monev_Finansial;
+            $finansial->id_finansial = Str::random(16);
+            $finansial->id_user = session('login-data')['id'];
+            $tanggal = explode('/', $request->tanggal);
+            $res_tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
+            $finansial->tanggal = $res_tanggal;
+            $finansial->jenis_transaksi = $request->jenis_transaksi;
+            $finansial->keterangan_transaksi = $request->keterangan_transaksi;
+            $finansial->jumlah = $request->jumlah;
 
-        // Handle File
-        $bukti = $request->file('bukti_transaksi');
-        $upload_path = 'assets/file/monev/';
-        $file_name = Str::random(32);
-        $finansial->origin_file = $bukti->getClientOriginalName();
-        $finansial->path_file = $upload_path . $file_name;
-        $bukti->move($upload_path, $file_name);
-        
-        $finansial->save();
-        return Redirect::back()->with('success', 'Sukses Menambahkan Data');
+            // Handle File
+            $upload = self::_uploadFile($request, 'bukti_transaksi');
+            if ($upload == false) {
+                throw new Exception("Gagal Upload File", 1);
+                
+            }
+            // $bukti = $request->file('bukti_transaksi');
+            // $file = new File;
+            // $upload_path = 'assets/file/';
+            // $file_name = Str::random(32);
+            // $file->uploader = session('login-data')['id'];
+            // $file->id_file = $file_name;
+            // $file->nama_file = $bukti->getClientOriginalName();
+            // $file->path_file = $upload_path . $file_name;
+            // $file->save();
+            // $bukti->move($upload_path, $file_name);
+            $finansial->file = $upload;
+            
+            $finansial->save();
+            return Redirect::back()->with('success', 'Sukses Menambahkan Data');
+        } catch (\Throwable $th) {
+            return Redirect::back()->with('error', 'Something went wrong: ' . $th->getMessage());
+        }
     }
 
     public function upload_file()
@@ -290,12 +329,44 @@ class TenantController extends Controller
     public function prestasi()
     {
         $data['title'] = 'prestasi';
+        $data['prestasi'] = Prestasi::where('id_user', session('login-data')['id'])->get();
         return view('tenant.prestasi', $data);
+    }
+
+    public function addPrestasi(Request $request)
+    {
+        $prestasi = new Prestasi;
+        $tanggal = $request->tanggal;
+        $prestasi->tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
+        $prestasi->jenis_kegiatan = $request->jenis_kegiatan;
+        $prestasi->prestasi = $request->prestasi;
+        $prestasi->tingkat_prestasi = $request->tingkat_prestasi;
+
+        $file = $request->file('upload_file');
     }
 
     public function kelulusan()
     {
         $data['title'] = 'kelulusan';
         return view('tenant.kelulusan', $data);
+    }
+
+    private static function _uploadFile($request, $upload_name)
+    {
+        try {
+            $upload = $request->file($upload_name);
+            $file = new File;
+            $upload_path = 'assets/file/';
+            $file_name = Str::random(32);
+            $file->uploader = session('login-data')['id'];
+            $file->id_file = $file_name;
+            $file->nama_file = $bukti->getClientOriginalName();
+            $file->path_file = $upload_path . $file_name;
+            $file->save();
+            $upload->move($upload_path, $file_name);
+            return $file_name;
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 }

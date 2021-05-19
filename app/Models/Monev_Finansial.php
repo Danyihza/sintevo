@@ -21,4 +21,10 @@ class Monev_Finansial extends Model
     ];
     protected $primaryKey = 'id_finansial';
     protected $keyType = 'string';
+    
+    
+    public function hasFile()
+    {
+        return $this->hasOne(File::class, 'id_file', 'file');
+    }
 }

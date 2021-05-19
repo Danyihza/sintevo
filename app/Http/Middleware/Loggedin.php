@@ -18,7 +18,7 @@ class Loggedin
      */
     public function handle(Request $request, Closure $next)
     {
-        switch (Route::currentRouteName()) {
+        switch (explode('.', Route::currentRouteName())[0]) {
             case 'admin':
                 $route = [
                     1,0

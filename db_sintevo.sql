@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2021 at 06:59 AM
+-- Generation Time: May 07, 2021 at 04:17 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -44,9 +44,8 @@ CREATE TABLE `anggota` (
 --
 
 INSERT INTO `anggota` (`id_anggota`, `id_user`, `nama`, `status`, `prodi`, `no_identify`, `jabatan`, `created_at`, `updated_at`) VALUES
-(1, 'DOS0001', 'Dany Ahmad Ihza Prakoso', 1, 3, '1117040043', 'CEO', '2021-04-04 18:57:03', '2021-04-17 17:17:43'),
-(6, 'DOS0001', 'Joko Santoso', 3, NULL, '4343434', 'CEO', '2021-04-16 05:56:00', '2021-04-16 05:56:00'),
-(10, 'DOS0001', 'Kurniawan', 3, NULL, '1234', 'CFO', '2021-04-17 17:19:25', '2021-04-17 17:19:25');
+(1, 'DOS0001', 'Dany Ahmad Ihza Prakoso', 1, 3, '12124213', 'CEO', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(2, 'DOS0001', 'Budi Santoso', 1, 4, '1234', 'CFO', '2021-05-06 03:39:35', '2021-05-06 03:39:35');
 
 -- --------------------------------------------------------
 
@@ -75,8 +74,8 @@ CREATE TABLE `detail_users` (
 --
 
 INSERT INTO `detail_users` (`id_detail`, `kategori`, `nama_brand`, `deskripsi`, `alamat`, `nama_ketua`, `no_whatsapp`, `status`, `prodi`, `website`, `instagram`, `created_at`, `updated_at`) VALUES
-('DOS0001', 3, 'Aftermeet Academy 2.0', 'testing', 'Desa Rondokuning Kraksaan Kabupaten Probolinggo Jawa Timur', 'Arini', '082331147549', 2, NULL, 'www.mediarraihan.com', '@danyihza', '2021-03-17 06:01:32', '2021-04-10 18:17:47'),
-('MHS0001', 1, 'Aftermeet Academy', 'des', 'Testing', 'Dany', '082331147549', 1, 1, 'www.mediarraihan.com', '@danyihza', '2021-03-17 05:58:20', '2021-03-17 05:58:20');
+('DOS0001', 3, 'Aftermeet Academy 2.0', 'testing', 'Desa Rondokuning Kraksaan Kabupaten Probolinggo Jawa Timur', 'Dany Ahmad', '082331147549', 2, NULL, 'www.mediarraihan.com', '@danyihza', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+('MHS0002', 7, 'Jang Jang Wings', 'adada', 'Desa Rondokuning Kraksaan Kabupaten Probolinggo Jawa Timur', 'Reza', '082331144346', 1, 14, NULL, NULL, '2021-05-06 02:20:40', '2021-05-06 02:20:40');
 
 -- --------------------------------------------------------
 
@@ -97,6 +96,18 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `file`
+--
+
+CREATE TABLE `file` (
+  `id_file` varchar(255) NOT NULL,
+  `nama_file` varchar(255) NOT NULL,
+  `path_file` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kategori`
 --
 
@@ -112,15 +123,15 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `created_at`, `updated_at`) VALUES
-(1, 'Pangan', '2021-02-26 14:48:37', '2021-02-26 14:48:37'),
-(2, 'Energi', '2021-02-26 14:48:37', '2021-02-26 14:48:37'),
-(3, 'Rekayasa Keteknikan', '2021-02-26 14:48:37', '2021-02-26 14:48:37'),
-(4, 'Biomedis', '2021-02-26 14:48:37', '2021-02-26 14:48:37'),
-(5, 'Material Maju', '2021-02-26 14:48:37', '2021-02-26 14:48:37'),
-(6, 'Sosial & Budaya', '2021-02-26 14:48:37', '2021-02-26 14:48:37'),
-(7, 'Transportasi', '2021-02-26 14:48:37', '2021-02-26 14:48:37'),
-(8, 'Material', '2021-02-26 14:48:37', '2021-02-26 14:48:37'),
-(9, 'Pertahanan', '2021-02-26 14:48:37', '2021-02-26 14:48:37');
+(1, 'Pangan', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(2, 'Energi', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(3, 'Rekayasa Keteknikan', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(4, 'Biomedis', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(5, 'Material Maju', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(6, 'Sosial & Budaya', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(7, 'Transportasi', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(8, 'Material', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(9, 'Pertahanan', '2021-04-25 08:25:39', '2021-04-25 08:25:39');
 
 -- --------------------------------------------------------
 
@@ -139,15 +150,75 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(7, '2014_10_12_000000_create_users_table', 1),
-(8, '2014_10_12_100000_create_password_resets_table', 1),
-(9, '2019_08_19_000000_create_failed_jobs_table', 1),
-(10, '2021_02_24_031838_create_kategori_table', 1),
-(11, '2021_02_24_224813_create_prodis_table', 1),
-(12, '2021_02_26_085816_create_detail_users_table', 1),
-(13, '2021_02_26_091300_create_statuses_table', 1),
-(14, '2021_03_14_124618_delete_column_users_table', 2),
-(16, '2021_04_05_014021_create_anggota_table', 3);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2021_02_24_031838_create_kategori_table', 1),
+(5, '2021_02_24_224813_create_prodis_table', 1),
+(6, '2021_02_26_085816_create_detail_users_table', 1),
+(7, '2021_02_26_091300_create_statuses_table', 1),
+(8, '2021_04_05_014021_create_anggota_table', 1),
+(9, '2021_04_18_222837_create_pengumumen_table', 1),
+(10, '2021_04_21_012011_create_monevs_table', 1),
+(11, '2021_04_25_010109_create_monev__transactions_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `monev`
+--
+
+CREATE TABLE `monev` (
+  `id_monev` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_user` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenis_monev` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_progress` varchar(35) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uraian` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nama_file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `feedback` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `monev`
+--
+
+INSERT INTO `monev` (`id_monev`, `id_user`, `jenis_monev`, `status_progress`, `uraian`, `tanggal`, `path`, `nama_file`, `feedback`, `created_at`, `updated_at`) VALUES
+('5BVy9QdT', 'DOS0001', 'operasional', 'Tidak Ada Progress', 'asdasdasd', '06/05/2021', NULL, NULL, 'sip ditingkatkan lagi', NULL, NULL),
+('Kde8CzfK', 'DOS0001', 'pemasaran', 'Ada Progress', 'rtesdad', '06/05/2021', NULL, NULL, 'Ulangi lagi pada tahap berikutnya', NULL, NULL),
+('ld5Uji7F', 'DOS0001', 'operasional', 'Progress Melampaui', 'trasdasd', '20/05/2021', 'assets/file/monev/mPW5eu0aFZT31Dxqas9h5oKIDreYFnOf', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'waw keren banget', NULL, NULL),
+('nKLnVd9X', 'DOS0001', 'produk', 'Tidak Ada Progress', 'asdasdd', '16/04/2021', 'assets/file/monev/aHTORpaPuZeilsUhbMsfPda5lPTFAgFW', 'TITIK PENYEKATAN NEW PAK DIR.pdf', 'sip lanjutkan', NULL, NULL),
+('UpW27Usd', 'DOS0001', 'kendala', 'Sedang', '3232323', '07/05/2021', NULL, NULL, 'Verified 👶', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `monev_finansial`
+--
+
+CREATE TABLE `monev_finansial` (
+  `id_finansial` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_user` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenis_transaksi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `keterangan_transaksi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `path_file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `origin_file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `monev_finansial`
+--
+
+INSERT INTO `monev_finansial` (`id_finansial`, `id_user`, `tanggal`, `jenis_transaksi`, `keterangan_transaksi`, `jumlah`, `path_file`, `origin_file`, `created_at`, `updated_at`) VALUES
+('7CYDJTFXLcwmsi5F', 'DOS0001', '25/04/2021', 'Pendapatan', 'Pembayaran packaging/pengiriman', 123123, 'assets/file/monev/BrotSVATLMUw4qx5giG7UpYFKi4MIJE7', 'home.jpg', '2021-04-25 08:29:59', '2021-04-25 08:29:59'),
+('PsdkFRx2SmRSgsrb', 'DOS0001', '27/04/2021', 'Pengeluaran', 'Pendapatan uang muka oleh konsumen', 30000, 'assets/file/monev/ClPa1S28RPqb4Tx7yu8JWtGjXBkaoTdn', 'threed_mockup (1).png', '2021-04-25 18:56:29', '2021-04-25 18:56:29');
 
 -- --------------------------------------------------------
 
@@ -159,6 +230,20 @@ CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengumuman`
+--
+
+CREATE TABLE `pengumuman` (
+  `id_pengumuman` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pengumuman` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -179,10 +264,20 @@ CREATE TABLE `prodis` (
 --
 
 INSERT INTO `prodis` (`id_prodi`, `nama_prodi`, `created_at`, `updated_at`) VALUES
-(1, 'D4 Manajemen Bisnis', '2021-02-26 14:47:55', '2021-02-26 14:47:55'),
-(2, 'D4 Teknik Bangunan Kapal', '2021-02-26 14:47:55', '2021-02-26 14:47:55'),
-(3, 'D4 Teknik K3', '2021-02-26 14:47:55', '2021-02-26 14:47:55'),
-(4, 'D4 Teknik Permesinan Kapal', '2021-02-26 14:47:55', '2021-02-26 14:47:55');
+(1, 'D3 Teknik Perancangan dan Konstruksi Kapal', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(2, 'D3 Teknik Bangunan Kapal', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(3, 'D3 Teknik Permesinan Kapal', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(4, 'D3 Teknik Kelistrikan Kapal', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(5, 'D4 Teknik Pengelasan', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(6, 'D4 Teknik Perancangan dan Konstruksi Kapal', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(7, 'D4 Teknik Perpipaan', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(8, 'D4 Teknik Permesinan Kapal', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(9, 'D4 Teknik Otomasi', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(10, 'D4 Teknik Kelistrikan Kapal', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(11, 'D4 Teknik Keselamatan dan Kesehatan Kerja', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(12, 'D4 Teknik Pengolahan Limbah', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(13, 'D4 Teknik Desain dan Manufaktur', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(14, 'D4 Manajemen Bisnis', '2021-04-25 08:25:39', '2021-04-25 08:25:39');
 
 -- --------------------------------------------------------
 
@@ -202,10 +297,10 @@ CREATE TABLE `statuses` (
 --
 
 INSERT INTO `statuses` (`id_status`, `jenis_status`, `created_at`, `updated_at`) VALUES
-(1, 'Mahasiswa', '2021-02-26 14:51:26', '2021-02-26 14:51:26'),
-(2, 'Dosen', '2021-02-26 14:51:26', '2021-02-26 14:51:26'),
-(3, 'Alumni', '2021-02-26 14:51:26', '2021-02-26 14:51:26'),
-(4, 'Mitra', '2021-02-26 14:51:26', '2021-02-26 14:51:26');
+(1, 'Mahasiswa', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(2, 'Dosen', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(3, 'Alumni', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(4, 'Mitra', '2021-04-25 08:25:39', '2021-04-25 08:25:39');
 
 -- --------------------------------------------------------
 
@@ -230,8 +325,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `email`, `password`, `role`, `email_verified_at`, `token`, `remember_token`, `created_at`, `updated_at`) VALUES
-('DOS0001', 'google@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 2, NULL, '3NEJL7KP', NULL, '2021-03-17 06:01:32', '2021-03-17 06:01:32'),
-('MHS0001', 'danyahmadihza99@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 1, NULL, 'RZBSCOQE', NULL, '2021-03-17 05:58:20', '2021-03-17 05:58:20');
+('ADM001', 'fb@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 1, NULL, 'ABVDE322', NULL, '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+('admin', 'admin@admin.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 0, NULL, '-', NULL, '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+('DOS0001', 'google@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 2, NULL, '7ZWEFLBJ', NULL, '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+('MHS0002', 'reza123@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 1, NULL, 'VAQYSCZH', NULL, '2021-05-06 02:20:40', '2021-05-06 02:20:40');
 
 --
 -- Indexes for dumped tables
@@ -257,6 +354,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `file`
+--
+ALTER TABLE `file`
+  ADD PRIMARY KEY (`id_file`);
+
+--
 -- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
@@ -269,10 +372,29 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `monev`
+--
+ALTER TABLE `monev`
+  ADD PRIMARY KEY (`id_monev`);
+
+--
+-- Indexes for table `monev_finansial`
+--
+ALTER TABLE `monev_finansial`
+  ADD PRIMARY KEY (`id_finansial`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  ADD PRIMARY KEY (`id_pengumuman`),
+  ADD UNIQUE KEY `pengumuman_kode_unique` (`kode`);
 
 --
 -- Indexes for table `prodis`
@@ -301,7 +423,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -319,13 +441,13 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `prodis`
 --
 ALTER TABLE `prodis`
-  MODIFY `id_prodi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_prodi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `statuses`
