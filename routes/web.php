@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\AdminController as AdminManager;
 use App\Http\Controllers\Admin\PengumumanController as AdminPengumuman;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\Auth as ApiAuth;
-use App\Http\Controllers\Api\Data as ApiData;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\TenantController;
@@ -51,6 +50,7 @@ Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin', 'as' => 'user'],
     Route::get('/deleteAnggota/{id_anggota?}', [TenantController::class, 'deleteAnggota']);
     Route::post('/updateAnggota', [TenantController::class, 'updateAnggota']);
     Route::post('/monev/tambah/{sub_monev}', [TenantController::class, 'monev_tambah']);
+    Route::post('/prestasi/tambah', [TenantController::class, 'addPrestasi']);
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'loggedin', 'as' => 'admin.'], function() {
@@ -63,13 +63,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'loggedin', 'as' => 'admin.']
 });
 
 
-Route::group(['prefix' => 'api'], function () {
-    Route::post('/getEmail', [ApiAuth::class, 'getEmail']);
-    Route::post('/getProdi', [ApiData::class, 'getProdi']);
-    Route::post('/getStatus', [ApiData::class, 'getStatus']);
-    Route::post('/getDetailAnggota/{id_anggota?}', [ApiData::class, 'getAnggota']);
-    Route::get('/postFeedback', [ApiData::class, 'addFeedback'])->name('postFeedback');
-});
+// Route::group(['prefix' => 'api'], function () {
+//     Route::post('/getEmail', [ApiAuth::class, 'getEmail']);
+//     Route::post('/getProdi', [ApiData::class, 'getProdi']);
+//     Route::post('/getStatus', [ApiData::class, 'getStatus']);
+//     Route::post('/getDetailAnggota/{id_anggota?}', [ApiData::class, 'getAnggota']);
+//     Route::get('/postFeedback', [ApiData::class, 'addFeedback'])->name('postFeedback');
+// });
 
 
 // Route::view('/tenant', 'tenant/home');

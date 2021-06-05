@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Data as ApiData;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +26,10 @@ use Illuminate\Support\Facades\Route;
 //     Route::post('/getStatus', [ApiData::class, 'getStatus']);
 //     Route::post('/getDetailAnggota/{id_anggota?}', [ApiData::class, 'getAnggota']);
 // });
+
+Route::post('/getEmail', [ApiAuth::class, 'getEmail']);
+Route::post('/getProdi', [ApiData::class, 'getProdi']);
+Route::post('/getStatus', [ApiData::class, 'getStatus']);
+Route::post('/getDetailAnggota/{id_anggota?}', [ApiData::class, 'getAnggota']);
+Route::get('/postFeedback', [ApiData::class, 'addFeedback'])->name('postFeedback');
+Route::get('/editPrestasi/{id_prestasi}', [ApiData::class, 'editPrestasi'])->name('editPrestasi');

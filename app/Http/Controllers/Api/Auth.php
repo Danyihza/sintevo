@@ -16,6 +16,7 @@ class Auth extends Controller {
         if ($result) {
             return response()->json($result, 200);
         }
+        
         $response = [
             'message' => 'not found'
         ];

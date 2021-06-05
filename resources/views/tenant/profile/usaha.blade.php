@@ -28,6 +28,20 @@
                             </div>
                         </a> --}}
                         <div class="md:grid md:gap-6 mb-8">
+                            <div class="mt-5 md:mt-0 md:col-span-2">
+                                <div class="col-span-6 sm:col-span-4">
+                                    <div class="mt-1 flex items-center">
+                                    <span class="inline-block h-28 w-28 rounded-md overflow-hidden bg-gray-100">
+                                        <img src="{{ asset('/assets/img/tenant') }}/sample.jfif" alt="">
+                                    </span>
+                                    {{-- <button type="button" class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Change
+                                    </button> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:grid md:gap-6 mb-8">
                             <div class="mt-5 md:mt-0 md:col-span-2 animate__animated" id="form_regis">
                                 <form action="/tenant/updateProfileUsaha" method="POST" id="formUpdateUsaha">
                                     @csrf

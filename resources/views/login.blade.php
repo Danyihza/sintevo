@@ -9,12 +9,12 @@
             <div class="max-w-md w-full space-y-8">
                 <div>
                     <img class="mx-auto w-auto " src="{{ asset('assets/images/icon_title.png') }}" alt="Workflow">
-                    <h2 class="text-center text-3xl font-extrabold text-gray-900">
-                        SINTEVO
-                    </h2>
-                    <h2 class=" text-center text-2xl font-bold text-gray-900">
-                        Sistem Informasi Tenant Vokasi
-                    </h2>
+                        <h2 class="text-center text-3xl font-extrabold text-gray-900">
+                            SINTEVO
+                        </h2>
+                        <h2 class=" text-center text-2xl font-bold text-gray-900">
+                            Sistem Informasi Tenant Vokasi
+                        </h2>
                     @if (session('error'))
                         <p id="error-message" class="animate__animated animate__shakeX mt-2 w-32 h-auto mx-auto text-center justify-self-center font-medium text-sm text-red-600 rounded-lg bg-red-100">
                             {{ session('error') }}

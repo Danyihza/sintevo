@@ -19,4 +19,10 @@ class Prestasi extends Model
     ];
     protected $primaryKey = 'id_prestasi';
     protected $keyType = 'string';
+
+
+    public function hasFile()
+    {
+        return $this->hasOne(File::class, 'id_file', 'file');
+    }
 }

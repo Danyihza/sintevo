@@ -218,17 +218,10 @@ class TenantController extends Controller
                 $monev->tanggal = $res_tanggal;
                 $upload = $request->file('upload_file');
                 if ($upload) {
-                    $file = new File;
-                    $upload_path = 'assets/file/';
-                    $file_name = Str::random(32);
-                    $file->id_file = $file_name;
-                    $file->uploader = session('login-data')['id'];
-                    $file->nama_file = $upload->getClientOriginalName();
-                    $file->path_file = $upload_path . $file_name;
-                    $file->save();
-
-                    $monev->file = $file_name;
-                    $upload->move($upload_path, $file_name);
+                    $upload = self::_uploadFile($request, 'bukti_transaksi');
+            if ($upload == false) {
+                throw new Exception("Gagal Upload File", 1);
+            }
                 }
                 $monev->save();
                 return Redirect::back()->with('success', 'Sukses Menambahkan Data');
@@ -293,20 +286,8 @@ class TenantController extends Controller
             $upload = self::_uploadFile($request, 'bukti_transaksi');
             if ($upload == false) {
                 throw new Exception("Gagal Upload File", 1);
-                
             }
-            // $bukti = $request->file('bukti_transaksi');
-            // $file = new File;
-            // $upload_path = 'assets/file/';
-            // $file_name = Str::random(32);
-            // $file->uploader = session('login-data')['id'];
-            // $file->id_file = $file_name;
-            // $file->nama_file = $bukti->getClientOriginalName();
-            // $file->path_file = $upload_path . $file_name;
-            // $file->save();
-            // $bukti->move($upload_path, $file_name);
             $finansial->file = $upload;
-            
             $finansial->save();
             return Redirect::back()->with('success', 'Sukses Menambahkan Data');
         } catch (\Throwable $th) {
@@ -330,19 +311,32 @@ class TenantController extends Controller
     {
         $data['title'] = 'prestasi';
         $data['prestasi'] = Prestasi::where('id_user', session('login-data')['id'])->get();
+        // dd($data['prestasi']);
         return view('tenant.prestasi', $data);
     }
 
     public function addPrestasi(Request $request)
     {
-        $prestasi = new Prestasi;
-        $tanggal = $request->tanggal;
-        $prestasi->tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
-        $prestasi->jenis_kegiatan = $request->jenis_kegiatan;
-        $prestasi->prestasi = $request->prestasi;
-        $prestasi->tingkat_prestasi = $request->tingkat_prestasi;
-
-        $file = $request->file('upload_file');
+        try {
+            $prestasi = new Prestasi;
+            $prestasi->id_prestasi = Str::random(16);
+            $prestasi->id_user = session('login-data')['id'];
+            $tanggal = explode('/', $request->tanggal);
+            $prestasi->tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
+            $prestasi->jenis_kegiatan = $request->jenis_kegiatan;
+            $prestasi->prestasi = $request->prestasi;
+            $prestasi->tingkat_prestasi = $request->tingkat_prestasi;
+            
+            $upload = self::_uploadFile($request, 'upload_file');
+            if ($upload == false) {
+                throw new Exception("Gagal Upload File", 1);
+            }
+            $prestasi->file = $upload;
+            $prestasi->save();
+            return Redirect::back()->with('success', 'Sukses Menambahkan Data');
+        } catch (\Throwable $th) {
+            return Redirect::back()->with('error', 'Something went wrong: ' . $th->getMessage());
+        }
     }
 
     public function kelulusan()
@@ -360,12 +354,13 @@ class TenantController extends Controller
             $file_name = Str::random(32);
             $file->uploader = session('login-data')['id'];
             $file->id_file = $file_name;
-            $file->nama_file = $bukti->getClientOriginalName();
+            $file->nama_file = $upload->getClientOriginalName();
             $file->path_file = $upload_path . $file_name;
             $file->save();
             $upload->move($upload_path, $file_name);
             return $file_name;
         } catch (\Throwable $th) {
+            dd($th);
             return false;
         }
     }

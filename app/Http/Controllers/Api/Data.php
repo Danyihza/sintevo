@@ -3,12 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Anggota;
+use App\Models\File;
 use App\Models\Monev;
+use App\Models\Prestasi;
 use App\Models\Prodi;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 
 class Data extends Controller {
@@ -51,5 +57,35 @@ class Data extends Controller {
                 'message' => $th->getMessage()
             ], 500);
         }
+    }
+
+    public function editPrestasi(Request $request, $id_prestasi)
+    {
+        $prestasi = Prestasi::find($id_prestasi);
+        $tanggal = explode('/', $request->tanggal);
+        $prestasi->tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
+        $prestasi->kegiatan = $request->kegiatan;
+        $prestasi->prestasi = $request->prestasi;
+        $prestasi->tingkat_prestasi = $request->tingkat_prestasi;
+        $upload = $request->file('upload_file');
+        if ($upload) {
+            // Initial New File
+            $file_name = Str::random(32);
+            $prestasi->file = $file_name;
+            $file = new File;
+            $upload_path = 'assets/file/';
+            $file->uploader = $request->uploader;
+            $file->nama_file = $file->getClientOriginalName();
+            $file->path_file = $upload_path . $file->getClientOriginalName();
+            $file->save();
+            $upload->move($upload_path, $file->getClientOriginalName());
+            
+            // Deleting old file
+            $old_file = File::find($prestasi->file);
+            $old_file->delete();
+            Storage::delete($upload_path . $prestasi->file);
+        }
+        $prestasi->save();
+        return Redirect::back()->with('success', 'Data berhasil diperbarui');
     }
 }

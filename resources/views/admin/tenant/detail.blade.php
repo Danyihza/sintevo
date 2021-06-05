@@ -71,7 +71,7 @@
                     <div class="">
 
                         <h1 class="font-medium pt-10 pb-4">Profil</h1>
-                        <div class="bg-white border border-gray-200" x-data="{selected:null}">
+                        <div class="bg-white border border-gray-200" x-data="{selected:1}">
                             <ul class="shadow-box">
 
                                 <li class="relative border-b border-gray-200">
@@ -92,18 +92,113 @@
                                     <div class="relative overflow-hidden transition-all max-h-0 duration-700" style=""
                                         x-ref="container1"
                                         x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
-                                        <div class="p-6">
-                                            <div class="col-span-6 sm:col-span-4">
-                                                <label for="instagram"
-                                                    class="block text-sm font-medium text-gray-700">Instagram</label>
-                                                <input type="text" name="instagram" id="instagram"
-                                                    placeholder="Masukkan Username Instagram Usaha (Kosongkan Jika Tidak Ada)"
-                                                    oninput="checkValue()"
-                                                    class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                <p class="text-xs italic md ml-2 text-gray-300">
-                                                    opsional
-                                                </p>
-                                            </div>
+                                        <div class="p-1">
+                                            <div class="px-4 bg-white space-y-6 sm:p-6">
+                                                <div class="grid grid-cols-3 gap-6">
+                                                    <div class="col-span-6 sm:col-span-3">
+                                                        <label for="status"
+                                                            class="block text-sm font-medium text-gray-700">Status</label>
+                                                        <select id="status" name="status" disabled
+                                                            class="mt-1 block w-full py-2 disabled px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
+                                                            <option value="{{ $usaha->status }}" disabled selected>{{ $usaha->statuses->jenis_status }}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+    
+                                                @if($usaha->prodi)
+                                                <div class="grid grid-cols-3 gap-6">
+                                                    <div class="col-span-6 sm:col-span-3">
+                                                        <label for="status"
+                                                            class="block text-sm font-medium text-gray-700">Prodi</label>
+                                                        <select id="status" name="status" 
+                                                            class="mt-1 block w-full py-2 disabled px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
+                                                            <option value="{{ $usaha->prodi }}" selected>{{ $usaha->prodis->nama_prodi }}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                @endif
+                
+                                                <div class="grid grid-cols-3 gap-6">
+                                                    <div class="col-span-6 sm:col-span-3">
+                                                        <label for="kategori" class="block text-sm font-medium text-gray-700">Kategori
+                                                            Usaha</label>
+                                                        <select id="kategori" name="kategori" disabled
+                                                            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
+                                                            <option value="{{ $usaha->kategori }}" selected>{{ $usaha->kategoris->nama_kategori }}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                
+                                                <div class="col-span-6 sm:col-span-4">
+                                                    <label for="nama_brand" class="block text-sm font-medium text-gray-700">Nama Brand /
+                                                        Usaha</label>
+                                                    <input required type="text" name="nama_brand" id="nama_brand"
+                                                        placeholder="Contoh: Aftermeet Academy"
+                                                        class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                        value="{{ $usaha->nama_brand }}" readonly>
+                                                </div>
+                
+                                                <div>
+                                                    <label for="deskripsi" class="block text-sm font-medium text-gray-700">
+                                                        Deskripsi Usaha
+                                                    </label>
+                                                    <div class="mt-1">
+                                                        <textarea id="deskripsi" name="deskripsi" rows="5" readonly
+                                                            class="shadow-sm focus:ring-lightBlue-500 focus:border-lightBlue-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"
+                                                            placeholder="Deskripsikan Usaha / Produk / Layanan Usaha Anda">{{ $usaha->deskripsi }}</textarea>
+                                                    </div>
+                                                </div>
+                
+                                                <div class="col-span-6 sm:col-span-4">
+                                                    <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
+                                                    <input required type="text" name="alamat" id="alamat"
+                                                        placeholder="Masukkan Alamat Usaha Anda"
+                                                        class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                        value="{{ $usaha->alamat }}" readonly>
+                                                </div>
+                
+                                                <div class="col-span-6 sm:col-span-4">
+                                                    <label for="nama_ketua" class="block text-sm font-medium text-gray-700">Nama
+                                                        Ketua</label>
+                                                    <input required type="text" name="nama_ketua" id="nama_ketua"
+                                                        placeholder="Masukkan Nama Lengkap Ketua Usaha / Tim"
+                                                        class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                        value="{{ $usaha->nama_ketua }}" readonly>
+                                                </div>
+                
+                                                <div class="col-span-6 sm:col-span-4">
+                                                    <label for="no_whatsapp" class="block text-sm font-medium text-gray-700">Nomor
+                                                        WhatsApp</label>
+                                                    <input required type="text" name="no_whatsapp" id="no_whatsapp"
+                                                        placeholder="Masukkan Nomor WhatsApp Ketua Usaha / Tim"
+                                                        class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                        value="{{ $usaha->no_whatsapp }}" readonly>
+                                                </div>
+                
+                                                <div class="col-span-6 sm:col-span-4">
+                                                    <label for="website" class="block text-sm font-medium text-gray-700">
+                                                        Website
+                                                    </label>
+                                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                                        <span
+                                                            class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                                            https://
+                                                        </span>
+                                                        <input type="text" name="website" id="website"
+                                                            class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                                                            placeholder="www.example.com"
+                                                            value="{{ $usaha->website ?? '-' }}">
+                                                    </div>
+                                                </div>
+                
+                                                <div class="col-span-6 sm:col-span-4">
+                                                    <label for="instagram"
+                                                        class="block text-sm font-medium text-gray-700">Instagram</label>
+                                                    <input type="text" name="instagram" id="instagram"
+                                                        placeholder="Masukkan Username Instagram Usaha (Kosongkan Jika Tidak Ada)"
+                                                        class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                        value="{{ $usaha->instagram ?? '-'}}">
+                                                </div>
                                         </div>
                                     </div>
 
@@ -980,7 +1075,98 @@
                             <h1 class="font-medium pb-4">Prestasi</h1>
                             <div class="border border-gray-300 sm:overflow-hidden">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                                    
+                                    <h1 class="text-lg">Prestasi Tenant</h1>
+                                    <div class="w-full overflow-hidden rounded-sm mb-6">
+                                        <div class="w-full overflow-x-auto">
+                                            <table class="w-full whitespace-no-wrap">
+                                                <thead>
+                                                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                                        <th class="px-4 py-3">Tanggal</th>
+                                                        <th class="px-4 py-3">Kegiatan</th>
+                                                        <th class="px-4 py-3">Prestasi</th>
+                                                        <th class="px-4 py-3">Tingkat Prestasi</th>
+                                                        <th class="px-4 py-3">File</th>
+                                                        <th align="center" class="px-4 py-3">Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                                    @if(count($prestasi) == 0)
+                                                    <tr>
+                                                        <td class="text-center px-4 py-3" colspan="5">
+                                                            <span class="font-normal italic opacity-30 px-2 py-1">
+                                                                Data tidak tersedia
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    @endif
+                                                    @foreach($prestasi as $p)
+                                                    <tr>
+                                                        <td class="px-4 py-3 text-sm">
+                                                            {{ date('d/m/Y', strtotime($p->tanggal)) }}
+                                                        </td>
+                                                        <td class="px-4 py-3 text-sm">
+                                                            {{ $p->jenis_kegiatan }}
+                                                        </td>
+                                                        <td class="px-4 py-3 text-sm">
+                                                            {{ $p->prestasi }}
+                                                        </td>
+                                                        <td class="px-4 py-3 text-sm">
+                                                            {{ $p->tingkat_prestasi }}
+                                                        </td>
+                                                        <td class="px-4 py-3 flex items-center text-sm">
+                                                            @if($p->file)
+                                                                <a href="/download?file={{ $p->file }}" target="_blank">
+                                                                    <?php $get = explode('.', $p->hasFile->nama_file); $extention = end($get); ?>
+                                                                    @switch($extention)
+                                                                        @case('pdf')
+                                                                            <div data-tippy-content="{{ strtoupper($extention) }}">
+                                                                                @include('template.tenant.assets.icon.pdf')
+                                                                            </div>
+                                                                            @break
+                                                                        @case('docx')
+                                                                        @case('doc')
+                                                                            <div data-tippy-content="{{ strtoupper($extention) }}">
+                                                                                @include('template.tenant.assets.icon.word')
+                                                                            </div>
+                                                                            @break
+                                                                        @case('jpg')
+                                                                        @case('jpeg')
+                                                                        @case('png')
+                                                                        @case('jfif')
+                                                                        @case('gif')
+                                                                            <div data-tippy-content="{{ strtoupper($extention) }}">
+                                                                                @include('template.tenant.assets.icon.image')
+                                                                            </div>
+                                                                            @break
+                                                                        @default
+                                                                            <div data-tippy-content="{{ strtoupper($extention) }}">
+                                                                                @include('template.tenant.assets.icon.default')
+                                                                            </div>
+                                                                    @endswitch
+                                                                </a>
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                        <td align="center" class="px-4 py-3 text-sm">
+                                                            <a data-tippy-content="Edit" class="self-center" id="edit-button" href="javascript:void(0)">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#FFCC00">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                                </svg>
+                                                            </a>
+                                                            <br>
+                                                            <a data-tippy-content="Delete" id="delete-button" href="javascript:void(0)">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#FF0000">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                                </svg>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
