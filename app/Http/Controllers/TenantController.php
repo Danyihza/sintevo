@@ -326,7 +326,7 @@ class TenantController extends Controller
             $prestasi->jenis_kegiatan = $request->jenis_kegiatan;
             $prestasi->prestasi = $request->prestasi;
             $prestasi->tingkat_prestasi = $request->tingkat_prestasi;
-            
+
             $upload = self::_uploadFile($request, 'upload_file');
             if ($upload == false) {
                 throw new Exception("Gagal Upload File", 1);
@@ -337,6 +337,16 @@ class TenantController extends Controller
         } catch (\Throwable $th) {
             return Redirect::back()->with('error', 'Something went wrong: ' . $th->getMessage());
         }
+    }
+
+    function deletePrestasi($id_prestasi)
+    {
+        try {
+            Prestasi::where('id_prestasi', $id_prestasi)->delete();
+        } catch (\Throwable $th) {
+            return Redirect::back()->with('error', 'Something went wrong, Error: ' . $th->getMessage());
+        }
+        return Redirect::back()->with('success', 'Data Prestasi berhasil dihapus');
     }
 
     public function kelulusan()

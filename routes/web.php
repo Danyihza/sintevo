@@ -51,6 +51,7 @@ Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin', 'as' => 'user'],
     Route::post('/updateAnggota', [TenantController::class, 'updateAnggota']);
     Route::post('/monev/tambah/{sub_monev}', [TenantController::class, 'monev_tambah']);
     Route::post('/prestasi/tambah', [TenantController::class, 'addPrestasi']);
+    Route::get('/prestasi/delete/{id_prestasi}', [TenantController::class, 'deletePrestasi']);
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'loggedin', 'as' => 'admin.'], function() {

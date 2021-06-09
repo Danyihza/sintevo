@@ -8,7 +8,7 @@
         <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
             @include('template.tenant.sidebar.desktop')
             @include('template.tenant.sidebar.mobile')
-            
+
             <div class="flex flex-col flex-1 w-full">
                 @include('template.tenant.topbar')
                 {{-- Content --}}
@@ -33,7 +33,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                 </svg>
-                                
+
                             </button>
                         </div>
 
@@ -177,7 +177,7 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="prodi"
                                         class="block text-sm font-medium text-gray-700">Prodi</label>
-                                    <select id="prodi" name="prodi" 
+                                    <select id="prodi" name="prodi"
                                         class="mt-1 block w-full py-2 disabled px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
                                         @foreach($prodi as $prd)
                                             <option value="{{ $prd->id_prodi }}">{{ $prd->nama_prodi }}</option>
@@ -429,9 +429,9 @@
                                     class="block text-sm font-medium text-gray-700">Prodi</label>
                                     `;
             form += `
-                                <select id="prodi_edit" name="prodi" 
+                                <select id="prodi_edit" name="prodi"
                                     class="mt-1 block w-full py-2 disabled px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">`;
-            
+
                 form += `<option value="${data.has_prodi ?? 'NaN'}" ${data.has_prodi ? '': 'disabled'}>${data.has_prodi ? data.has_prodi.nama_prodi : 'Pilih Prodi'}</option>`;
 
             prodi.forEach((item, index) => {
@@ -439,7 +439,7 @@
                     form += `<option value="${item.id_prodi}">${item.nama_prodi}</option>`;
                 }
             })
-                                    
+
             form += `
                 </select>
                 </div>

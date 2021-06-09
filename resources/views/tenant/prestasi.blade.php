@@ -68,10 +68,10 @@
                                                                     </svg>
                                                                 </button>
                                                                 <button type="button" class="focus:outline-none focus:shadow-outline transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-100 p-1 rounded-full" @click="if (month == 11) {
-                                                                                            month = 0; 
+                                                                                            month = 0;
                                                                                             year++;
                                                                                         } else {
-                                                                                            month++; 
+                                                                                            month++;
                                                                                         } getNoOfDays()">
                                                                     <svg class="h-6 w-6 text-gray-400 inline-flex" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -97,9 +97,9 @@
                                                             <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
                                                                 <div style="width: 14.28%" class="px-1 mb-1">
                                                                     <div @click="getDateValue(date)" x-text="date" class="cursor-pointer text-center text-sm leading-none rounded-full leading-loose transition ease-in-out duration-100" :class="{
-                                                                    'bg-lightBlue-200': isToday(date) == true, 
+                                                                    'bg-lightBlue-200': isToday(date) == true,
                                                                     'text-gray-600 hover:bg-lightBlue-200': isToday(date) == false && isSelectedDate(date) == false,
-                                                                    'bg-lightBlue-500 text-white hover:bg-opacity-75': isSelectedDate(date) == true 
+                                                                    'bg-lightBlue-500 text-white hover:bg-opacity-75': isSelectedDate(date) == true
                                                                     }"></div>
                                                                 </div>
                                                             </template>
@@ -266,7 +266,7 @@
                                                 </svg>
                                             </a>
                                             <br>
-                                            <a data-tippy-content="Delete" id="delete-button" href="javascript:void(0)">
+                                            <a data-tippy-content="Delete" id="delete-button" href="/tenant/prestasi/delete/{{$p->id_prestasi}}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#FF0000">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                 </svg>
