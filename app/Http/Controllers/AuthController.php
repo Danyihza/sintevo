@@ -62,7 +62,7 @@ class AuthController extends Controller
     public function signout()
     {
         session()->forget('login-data');
-        return redirect('/home');
+        return redirect('home');
     }
 
     public function signin(Request $request)

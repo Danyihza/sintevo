@@ -27,27 +27,49 @@
                                 <span>Aftermeet</span>
                             </div>
                         </a> --}}
+                        
+
+
                         <div class="md:grid md:gap-6 mb-8">
                             <div class="mt-5 md:mt-0 md:col-span-2">
-                                <div class="col-span-6 sm:col-span-4">
-                                    <div class="mt-1 flex items-center">
-                                    <span class="inline-block h-28 w-28 rounded-md overflow-hidden bg-gray-100">
-                                        <img src="{{ asset('/assets/img/tenant') }}/sample.jfif" alt="">
-                                    </span>
-                                    {{-- <button type="button" class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        Change
-                                    </button> --}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="md:grid md:gap-6 mb-8">
-                            <div class="mt-5 md:mt-0 md:col-span-2 animate__animated" id="form_regis">
-                                <form action="/tenant/updateProfileUsaha" method="POST" id="formUpdateUsaha">
+                                <form action="tenant/updateProfileUsaha" method="POST" id="formUpdateUsaha" enctype="multipart/form-data">
                                     @csrf
                                     <input type="text" name="id_detail" value="{{ $usaha->getKey() }}" hidden>
                                     <div class="shadow sm:rounded-md sm:overflow-hidden">
                                         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+
+                                            <label for="status"
+                                                class="block text-sm font-medium text-gray-700">Gambar Tenant</label>
+                                            <div class="flex justify-start gap-3">
+                                                <div class="md:col-span-2">
+                                                    <div class="col-span-6 sm:col-span-4">
+                                                            <div class=" flex items-center ">
+                                                                <span class="inline-block h-28 w-28 rounded-md overflow-hidden bg-gray-100">
+                                                                    <img class="object-cover w-full h-full" src="{{ asset('/assets/img/tenant') }}/{{ $usaha->gambar }}" alt="" id="imagePreview">
+                                                                </span>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="my-auto">
+                                                    <div class="bg-lightBlue-100 p-6 border border-lightBlue-700 rounded-md max-w-lg">
+                                                        <div class="mb-4">
+                                                            <span class="text-sm text-lightBlue-700">
+                                                                Sangat direkomendasikan menggunakan gambar dengan rasio 1:1
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label class="cursor-pointer">
+                                                                <input type="file" class="hidden" name="picture" oninput="onUpload(this)">
+                                                                <span class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightBlue-500">
+                                                                    Ganti Foto
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
                                             <div class="grid grid-cols-3 gap-6">
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="status"
@@ -162,7 +184,7 @@
                                                 <label for="instagram"
                                                     class="block text-sm font-medium text-gray-700">Instagram</label>
                                                 <input type="text" name="instagram" id="instagram"
-                                                    placeholder="Masukkan Username Instagram Usaha (Kosongkan Jika Tidak Ada)"
+                                                    placeholder="Masukkan Username Instagram Usaha (Kosongkan Jika Tidak Ada) @example"
                                                     class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                     value="{{ $usaha->instagram }}">
                                                 <p class="text-xs italic md ml-2 text-gray-300">
@@ -247,8 +269,25 @@
 @section('script')
 
 <script>
+let submitform = false;
+window.onbeforeunload = function(){
+    if (submitform) {
+        return undefined
+    }
+    return 'Are you sure you want to leave?';
+};
+
 function submit() {
+    submitform = true;
     $('#formUpdateUsaha').submit();
+}
+
+function onUpload(element){
+    const [file] = element.files;
+    if (file) {
+        const image = document.getElementById('imagePreview');
+        image.src = URL.createObjectURL(file);
+    }
 }
 
 </script>

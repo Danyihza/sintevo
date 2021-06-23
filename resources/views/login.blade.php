@@ -21,7 +21,7 @@
                         </p>
                     @endif
                 </div>
-                <form class="mt-8 space-y-6" action="/signin" method="POST">
+                <form class="mt-8 space-y-6" action="{{ route('signin') }}" method="POST">
                     @csrf
                     <input type="hidden" name="remember" value="true">
                     <div class="{{ session('error') ? 'animate__animated animate__headShake' : '' }} rounded-md shadow-sm -space-y-px">
@@ -75,7 +75,7 @@
                 </form>
                 <p class="text-center text-sm text-gray-600">
                     Belum punya akun ?
-                    <a href="/signup" class="font-medium text-lightBlue-600 hover:text-lightBlue-500">
+                    <a href="{{ route('signup') }}" class="font-medium text-lightBlue-600 hover:text-lightBlue-500">
                         Daftar disini
                     </a>
                 </p>

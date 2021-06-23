@@ -97,7 +97,7 @@ function regexNumOnly(element) {
 
 async function prodiSelect (element){
     const status = $(element).val();
-    if (status == 1) {
+    if (status == 2) {
         const prodi = await fetch(base_url + 'api/getProdi',{
             method: 'POST'
         })

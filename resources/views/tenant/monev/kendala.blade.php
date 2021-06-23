@@ -30,7 +30,7 @@
 
                     <div class="md:grid md:gap-6 mb-8">
                         <div class="mt-5 md:mt-0 md:col-span-2">
-                            <form action="/tenant/monev/tambah/kendala" method="POST" enctype="multipart/form-data" id="formTambahKendala">
+                            <form action="{{ route('user.monevTambah') }}/kendala" method="POST" enctype="multipart/form-data" id="formTambahKendala">
                                 @csrf
                                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                                     <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
@@ -169,7 +169,7 @@
                                                     Upload File
                                                 </label>
                                                 <label class="mt-1 flex rounded-md shadow-sm cursor-pointer">
-                                                    <input class="hidden" accept="application/pdf" type="file" name="upload_file" id="upload_file" oninput="showFileName(this)"
+                                                    <input class="hidden" type="file" name="upload_file" id="upload_file" oninput="showFileName(this)"
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300">
                                                     <input type="text" id="file_name"
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300"
@@ -259,7 +259,7 @@
                                         </td>
                                         <td class="px-4 py-3 flex items-center text-sm">
                                             @if($his->file)
-                                                <a href="/download?file={{ $his->file }}" target="_blank">
+                                                <a href="{{ route('download') }}?file={{ $his->file }}" target="_blank">
                                                     <?php $get = explode('.', $his->hasFile->nama_file); $extention = end($get); ?>
                                                     @switch($extention)
                                                         @case('pdf')

@@ -16,7 +16,7 @@
             </div>
             <div class="animate__animated animate__fadeInLeft">
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form id="form-user" action="/registration" method="POST">
+                    <form id="form-user" action="{{ route('registration') }}" method="POST">
                         @csrf
                         <div class="shadow sm:rounded-md sm:overflow-hidden">
                             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">

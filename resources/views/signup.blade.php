@@ -17,7 +17,7 @@
             </div>
             <div class="md:grid md:gap-6">
                 <div class="mt-5 md:mt-0 md:col-span-2 animate__animated" id="form_regis">
-                    <form action="/signup2" method="POST" id="form_register">
+                    <form action="{{ route('signup2') }}" method="POST" id="form_register">
                         @csrf
                         <div class="shadow sm:rounded-md sm:overflow-hidden">
                             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">

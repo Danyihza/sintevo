@@ -63,7 +63,7 @@
                 <li class="nav-item"><a class="nav-link fw-medium" href="#faq">FAQ</a></li>
             </ul>
             {{-- <form class="ps-lg-5"> --}}
-              <a class="btn btn-lg btn-primary rounded-pill order-0" href="/login">Login</a>
+              <a class="btn btn-lg btn-primary rounded-pill order-0" href="login">Login</a>
             {{-- </form> --}}
           </div>
         </div>

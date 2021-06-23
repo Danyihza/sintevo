@@ -103,6 +103,37 @@ function data() {
       this.isModalTimEditOpen = false
     },
     
+    isModalFinansialEdit: false,
+    openModalFinansialEdit() {
+      this.isModalFinansialEdit = true
+    },
+    closeModalFinansialEdit() {
+      this.isModalFinansialEdit = false
+    },
+
+    isModalFinansialDelete: false,
+    openModalFinansialDelete() {
+      this.isModalFinansialDelete = true
+    },
+    closeModalFinansialDelete() {
+      this.isModalFinansialDelete = false
+    },
+    
+    isModalFileMonevEdit: false,
+    openModalFileMonevEdit() {
+      this.isModalFileMonevEdit = true
+    },
+    closeModalFileMonevEdit() {
+      this.isModalFileMonevEdit = false
+    },
+
+    isModalPrestasiEdit: false,
+    openModalPrestasiEdit() {
+      this.isModalPrestasiEdit = true
+    },
+    closeModalPrestasiEdit() {
+      this.isModalPrestasiEdit = false
+    }
     // Logout
     // logout(){
     //   const protocol = window.location.protocol;

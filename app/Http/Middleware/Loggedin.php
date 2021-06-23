@@ -21,7 +21,7 @@ class Loggedin
         switch (explode('.', Route::currentRouteName())[0]) {
             case 'admin':
                 $route = [
-                    1,0
+                    1, 0
                 ];
                 break;
             case 'user':
@@ -31,7 +31,7 @@ class Loggedin
                 $route = [];
                 break;
         }
-        if (session()->get('login-data')) {            
+        if (session()->get('login-data')) {
             if (!in_array(session()->get('login-data')['role'], $route)) {
                 return abort(403);
             }

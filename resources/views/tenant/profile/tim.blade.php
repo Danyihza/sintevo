@@ -146,7 +146,7 @@
                     Tambah Anggota
                 </p>
                 <div class="mt-5 md:col-span-2" id="form_regis">
-                    <form action="/tenant/tambahAnggota" method="POST" id="formTambahAnggota">
+                    <form action="{{ route('user.tambahAnggota') }}" method="POST" id="formTambahAnggota">
                         <input type="hidden" name="id_user" value="{{ session('login-data')['id'] }}">
                         @csrf
                         <div class="sm:rounded-md">
@@ -263,7 +263,7 @@
                     class="w-full px-5 py-3 text-sm font-medium leading-5 text-white text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
                     Batal
                 </button>
-                <button data-id="" type="button" id="btn-delete-tim" onclick="goTo('{{ url('tenant/deleteAnggota') . '/' }}', this.getAttribute('data-id'))"
+                <button data-id="" type="button" id="btn-delete-tim" onclick="goTo('{{ route('user.deleteAnggota') . '/' }}', this.getAttribute('data-id'))"
                     class="w-full text-center px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red">
                     Lanjutkan
                 </button>
@@ -304,7 +304,7 @@
                     Edit Data Anggota
                 </p>
                 <div class="mt-5 md:col-span-2" id="form_regis">
-                    <form action="/tenant/updateAnggota" method="POST" id="formEditAnggota">
+                    <form action="{{ route('user.updateAnggota') }}" method="POST" id="formEditAnggota">
                         {{-- Generate By JavaScript --}}
                     </form>
                 </div>

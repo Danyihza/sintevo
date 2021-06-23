@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2021 at 09:37 PM
+-- Generation Time: Jun 22, 2021 at 05:01 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -44,8 +44,10 @@ CREATE TABLE `anggota` (
 --
 
 INSERT INTO `anggota` (`id_anggota`, `id_user`, `nama`, `status`, `prodi`, `no_identify`, `jabatan`, `created_at`, `updated_at`) VALUES
-(1, 'DOS0001', 'Dany Ahmad Ihza Prakoso', 2, NULL, '12124213', 'CEO', '2021-04-25 08:25:39', '2021-06-05 19:29:04'),
-(2, 'DOS0001', 'Budi Santoso', 1, 4, '1234', 'CFO', '2021-05-06 03:39:35', '2021-05-06 03:39:35');
+(1, 'DOS0001', 'Dany Ahmad Ihza Prakoso', 4, NULL, '12124213', 'CEO', '2021-04-25 08:25:39', '2021-06-17 16:41:10'),
+(2, 'DOS0001', 'Budi Santoso', 2, 4, '1234', 'CFO', '2021-05-06 03:39:35', '2021-05-06 03:39:35'),
+(3, 'DOS0002', 'Budi Santoso', 3, 11, '4343434', 'CEO', '2021-06-20 17:34:41', '2021-06-20 17:34:41'),
+(4, 'DOS0002', 'Dany Ahmad Ihza P', 4, NULL, '4343434', 'Ketua', '2021-06-20 17:34:59', '2021-06-20 17:34:59');
 
 -- --------------------------------------------------------
 
@@ -65,6 +67,7 @@ CREATE TABLE `detail_users` (
   `prodi` int(11) DEFAULT NULL,
   `website` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `instagram` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gambar` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.jpg',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -73,9 +76,9 @@ CREATE TABLE `detail_users` (
 -- Dumping data for table `detail_users`
 --
 
-INSERT INTO `detail_users` (`id_detail`, `kategori`, `nama_brand`, `deskripsi`, `alamat`, `nama_ketua`, `no_whatsapp`, `status`, `prodi`, `website`, `instagram`, `created_at`, `updated_at`) VALUES
-('DOS0001', 3, 'Aftermeet Academy 2.0', 'testing', 'Desa Rondokuning Kraksaan Kabupaten Probolinggo Jawa Timur', 'Dany Ahmad', '082331147549', 2, NULL, 'www.mediarraihan.com', '@danyihza', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
-('MHS0002', 7, 'Jang Jang Wings', 'adada', 'Desa Rondokuning Kraksaan Kabupaten Probolinggo Jawa Timur', 'Reza', '082331144346', 1, 14, NULL, NULL, '2021-05-06 02:20:40', '2021-05-06 02:20:40');
+INSERT INTO `detail_users` (`id_detail`, `kategori`, `nama_brand`, `deskripsi`, `alamat`, `nama_ketua`, `no_whatsapp`, `status`, `prodi`, `website`, `instagram`, `gambar`, `created_at`, `updated_at`) VALUES
+('DOS0001', 1, 'Aftermeet Academy 2.0', 'testing', 'Desa Rondokuning Kraksaan Kabupaten Probolinggo Jawa Timur', 'Dany Ahmad', '082331147549', 2, NULL, 'www.mediarraihan.com', '@danyihza', 'DOS0001_1623996544.jpg', '2021-04-25 08:25:39', '2021-06-18 06:15:46'),
+('DOS0002', 7, 'McDonald\'s', 'DASDAD', 'Desa Rondokuning Kraksaan Kabupaten Probolinggo Jawa Timur', 'Adam Levine', '082331147549', 2, 10, 'www.mediarraihan.com', '@danyihza', 'default.jpg', '2021-06-20 17:33:16', '2021-06-20 17:33:16');
 
 -- --------------------------------------------------------
 
@@ -114,18 +117,54 @@ CREATE TABLE `file` (
 
 INSERT INTO `file` (`id_file`, `uploader`, `nama_file`, `path_file`, `created_at`, `updated_at`) VALUES
 ('3SBmJB6zJD9BWPIMwdkGQoEMOl7wGGgp', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/3SBmJB6zJD9BWPIMwdkGQoEMOl7wGGgp', '2021-05-08 00:38:02', '2021-05-08 00:38:02'),
+('8Qb1gHRZf4InDLZF5hvU1L8CyBdlgPLx', 'DOS0001', 'h1.png', 'assets/file/8Qb1gHRZf4InDLZF5hvU1L8CyBdlgPLx', '2021-06-22 02:57:38', '2021-06-22 02:57:38'),
+('AGjaFFtFUTdgplBCH7T0RXB8u1nztF3T', 'admin', 'asdadasdas.png', 'assets/file/AGjaFFtFUTdgplBCH7T0RXB8u1nztF3T', '2021-06-20 13:22:32', '2021-06-20 13:22:32'),
+('AMwSYxiQhvWy2QyGW0fSCnpm2FbSM9YW', 'DOS0001', 'Cheese_PNG_Clipart-3141.png', 'assets/file/AMwSYxiQhvWy2QyGW0fSCnpm2FbSM9YW', '2021-06-22 01:57:04', '2021-06-22 01:57:04'),
 ('ATpWZoJYkhymKEDBTVAYCGZCBfLRLVaU', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/ATpWZoJYkhymKEDBTVAYCGZCBfLRLVaU', '2021-05-08 01:02:26', '2021-05-08 01:02:26'),
-('D8e1vQY4OMQMhhM2l6vG3Z6EMZhNLHp5', 'DOS0001', 'alt_jember.png', 'assets/file/D8e1vQY4OMQMhhM2l6vG3Z6EMZhNLHp5', '2021-05-20 00:19:01', '2021-05-20 00:19:01'),
-('HUilPtzdazIPaEvNiMwzNAJTRyy7axku', 'DOS0001', '400 (1).jpeg', 'assets/file/HUilPtzdazIPaEvNiMwzNAJTRyy7axku', '2021-05-19 13:11:42', '2021-05-19 13:11:42'),
+('DY8P6UwUYmCMdWOzt9yDHlXZzkpQzKd7', 'admin', 'asdasdasd.png', 'assets/file/DY8P6UwUYmCMdWOzt9yDHlXZzkpQzKd7', '2021-06-19 23:36:12', '2021-06-19 23:36:12'),
+('J3wSl6xA6s8uh1iZwRGjC6bdrvQYEP7N', 'DOS0001', 'h1.png', 'assets/file/J3wSl6xA6s8uh1iZwRGjC6bdrvQYEP7N', '2021-06-21 20:56:49', '2021-06-21 20:56:49'),
 ('JGM9NX2qgiXLhn4pOKyZNfnPG7x0HMv5', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/JGM9NX2qgiXLhn4pOKyZNfnPG7x0HMv5', '2021-05-08 00:39:23', '2021-05-08 00:39:23'),
+('jHUKWzN9yn3sJW8o7ss4ZmM2A17nyONW', 'admin', '176-0.jpg', 'assets/file/jHUKWzN9yn3sJW8o7ss4ZmM2A17nyONW', '2021-06-19 02:14:49', '2021-06-19 02:14:49'),
 ('JUvvAcy2NG7gSIHDrbtNDaqjewVtuCO9', 'DOS0001', 'banner_img.png', 'assets/file/JUvvAcy2NG7gSIHDrbtNDaqjewVtuCO9', '2021-05-19 13:11:00', '2021-05-19 13:11:00'),
 ('mCzbiGSYRRQ69OnMWMrHSiQCA1lOdVus', 'DOS0001', '400 (1).jpeg', 'assets/file/mCzbiGSYRRQ69OnMWMrHSiQCA1lOdVus', '2021-05-19 11:22:15', '2021-05-19 11:22:15'),
+('mVrJwLVlJaVrulXsV3r4YNnbzfT7HmTI', 'DOS0002', 'Cheese_PNG_Clipart-3141.png', 'assets/file/mVrJwLVlJaVrulXsV3r4YNnbzfT7HmTI', '2021-06-21 00:39:09', '2021-06-21 00:39:09'),
+('NrxW79aRdfl7rAI8Nfq4sVUnmQ4zTtis', 'admin', 'asdasdasd.png', 'assets/file/NrxW79aRdfl7rAI8Nfq4sVUnmQ4zTtis', '2021-06-19 23:32:19', '2021-06-19 23:32:19'),
+('oNMI02J0gAXpTnPIbQUFSXB9byp33Wuc', 'DOS0001', 'Rekap Nilai Praktikum ADSI TI-B.pdf', 'assets/file/oNMI02J0gAXpTnPIbQUFSXB9byp33Wuc', '2021-06-21 21:49:34', '2021-06-21 21:49:34'),
+('oSWPLqGunlILzcy0qJNEnwOOclGVwRR3', 'admin', 'aldo.jpeg', 'assets/file/oSWPLqGunlILzcy0qJNEnwOOclGVwRR3', '2021-06-20 10:25:04', '2021-06-20 10:25:04'),
+('rg2z6OGR0GT0mAyJ5Ob83Kth4tOv1NCn', 'admin', 'aldo.jpeg', 'assets/file/rg2z6OGR0GT0mAyJ5Ob83Kth4tOv1NCn', '2021-06-19 10:23:09', '2021-06-19 10:23:09'),
 ('skL0k2PrDr64cds4AJDhbxaPiyfbwdju', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/skL0k2PrDr64cds4AJDhbxaPiyfbwdju', '2021-05-08 00:43:18', '2021-05-08 00:43:18'),
-('UI5j6xgGcHZv3WyeB9kVuwStSLt8r5qv', 'DOS0001', '176-0.jpg', 'assets/file/UI5j6xgGcHZv3WyeB9kVuwStSLt8r5qv', '2021-05-19 12:46:05', '2021-05-19 12:46:05'),
 ('uRLh5VU5HqmU5R9a9kes31N2NlFxWn8K', 'DOS0001', '400 (1).jpeg', 'assets/file/uRLh5VU5HqmU5R9a9kes31N2NlFxWn8K', '2021-05-19 13:09:46', '2021-05-19 13:09:46'),
+('vLG1gCj0sHVKb7alyXZyjWLGVCFAkQ8R', 'DOS0002', 'Teachmenow Logo edit.png', 'assets/file/vLG1gCj0sHVKb7alyXZyjWLGVCFAkQ8R', '2021-06-21 00:37:58', '2021-06-21 00:37:58'),
 ('vOQS6AmaHCCess1XONEsGKSlszmnjbIp', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/vOQS6AmaHCCess1XONEsGKSlszmnjbIp', '2021-05-08 01:00:00', '2021-05-08 01:00:00'),
 ('xqZyEaDiiaQieDInzW1C1Z8lzfrZ4Dur', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/xqZyEaDiiaQieDInzW1C1Z8lzfrZ4Dur', '2021-05-08 01:00:50', '2021-05-08 01:00:50'),
+('Y7MYIUBQKCv37zx8hfSn3Zwn5mo39Eqk', 'admin', '285-2855629_profile-clipart-hd-png-download.png', 'assets/file/Y7MYIUBQKCv37zx8hfSn3Zwn5mo39Eqk', '2021-06-19 23:37:24', '2021-06-19 23:37:24'),
 ('YrvnHq6pD0OVOYUaSYLsnl10nXCEeTL0', 'DOS0001', '400 (1).jpeg', 'assets/file/YrvnHq6pD0OVOYUaSYLsnl10nXCEeTL0', '2021-05-19 13:10:27', '2021-05-19 13:10:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `file_monev`
+--
+
+CREATE TABLE `file_monev` (
+  `id_filemonev` varchar(128) NOT NULL,
+  `id_user` varchar(128) NOT NULL,
+  `jenis_kegiatan` varchar(128) NOT NULL,
+  `keterangan_file` varchar(128) NOT NULL,
+  `file` varchar(128) NOT NULL,
+  `feedback` text DEFAULT NULL,
+  `tanggal` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `file_monev`
+--
+
+INSERT INTO `file_monev` (`id_filemonev`, `id_user`, `jenis_kegiatan`, `keterangan_file`, `file`, `feedback`, `tanggal`, `created_at`, `updated_at`) VALUES
+('xWpSzxhq6CGI2dZR', 'DOS0001', 'PKM', 'Lembar Pengesahan', 'J3wSl6xA6s8uh1iZwRGjC6bdrvQYEP7N', NULL, '2021-06-20 17:00:00', '2021-06-20 13:32:07', '2021-06-21 13:56:49'),
+('ySIunJRpElNBke0Q', 'DOS0002', 'KBMI', 'Lembar Pengesahan', 'mVrJwLVlJaVrulXsV3r4YNnbzfT7HmTI', NULL, '2021-06-20 17:00:00', '2021-06-20 17:39:09', '2021-06-20 17:39:09');
 
 -- --------------------------------------------------------
 
@@ -241,11 +280,12 @@ CREATE TABLE `monev_finansial` (
 
 INSERT INTO `monev_finansial` (`id_finansial`, `id_user`, `tanggal`, `jenis_transaksi`, `keterangan_transaksi`, `jumlah`, `file`, `created_at`, `updated_at`) VALUES
 ('2Zy4RZ7CBC2HOrFt', 'DOS0001', '2021-05-08 00:00:00', 'Pendapatan', 'Pendapatan tunai', 232323, 'xqZyEaDiiaQieDInzW1C1Z8lzfrZ4Dur', '2021-05-07 18:00:50', '2021-05-07 18:00:50'),
+('7xKaM00vDMrOxyO0', 'DOS0002', '2021-06-21 00:00:00', 'Pengeluaran', 'Biaya lain-lain', 123456, 'vLG1gCj0sHVKb7alyXZyjWLGVCFAkQ8R', '2021-06-20 17:37:58', '2021-06-20 17:37:58'),
 ('9FYnsRS5fWwGy1lL', 'DOS0001', '2021-05-19 00:00:00', 'Pendapatan', 'Pembelian bahan habis kantor', 123123, 'mCzbiGSYRRQ69OnMWMrHSiQCA1lOdVus', '2021-05-19 04:22:15', '2021-05-19 04:22:15'),
 ('f1MjJss06tjICMUd', 'DOS0001', '2021-05-08 01:03:09', 'Pengeluaran', 'Pembayaran hutang', 233345, 'vOQS6AmaHCCess1XONEsGKSlszmnjbIp', '2021-05-07 18:00:00', '2021-05-07 18:00:00'),
-('nBDTLF354iuM7XFt', 'DOS0001', '2021-05-19 00:00:00', 'Pendapatan', 'Pendapatan tunai', 123123, 'UI5j6xgGcHZv3WyeB9kVuwStSLt8r5qv', '2021-05-19 05:46:05', '2021-05-19 05:46:05'),
-('OBg4BCr2jV0op8Vg', 'DOS0001', '2021-04-06 00:00:00', 'Pendapatan', 'Pendapatan tunai', 233333, 'ATpWZoJYkhymKEDBTVAYCGZCBfLRLVaU', '2021-05-07 18:02:26', '2021-05-07 18:02:26'),
-('s5ulgkIexcCQYV92', 'DOS0001', '2021-05-19 00:00:00', 'Pendapatan', 'Pembayaran packaging/pengiriman', 123123, '0', '2021-05-19 03:42:07', '2021-05-19 03:42:07');
+('N51TMnn2JnzyXWx1', 'DOS0001', '2021-02-28 00:00:00', 'Pendapatan', 'Pendapatan tunai', 1000000, 'AMwSYxiQhvWy2QyGW0fSCnpm2FbSM9YW', '2021-06-21 18:57:04', '2021-06-22 02:42:00'),
+('OBg4BCr2jV0op8Vg', 'DOS0001', '2021-06-22 00:00:00', 'Pengeluaran', 'Pembayaran upah dan gaji', 233333, 'ATpWZoJYkhymKEDBTVAYCGZCBfLRLVaU', '2021-05-07 18:02:26', '2021-06-21 20:01:54'),
+('oy2C1e59IYPx5sZ8', 'DOS0001', '2021-06-22 00:00:00', 'Pendapatan', 'Pendapatan tunai', 123000, '8Qb1gHRZf4InDLZF5hvU1L8CyBdlgPLx', '2021-06-21 19:57:38', '2021-06-21 19:57:38');
 
 -- --------------------------------------------------------
 
@@ -269,9 +309,43 @@ CREATE TABLE `pengumuman` (
   `id_pengumuman` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pengumuman` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
+  `end_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pengumuman`
+--
+
+INSERT INTO `pengumuman` (`id_pengumuman`, `kode`, `pengumuman`, `file`, `created_at`, `end_at`, `updated_at`) VALUES
+('Eye9Ep6T6bvJF9Ru', 'Test', 'TEst', 'NrxW79aRdfl7rAI8Nfq4sVUnmQ4zTtis', '2021-06-19 16:32:19', NULL, '2021-06-19 16:32:19'),
+('sXiJ8bSp4LovIaoE', 'test555', 'testtttt', 'Y7MYIUBQKCv37zx8hfSn3Zwn5mo39Eqk', '2021-06-19 16:37:24', '2021-06-07 17:00:00', '2021-06-19 16:37:24'),
+('tJteQUtFoparyLvn', 'Test01', 'Test', 'rg2z6OGR0GT0mAyJ5Ob83Kth4tOv1NCn', '2021-06-19 03:23:09', '2021-06-18 17:00:00', '2021-06-19 03:23:09'),
+('zj1HucYMhEADXZIQ', 'asdsad', 'adasdad', 'jHUKWzN9yn3sJW8o7ss4ZmM2A17nyONW', '2021-06-18 19:14:49', NULL, '2021-06-18 19:14:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `petunjuk_teknis`
+--
+
+CREATE TABLE `petunjuk_teknis` (
+  `id_juknis` varchar(128) NOT NULL,
+  `kode` varchar(128) NOT NULL,
+  `file` varchar(128) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `petunjuk_teknis`
+--
+
+INSERT INTO `petunjuk_teknis` (`id_juknis`, `kode`, `file`, `created_at`, `updated_at`) VALUES
+('d6KsGDEejoHjmlFF', 'test', 'oSWPLqGunlILzcy0qJNEnwOOclGVwRR3', '2021-06-20 03:25:04', '2021-06-20 03:25:04'),
+('lLVwSqQDVGyPiIPX', 'juknis1', 'AGjaFFtFUTdgplBCH7T0RXB8u1nztF3T', '2021-06-20 06:22:32', '2021-06-20 06:22:32');
 
 -- --------------------------------------------------------
 
@@ -296,8 +370,7 @@ CREATE TABLE `prestasi` (
 --
 
 INSERT INTO `prestasi` (`id_prestasi`, `id_user`, `tanggal`, `jenis_kegiatan`, `prestasi`, `tingkat_prestasi`, `file`, `created_at`, `updated_at`) VALUES
-('Pmk4m7BVduys6kyI', 'DOS0001', '2021-05-20 00:00:00', 'KBMI', 'Juara 2', 'Internasional', 'HUilPtzdazIPaEvNiMwzNAJTRyy7axku', '2021-05-19 13:11:42', '2021-05-19 13:11:42'),
-('pSvZO7JvvGP6ft6R', 'DOS0001', '2021-05-20 00:00:00', 'KBMI', 'Juara 1', 'Nasional', 'D8e1vQY4OMQMhhM2l6vG3Z6EMZhNLHp5', '2021-05-20 00:19:01', '2021-05-20 00:19:01');
+('Pmk4m7BVduys6kyI', 'DOS0001', '2021-06-21 00:00:00', 'Business Plan', 'Juara 1', 'Provinsi', 'oNMI02J0gAXpTnPIbQUFSXB9byp33Wuc', '2021-05-19 13:11:42', '2021-06-21 21:49:34');
 
 -- --------------------------------------------------------
 
@@ -350,10 +423,10 @@ CREATE TABLE `statuses` (
 --
 
 INSERT INTO `statuses` (`id_status`, `jenis_status`, `created_at`, `updated_at`) VALUES
-(1, 'Mahasiswa', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
-(2, 'Dosen', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
-(3, 'Alumni', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
-(4, 'Mitra', '2021-04-25 08:25:39', '2021-04-25 08:25:39');
+(2, 'Mahasiswa', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(3, 'Dosen', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(4, 'Alumni', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(5, 'Mitra', '2021-04-25 08:25:39', '2021-04-25 08:25:39');
 
 -- --------------------------------------------------------
 
@@ -381,7 +454,7 @@ INSERT INTO `users` (`id_user`, `email`, `password`, `role`, `email_verified_at`
 ('ADM001', 'fb@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 1, NULL, 'ABVDE322', NULL, '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
 ('admin', 'admin@admin.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 0, NULL, '-', NULL, '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
 ('DOS0001', 'google@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 2, NULL, '7ZWEFLBJ', NULL, '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
-('MHS0002', 'reza123@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 1, NULL, 'VAQYSCZH', NULL, '2021-05-06 02:20:40', '2021-05-06 02:20:40');
+('DOS0002', 'danyahmadihza123@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 2, NULL, 'RHJS3LOF', NULL, '2021-06-20 17:33:16', '2021-06-20 17:33:16');
 
 --
 -- Indexes for dumped tables
@@ -411,6 +484,12 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `file`
   ADD PRIMARY KEY (`id_file`);
+
+--
+-- Indexes for table `file_monev`
+--
+ALTER TABLE `file_monev`
+  ADD PRIMARY KEY (`id_filemonev`);
 
 --
 -- Indexes for table `kategori`
@@ -450,6 +529,12 @@ ALTER TABLE `pengumuman`
   ADD UNIQUE KEY `pengumuman_kode_unique` (`kode`);
 
 --
+-- Indexes for table `petunjuk_teknis`
+--
+ALTER TABLE `petunjuk_teknis`
+  ADD PRIMARY KEY (`id_juknis`);
+
+--
 -- Indexes for table `prestasi`
 --
 ALTER TABLE `prestasi`
@@ -482,7 +567,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -512,7 +597,7 @@ ALTER TABLE `prodis`
 -- AUTO_INCREMENT for table `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `id_status` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_status` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

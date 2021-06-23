@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pengumuman extends Model
+class FileMonev extends Model
 {
     use HasFactory;
-    protected $table = 'pengumuman';
+    protected $table = 'file_monev';
     protected $fillable = [
-        'id_pengumuman',
-        'kode',
-        'pengumuman',
+        'id_filemonev',
+        'jenis_kegiatan',
+        'keterangan_file',
         'file',
-        'end_at'
+        'tanggal',
     ];
-    public $primaryKey = 'id_pengumuman';
+    public $primaryKey = 'id_filemonev';
     public $keyType = 'string';
 
     public function hasFile()

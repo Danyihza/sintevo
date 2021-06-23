@@ -28,7 +28,7 @@
                         <div class="">
                             <span class="inline-block h-16 w-16 rounded-lg overflow-hidden bg-gray-100 shadow-md">
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M22 20v2H2v-2h1v-6.758A4.496 4.496 0 0 1 1 9.5c0-.827.224-1.624.633-2.303L4.345 2.5a1 1 0 0 1 .866-.5H18.79a1 1 0 0 1 .866.5l2.702 4.682A4.496 4.496 0 0 1 21 13.242V20h1zM5.789 4L3.356 8.213a2.5 2.5 0 0 0 4.466 2.216c.335-.837 1.52-.837 1.856 0a2.5 2.5 0 0 0 4.644 0c.335-.837 1.52-.837 1.856 0a2.5 2.5 0 1 0 4.457-2.232L18.21 4H5.79z" fill="rgba(38,132,199,1)"/></svg> --}}
-                                <img src="{{ asset('/assets/img/tenant') }}/sample.jfif" alt="">
+                                <img class="object-cover w-full h-full" src="{{ asset('/assets/img/tenant') }}/{{ $tim->hasDetail->gambar }}" alt="">
                             </span>
                         </div>
                         <div class="mb-auto mt-auto ml-4">
@@ -187,7 +187,7 @@
                                                         <input type="text" name="website" id="website"
                                                             class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                                                             placeholder="www.example.com"
-                                                            value="{{ $usaha->website ?? '-' }}">
+                                                            value="{{ $usaha->website ?? '-' }}" readonly>
                                                     </div>
                                                 </div>
                 
@@ -197,7 +197,7 @@
                                                     <input type="text" name="instagram" id="instagram"
                                                         placeholder="Masukkan Username Instagram Usaha (Kosongkan Jika Tidak Ada)"
                                                         class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                        value="{{ $usaha->instagram ?? '-'}}">
+                                                        value="{{ $usaha->instagram ?? '-'}}" readonly>
                                                 </div>
                                         </div>
                                     </div>
@@ -371,7 +371,7 @@
                                                                 </td>
                                                                 <td class="px-4 py-3 flex items-center text-sm">
                                                                     @if($pro->nama_file)
-                                                                    <a href="/download?file={{ $pro->id_monev }}"
+                                                                    <a href="{{ route('download') }}?file={{ $pro->id_monev }}"
                                                                         target="_blank">
                                                                         <?php $get = explode('.', $pro->nama_file); $extention = end($get); ?>
                                                                         @switch($extention)
@@ -502,7 +502,7 @@
                                                                 </td>
                                                                 <td class="px-4 py-3 flex items-center text-sm">
                                                                     @if($plg->nama_file)
-                                                                    <a href="/download?file={{ $plg->id_monev }}"
+                                                                    <a href="{{ route('download') }}?file={{ $plg->id_monev }}"
                                                                         target="_blank">
                                                                         <?php $get = explode('.', $plg->nama_file); $extention = end($get); ?>
                                                                         @switch($extention)
@@ -632,7 +632,7 @@
                                                                 </td>
                                                                 <td class="px-4 py-3 flex items-center text-sm">
                                                                     @if($data->nama_file)
-                                                                    <a href="/download?file={{ $data->id_monev }}"
+                                                                    <a href="{{ route('download') }}?file={{ $data->id_monev }}"
                                                                         target="_blank">
                                                                         <?php $get = explode('.', $data->nama_file); $extention = end($get); ?>
                                                                         @switch($extention)
@@ -763,7 +763,7 @@
                                                                 </td>
                                                                 <td class="px-4 py-3 flex items-center text-sm">
                                                                     @if($data->nama_file)
-                                                                    <a href="/download?file={{ $data->id_monev }}"
+                                                                    <a href="{{ route('download') }}?file={{ $data->id_monev }}"
                                                                         target="_blank">
                                                                         <?php $get = explode('.', $data->nama_file); $extention = end($get); ?>
                                                                         @switch($extention)
@@ -863,7 +863,7 @@
                                                                 </td>
                                                                 <td class="px-4 py-3 justify-center flex text-sm">
                                                                     <a data-tippy-content="Lihat Bukti"
-                                                                        href="/download?file={{ $finan->id_finansial }}">
+                                                                        href="{{ route('download') }}?file={{ $finan->id_finansial }}">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             viewBox="0 0 24 24" width="18" height="18">
                                                                             <path fill="none" d="M0 0h24v24H0z" />
@@ -1012,7 +1012,7 @@
                                                                 </td>
                                                                 <td class="px-4 py-3 flex items-center text-sm">
                                                                     @if($data->nama_file)
-                                                                    <a href="/download?file={{ $data->id_monev }}"
+                                                                    <a href="{{ route('download') }}?file={{ $data->id_monev }}"
                                                                         target="_blank">
                                                                         <?php $get = explode('.', $data->nama_file); $extention = end($get); ?>
                                                                         @switch($extention)
@@ -1086,7 +1086,6 @@
                                                         <th class="px-4 py-3">Prestasi</th>
                                                         <th class="px-4 py-3">Tingkat Prestasi</th>
                                                         <th class="px-4 py-3">File</th>
-                                                        <th align="center" class="px-4 py-3">Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -1115,7 +1114,7 @@
                                                         </td>
                                                         <td class="px-4 py-3 flex items-center text-sm">
                                                             @if($p->file)
-                                                                <a href="/download?file={{ $p->file }}" target="_blank">
+                                                                <a href="{{ route('download') }}?file={{ $p->file }}" target="_blank">
                                                                     <?php $get = explode('.', $p->hasFile->nama_file); $extention = end($get); ?>
                                                                     @switch($extention)
                                                                         @case('pdf')
@@ -1148,19 +1147,6 @@
                                                                 -
                                                             @endif
                                                         </td>
-                                                        <td align="center" class="px-4 py-3 text-sm">
-                                                            <a data-tippy-content="Edit" class="self-center" id="edit-button" href="javascript:void(0)">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#FFCC00">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                                </svg>
-                                                            </a>
-                                                            <br>
-                                                            <a data-tippy-content="Delete" id="delete-button" href="javascript:void(0)">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#FF0000">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                                </svg>
-                                                            </a>
-                                                        </td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -1189,10 +1175,11 @@
                                             </div>
                                         </div>
                                         <div class="right">
-                                            <button type="button"
+                                            <a  href="{{ route('admin.hapusTenant', $usaha->id_detail) }}"
+                                                onclick="return confirm('Apakah anda yakin ?')"
                                                 class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-red-500 hover:text-white-500 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                                 Hapus tenant ini
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

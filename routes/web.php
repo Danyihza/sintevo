@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\TenantController as AdminTenant;
 use App\Http\Controllers\Admin\AdminController as AdminManager;
 use App\Http\Controllers\Admin\PengumumanController as AdminPengumuman;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Api\Auth as ApiAuth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
@@ -23,45 +23,55 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [UserController::class, 'index']);
+    Route::get('/', [UserController::class, 'index']);
 
-Route::get('/home', [UserController::class, 'index']);
-Route::get('/add', [UserController::class, 'store']);
-Route::get('/signup', [AuthController::class, 'signup']);
-Route::get('/login', [AuthController::class, 'login']);
-Route::get('/signout', [AuthController::class, 'signout']);
-Route::any('/signup2', [AuthController::class, 'signup2']);
-Route::post('/registration', [AuthController::class, 'registration']);
-Route::post('/signin', [AuthController::class, 'signin']);
-Route::get('/download', [FileController::class, 'downloadFile']);
+    Route::get('/home', [UserController::class, 'index']);
+    Route::get('/add', [UserController::class, 'store']);
+    Route::get('/signup', [AuthController::class, 'signup'])->name('signup');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
+    Route::any('/signup2', [AuthController::class, 'signup2'])->name('signup2');
+    Route::post('/registration', [AuthController::class, 'registration'])->name('registration');
+    Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
+    Route::get('/download', [FileController::class, 'downloadFile'])->name('download');
 
-Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin', 'as' => 'user'], function () {
-    Route::any('/home', [TenantController::class, 'index']);
-    Route::any('/profile/{params?}', [TenantController::class, 'profile']);
-    Route::any('/informasi/{params?}', [TenantController::class, 'informasi']);
-    Route::any('/monev/{params?}', [TenantController::class, 'monev']);
-    Route::any('/upload_file', [TenantController::class, 'upload_file']);
-    Route::any('/buku_kas', [TenantController::class, 'buku_kas']);
-    Route::any('/prestasi', [TenantController::class, 'prestasi']);
-    Route::any('/kelulusan', [TenantController::class, 'kelulusan']);
+    Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin', 'as' => 'user'], function () {
+        Route::any('/home', [TenantController::class, 'index'])->name('.home');
+        Route::any('/profile/{params?}', [TenantController::class, 'profile'])->name('.profile');
+        Route::any('/informasi/{params?}', [TenantController::class, 'informasi'])->name('.informasi');
+        Route::any('/monev/{params?}', [TenantController::class, 'monev'])->name('.monev');
+        Route::any('/upload_file', [TenantController::class, 'upload_file'])->name('.upload_file');
+        Route::any('/buku_kas', [TenantController::class, 'buku_kas'])->name('.buku_kas');
+        Route::any('/prestasi', [TenantController::class, 'prestasi'])->name('.prestasi');
+        Route::any('/kelulusan', [TenantController::class, 'kelulusan'])->name('.kelulusan');
 
-    Route::post('/updateProfileUsaha', [TenantController::class, 'updateUsaha']);
-    Route::post('/tambahAnggota', [TenantController::class, 'tambahAnggota']);
-    Route::get('/deleteAnggota/{id_anggota?}', [TenantController::class, 'deleteAnggota']);
-    Route::post('/updateAnggota', [TenantController::class, 'updateAnggota']);
-    Route::post('/monev/tambah/{sub_monev}', [TenantController::class, 'monev_tambah']);
-    Route::post('/prestasi/tambah', [TenantController::class, 'addPrestasi']);
-    Route::get('/prestasi/delete/{id_prestasi}', [TenantController::class, 'deletePrestasi']);
-});
+        Route::post('/updateProfileUsaha', [TenantController::class, 'updateUsaha'])->name('.updateProfileUsaha');
+        Route::post('/tambahAnggota', [TenantController::class, 'tambahAnggota'])->name('.tambahAnggota');
+        Route::get('/deleteAnggota/{id_anggota?}', [TenantController::class, 'deleteAnggota'])->name('.deleteAnggota');
+        Route::post('/updateAnggota', [TenantController::class, 'updateAnggota'])->name('.updateAnggota');
+        Route::post('/monev/tambah/{sub_monev?}', [TenantController::class, 'monev_tambah'])->name('.monevTambah');
+        Route::post('/monev/finansial/update', [TenantController::class, 'updateFinansial'])->name('.updateFinansial');
+        Route::get('/monev/finansial/delete/{id_finansial?}', [TenantController::class, 'deleteFinansial'])->name('.deleteFinansial');
+        Route::post('/prestasi/tambah', [TenantController::class, 'addPrestasi'])->name('.prestasiTambah');
+        Route::get('/prestasi/delete/{id_prestasi?}', [TenantController::class, 'deletePrestasi'])->name('.deletePrestasi');
+        Route::post('/prestasi/update', [TenantController::class, 'updatePrestasi'])->name('.updatePrestasi');
+        Route::post('/upload_file/tambah', [TenantController::class, 'addFileMonev'])->name('.tambahFileMonev');
+        Route::post('/upload_file/update', [TenantController::class, 'updateFileMonev'])->name('.updateFileMonev');
+        Route::get('/upload_file/hapus/{id_fileMonev?}', [TenantController::class, 'deleteFileMonev'])->name('.hapusfileMonev');
+    });
 
-Route::group(['prefix' => 'admin', 'middleware' => 'loggedin', 'as' => 'admin.'], function() {
-    Route::get('/test', [AdminController::class, 'index']);
-    Route::get('/dashboard', [AdminDashboard::class, 'index']);
-    Route::get('/tenant', [AdminTenant::class, 'index'])->name('listTenants');
-    Route::get('/tenant/{id_tenant}', [AdminTenant::class, 'tenantDetail']);
-    Route::get('/adminmanager', [AdminManager::class, 'index']);
-    Route::get('/pengumuman', [AdminPengumuman::class, 'index']);
-});
+    Route::group(['prefix' => 'admin', 'middleware' => 'loggedin', 'as' => 'admin.'], function () {
+        Route::get('/test', [AdminController::class, 'index']);
+        Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
+        Route::get('/tenant', [AdminTenant::class, 'index'])->name('listTenants');
+        Route::get('/tenant/{id_tenant?}', [AdminTenant::class, 'tenantDetail'])->name('tenant');
+        Route::get('/tenant/hapus/{id_tenant?}', [AdminTenant::class, 'hapusSeluruhDataTenant'])->name('hapusTenant');
+        Route::get('/adminmanager', [AdminManager::class, 'index'])->name('adminManager');
+        Route::get('/pengumuman', [AdminPengumuman::class, 'index'])->name('pengumuman');
+        Route::post('/pengumuman/tambah', [AdminPengumuman::class, 'addPengumuman'])->name('pengumumanTambah');
+        Route::get('/juknis', [AdminPengumuman::class, 'petunjukTeknis'])->name('petunjukteknis');
+        Route::post('/juknis/tambah', [AdminPengumuman::class, 'addJuknis'])->name('addjuknis');
+    });
 
 
 // Route::group(['prefix' => 'api'], function () {

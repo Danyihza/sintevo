@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class File_Monev extends Model
 {
     use HasFactory;
+    
 }

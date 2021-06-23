@@ -43,34 +43,53 @@
                                             </span>
                                         </td>
                                     </tr> --}}
+                                    {{-- {{count($buku_kas)}} --}}
+                                    <?php
+                                    $saldo = 0;
+                                    ?>
+                                    @for($i = 0; $i <= count($buku_kas)-1; $i++)
                                     <tr class="text-center">
                                         <td class="py-3">
-                                            30/04/2021
+                                            {{ date('d/m/Y', strtotime($buku_kas[$i]->tanggal)) }}
                                         </td>
                                         <td class="py-3 justify-center flex">
-                                            <a data-tippy-content="Lihat Bukti" href="#">
+                                            <a data-tippy-content="Lihat Bukti" href="{{ route('download') . '?file=' . $buku_kas[$i]->file }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9C2.121 6.88 6.608 3 12 3zm0 16a9.005 9.005 0 0 0 8.777-7 9.005 9.005 0 0 0-17.554 0A9.005 9.005 0 0 0 12 19zm0-2.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-2a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="rgba(38,132,199,1)"/></svg>
                                             </a>
                                         </td>
                                         <td class="py-3">
-                                            Pembayaran Sewa
+                                            {{ $buku_kas[$i]->keterangan_transaksi }}
                                         </td>
                                         <td class="py-3">
+                                            @if ($buku_kas[$i]->jenis_transaksi == 'Pendapatan')
+                                            <span class="text-green-500 jenis">
+                                                +
+                                            </span>
+                                            <span class="text-green-500 jumlah">
+                                                {{ $buku_kas[$i]->jumlah }}
+                                            </span>
+                                            @else
                                             -
-                                            <span class="text-green-500">
-                                                
-                                            </span>
+                                            @endif
                                         </td>
                                         <td class="py-3">
-                                            <span class="text-red-500">
-                                                -100.000
+                                            @if ($buku_kas[$i]->jenis_transaksi == 'Pengeluaran')
+                                            <span class="text-red-500 jenis">
+                                                -
                                             </span>
+                                            <span class="text-red-500 jumlah">
+                                                {{ $buku_kas[$i]->jumlah }}
+                                            </span>
+                                            @else
+                                            -
+                                            @endif
                                         </td>
-                                        <td class="py-3">
-                                            300.000
+                                        <td class="py-3 jumlah" id="saldo">
+                                            {{ $saldos[$i] }}
                                         </td>
                                     </tr>
-                                    <tr class="text-center">
+                                    @endfor
+                                    {{-- <tr class="text-center">
                                         <td class="py-3">
                                             26/04/2021
                                         </td>
@@ -95,7 +114,7 @@
                                         <td class="py-3">
                                             400.000
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                 </tbody>
                             </table>
                         </div>
@@ -113,7 +132,15 @@
 @endsection
 
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.1.0"></script>
 <script src="{{ asset('') }}js/date-picker.js"></script>
+<script>
+    new AutoNumeric.multiple('.jumlah', {
+        allowDecimalPadding: false,
+        decimalCharacter: ",",
+        digitGroupSeparator: "."
+    })
+</script>
 <script>
 function showFileName(param) { 
     const value = $(param).val();
@@ -121,6 +148,7 @@ function showFileName(param) {
     $('#file_name').val(fileName);
     console.log(value);
 }
+
 </script>
 <script>
     tippy('[data-tippy-content]');

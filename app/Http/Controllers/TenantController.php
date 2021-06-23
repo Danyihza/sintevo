@@ -13,10 +13,15 @@ use App\Models\Anggota;
 use App\Models\Kategori;
 use App\Models\Prestasi;
 use App\Models\Detail_user;
+use App\Models\FileMonev;
+use App\Models\Juknis;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Monev_Finansial;
+use App\Models\Pengumuman;
+use Illuminate\Support\Facades\File as FacadesFile;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class TenantController extends Controller
 {
@@ -122,10 +127,19 @@ class TenantController extends Controller
         $no_whatsapp = $request->no_whatsapp;
         $website = $request->website;
         $instagram = $request->instagram;
-
+        $gambar = $request->file('picture');
+        // dd($gambar);
+        
         $profil = Detail_user::find($id_detail);
+        // dd($profil->gambar);
         if ($prodi) {
             $profil->prodi = $prodi;
+        }
+        if ($gambar) {
+            $time = time();
+            FacadesFile::delete('assets/img/tenant/' . $profil->gambar);
+            $gambar->move('assets/img/tenant', $id_detail . '_' . $time . '.' . $gambar->getClientOriginalExtension());
+            $profil->gambar = $id_detail . '_' . $time . '.' . $gambar->getClientOriginalExtension();
         }
         $profil->kategori = $kategori;
         $profil->nama_brand = $nama_brand;
@@ -147,12 +161,16 @@ class TenantController extends Controller
     {
         $data['title'] = 'informasi';
         switch ($params) {
-            case 'download':
-                $data['state'] = 'download';
-                return view('tenant.informasi.download', $data);
+            case 'juknis':
+                $data['state'] = 'juknis';
+                $data['juknis'] = Juknis::orderBy('created_at', 'DESC')->get();
+                return view('tenant.informasi.juknis', $data);
                 break;
             case 'pengumuman':
                 $data['state'] = 'pengumuman';
+                $data['pengumuman'] = Pengumuman::whereDate('end_at', '<=', date('Y-m-d'))->get();
+                $data['pengumumanPermanent'] = Pengumuman::where('end_at', null)->get();
+                // dd($data['pengumuman']);
                 return view('tenant.informasi.pengumuman', $data);
                 break;
             default:
@@ -266,7 +284,7 @@ class TenantController extends Controller
     public static function tambahMonevFinansial($request)
     {
         $request->validate([
-            'bukti_transaksi' => 'required',
+            // 'bukti_transaksi' => 'required',
             'jenis_transaksi' => 'required',
             'keterangan_transaksi' => 'required',
             'jumlah' => 'required'
@@ -281,7 +299,9 @@ class TenantController extends Controller
             $finansial->jenis_transaksi = $request->jenis_transaksi;
             $finansial->keterangan_transaksi = $request->keterangan_transaksi;
             $finansial->jumlah = $request->jumlah;
-
+            if (!$request->file('bukti_transaksi')) {
+                throw new Exception('bukti transaksi harus disertakan');
+            }
             // Handle File
             $upload = self::_uploadFile($request, 'bukti_transaksi');
             if ($upload == false) {
@@ -295,22 +315,117 @@ class TenantController extends Controller
         }
     }
 
+    public function updateFinansial(Request $request)
+    {
+        $id_finansial = $request->id_finansial;
+        $finansial = Monev_Finansial::where('id_finansial', $id_finansial)->first();
+        $tanggal = explode('/', $request->tanggal);
+        $file = $request->file('bukti_transaksi');
+        if ($file) {
+            FacadesFile::delete("assets/file/" . $finansial->hasFile->nama_file);
+            File::where('id_file', $finansial->file)->delete();
+            $finansial->file = self::_uploadFile($request, 'bukti_transaksi');
+        }
+        $finansial->tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
+        $finansial->jenis_transaksi = $request->jenis_transaksi;
+        $finansial->keterangan_transaksi = $request->keterangan_transaksi;
+        $finansial->jumlah = $request->jumlah;
+        $finansial->save();
+        return Redirect::back()->with('success', 'Sukses mengubah data');
+    }
+
+    public function deleteFinansial($id_finansial)
+    {
+        $finansial = Monev_Finansial::with('hasFile')->where('id_finansial', $id_finansial)->first();
+        FacadesFile::delete('assets/file/' . $finansial->hasFile->nama_file);
+        File::where('id_file', $finansial->file)->delete();
+        $finansial->delete();
+        return Redirect::back()->with('success', 'Sukses data terhapus');
+    }
+
     public function upload_file()
     {
         $data['title'] = 'upload_file';
+        $data['fileMonev'] = FileMonev::where('id_user', session('login-data')['id'])->get();
         return view('tenant.upload_file', $data);
+    }
+
+    public function addFileMonev(Request $request)
+    {
+        $tanggal = explode('/', $request->tanggal);
+        $jenis_kegiatan = $request->jenis_kegiatan;
+        $keterangan_file = $request->keterangan_file;
+        try {
+            $fileMonev = new FileMonev;
+            $fileMonev->id_filemonev = Str::random(16);
+            $fileMonev->id_user = session('login-data')['id'];
+            $fileMonev->tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
+            $fileMonev->jenis_kegiatan = $jenis_kegiatan;
+            $fileMonev->keterangan_file = $keterangan_file;
+            $fileMonev->file = self::_uploadFile($request, 'upload_file');
+            $fileMonev->save();
+            return Redirect::back()->with('success', 'Sukses Menambahkan Data');
+        } catch (\Throwable $th) {
+            return Redirect::back()->with('error', 'Something went wrong: ' . $th->getMessage());
+        }
+    }
+
+    public function deleteFileMonev($id_fileMonev)
+    {
+        try {
+            $fileMonev = FileMonev::where('id_filemonev', $id_fileMonev)->first();
+            if ($fileMonev->file) {
+                FacadesFile::delete("assets/file/$fileMonev->file");
+                File::where('id_file', $fileMonev->file)->delete();
+            }
+            $fileMonev->delete();
+            return Redirect::back()->with('success', 'Sukses Menghapus Data');
+        } catch (\Throwable $th) {
+            return Redirect::back()->with('error', 'Something went wrong: ' . $th->getMessage());
+        }
+    }
+
+    public function updateFileMonev(Request $request)
+    {
+        $id_filemonev = $request->id_filemonev;
+        $filemonev = FileMonev::where('id_filemonev', $id_filemonev)->first();
+        $tanggal = explode('/', $request->tanggal);
+        $file = $request->file('upload_file');
+        if ($file) {
+            FacadesFile::delete("assets/file/" . $filemonev->hasFile->nama_file);
+            File::where('id_file', $filemonev->file)->delete();
+            $filemonev->file = self::_uploadFile($request, 'upload_file');
+        }
+        $filemonev->tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
+        $filemonev->jenis_kegiatan = $request->jenis_kegiatan;
+        $filemonev->keterangan_file = $request->keterangan_file;
+        $filemonev->save();
+        return Redirect::back()->with('success', 'Sukses mengubah data');
     }
 
     public function buku_kas()
     {
         $data['title'] = 'buku_kas';
+        $data['buku_kas'] = Monev_Finansial::where('id_user', session('login-data')['id'])->orderby('tanggal', 'DESC')->orderby('created_at', 'DESC')->get();
+        $saldo = 0;
+        $data['saldo'] = [];
+        for ($i = count($data['buku_kas'])-1; $i >= 0; $i--) { 
+            if ($data['buku_kas'][$i]->jenis_transaksi == 'Pengeluaran') {
+                $saldo -= $data['buku_kas'][$i]->jumlah; 
+                $data['saldo'][$i] = $saldo;
+            } else {
+                $saldo += $data['buku_kas'][$i]->jumlah;
+                $data['saldo'][$i] = $saldo;
+            }
+        }
+        $data['saldos'] = array_reverse($data['saldo']);
         return view('tenant.buku_kas', $data);
     }
 
     public function prestasi()
     {
         $data['title'] = 'prestasi';
-        $data['prestasi'] = Prestasi::where('id_user', session('login-data')['id'])->get();
+        $data['prestasi'] = Prestasi::where('id_user', session('login-data')['id'])->orderby('tanggal', 'DESC')->get();
         // dd($data['prestasi']);
         return view('tenant.prestasi', $data);
     }
@@ -339,14 +454,32 @@ class TenantController extends Controller
         }
     }
 
-    function deletePrestasi($id_prestasi)
+    public function deletePrestasi($id_prestasi)
     {
-        try {
-            Prestasi::where('id_prestasi', $id_prestasi)->delete();
-        } catch (\Throwable $th) {
-            return Redirect::back()->with('error', 'Something went wrong, Error: ' . $th->getMessage());
+        $prestasi = Prestasi::with('hasFile')->where('id_prestasi', $id_prestasi)->first();
+        FacadesFile::delete($prestasi->hasFile->path_file);
+        File::where('id_file', $prestasi->file)->delete();
+        $prestasi->delete();
+        return Redirect::back()->with('success', 'Data sukses terhapus');
+    }
+
+    public function updatePrestasi(Request $request)
+    {
+        $id_prestasi = $request->id_prestasi;
+        $prestasi = Prestasi::where('id_prestasi', $id_prestasi)->first();
+        $tanggal = explode('/', $request->tanggal);
+        $file = $request->file('upload_file');
+        if ($file) {
+            FacadesFile::delete("assets/file/" .$prestasi->hasFile->nama_file);
+            File::where('id_file',$prestasi->file)->delete();
+            $prestasi->file = self::_uploadFile($request, 'upload_file');
         }
-        return Redirect::back()->with('success', 'Data Prestasi berhasil dihapus');
+        $prestasi->tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
+        $prestasi->jenis_kegiatan = $request->jenis_kegiatan;
+        $prestasi->prestasi = $request->prestasi;
+        $prestasi->tingkat_prestasi = $request->tingkat_prestasi;
+        $prestasi->save();
+        return Redirect::back()->with('success', 'Sukses mengubah data');
     }
 
     public function kelulusan()

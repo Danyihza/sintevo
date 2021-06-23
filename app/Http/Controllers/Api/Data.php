@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Anggota;
 use App\Models\File;
+use App\Models\FileMonev;
 use App\Models\Monev;
+use App\Models\Monev_Finansial;
 use App\Models\Prestasi;
 use App\Models\Prodi;
 use App\Models\Status;
@@ -35,6 +37,24 @@ class Data extends Controller {
     {
         $result = Status::all();
         return response()->json($result, 200);
+    }
+
+    public function getFinansial($id_finansial)
+    {
+        $finansial = Monev_Finansial::with('hasFile')->where('id_finansial', $id_finansial)->first();
+        return response()->json($finansial, 200);
+    }
+
+    public function getFileMonev($id_filemonev)
+    {
+        $filemonev = FileMonev::with('hasFile')->where('id_filemonev', $id_filemonev)->first();
+        return response()->json($filemonev, 200);
+    }
+
+    public function getPrestasi($id_prestasi)
+    {
+        $prestasi = Prestasi::with('hasFile')->where('id_prestasi', $id_prestasi)->first();
+        return response()->json($prestasi, 200);
     }
 
     public function addFeedback(Request $request)
