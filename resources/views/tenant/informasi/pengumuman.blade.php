@@ -31,7 +31,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                        @if(count($pengumuman) == 0)
+                                        @if(count($pengumuman) == 0 && count($pengumumanPermanent) == 0)
                                         <tr>
                                             <td class="text-center px-4 py-3" colspan="3">
                                                 <span class="font-normal italic opacity-30 px-2 py-1">
@@ -98,7 +98,6 @@
                                             </td>
                                         </tr>
                                         @endforeach
-
                                     </tbody>
                                 </table>
                             </div>

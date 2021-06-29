@@ -4,30 +4,30 @@
 const lineConfig = {
   type: 'line',
   data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['28/02/2021', '08/05/2021', '08/05/2021', '22/06/2021', '22/06/2021'],
     datasets: [
       {
-        label: 'Organic',
+        label: 'Saldo',
         /**
          * These colors come from Tailwind CSS palette
          * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
          */
         backgroundColor: '#0694a2',
         borderColor: '#0694a2',
-        data: [43, 48, 40, 54, 67, 73, 70],
+        data: [1000000, 1232323, 998978, 765645, 888645],
         fill: false,
       },
-      {
-        label: 'Paid',
-        fill: false,
-        /**
-         * These colors come from Tailwind CSS palette
-         * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
-         */
-        backgroundColor: '#7e3af2',
-        borderColor: '#7e3af2',
-        data: [24, 50, 64, 74, 52, 51, 65],
-      },
+      // {
+      //   label: 'Paid',
+      //   fill: false,
+      //   /**
+      //    * These colors come from Tailwind CSS palette
+      //    * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
+      //    */
+      //   backgroundColor: '#7e3af2',
+      //   borderColor: '#7e3af2',
+      //   data: [24, 50, 64, 74, 52, 51, 65],
+      // },
     ],
   },
   options: {

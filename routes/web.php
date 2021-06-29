@@ -23,10 +23,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-    Route::get('/', [UserController::class, 'index']);
+    Route::get('/', [AuthController::class, 'login']);
 
-    Route::get('/home', [UserController::class, 'index']);
-    Route::get('/add', [UserController::class, 'store']);
+    // Route::get('/home', [UserController::class, 'index']);
+    // Route::get('/add', [UserController::class, 'store']);
     Route::get('/signup', [AuthController::class, 'signup'])->name('signup');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('/registration', [AuthController::class, 'registration'])->name('registration');
     Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
     Route::get('/download', [FileController::class, 'downloadFile'])->name('download');
+
 
     Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin', 'as' => 'user'], function () {
         Route::any('/home', [TenantController::class, 'index'])->name('.home');
@@ -44,6 +45,8 @@ use Illuminate\Support\Facades\Route;
         Route::any('/buku_kas', [TenantController::class, 'buku_kas'])->name('.buku_kas');
         Route::any('/prestasi', [TenantController::class, 'prestasi'])->name('.prestasi');
         Route::any('/kelulusan', [TenantController::class, 'kelulusan'])->name('.kelulusan');
+        Route::get('/export/{jenis_monev?}', [TenantController::class, 'exportToExcel'])->name('.export');
+        
 
         Route::post('/updateProfileUsaha', [TenantController::class, 'updateUsaha'])->name('.updateProfileUsaha');
         Route::post('/tambahAnggota', [TenantController::class, 'tambahAnggota'])->name('.tambahAnggota');

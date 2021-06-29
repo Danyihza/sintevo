@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KasExport;
+use App\Exports\MonevExport;
 use Exception;
 use Carbon\Carbon;
 use App\Models\File;
@@ -22,6 +24,7 @@ use App\Models\Pengumuman;
 use Illuminate\Support\Facades\File as FacadesFile;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TenantController extends Controller
 {
@@ -129,7 +132,7 @@ class TenantController extends Controller
         $instagram = $request->instagram;
         $gambar = $request->file('picture');
         // dd($gambar);
-        
+
         $profil = Detail_user::find($id_detail);
         // dd($profil->gambar);
         if ($prodi) {
@@ -236,10 +239,8 @@ class TenantController extends Controller
                 $monev->tanggal = $res_tanggal;
                 $upload = $request->file('upload_file');
                 if ($upload) {
-                    $upload = self::_uploadFile($request, 'bukti_transaksi');
-            if ($upload == false) {
-                throw new Exception("Gagal Upload File", 1);
-            }
+                    $file_name = self::_uploadFile($request, 'upload_file');
+                    $monev->file = $file_name;
                 }
                 $monev->save();
                 return Redirect::back()->with('success', 'Sukses Menambahkan Data');
@@ -370,6 +371,65 @@ class TenantController extends Controller
         }
     }
 
+    public function exportToExcel($jenis_monev)
+    {
+        $userdata = User::where('id_user', session('login-data')['id'])->first();
+        $file_name = $userdata->hasDetail->nama_brand . '_' . 'Monev' . '_' . ucwords($jenis_monev) . '.xlsx';
+        if ($jenis_monev == 'kas') {
+            try {
+                $kas = Monev_Finansial::where('id_user', session('login-data')['id'])->get();
+                $file_name = $userdata->hasDetail->nama_brand . '_' . 'Buku Kas' . '_' . ucwords($jenis_monev) . '.xlsx';
+                if (count($kas) == 0) {
+                    throw new Exception('not found');
+                }
+                return Excel::download(new KasExport, $file_name);
+            } catch (\Throwable $th) {
+                return abort(404);
+            }
+        }
+        if ($jenis_monev == 'finansial') {
+            try {
+                $finansial = Monev_Finansial::orderBy('tanggal', 'DESC')->where('id_user', session('login-data')['id'])->get();
+                $data = $finansial->map(function($item){
+                    return [
+                        date('d/m/Y', strtotime($item['tanggal'])),
+                        $item['jenis_transaksi'],
+                        $item['keterangan_transaksi'],
+                        $item['jumlah'],
+                        date('d/m/Y', strtotime($item['created_at']))
+                    ];
+                });
+                if (count($data) == 0) {
+                    throw new Exception('not found', 1);
+                }
+                return Excel::download(new MonevExport($data->toArray(), true), $file_name);
+            } catch (\Throwable $th) {
+                return abort(404);
+            }
+
+        }
+        try {
+            $monev = Monev::orderBy('tanggal', 'DESC')->where('id_user', session('login-data')['id'])->where('jenis_monev', $jenis_monev)->get();
+            $data = $monev->map(function ($item) {
+                return [
+                    date('d/m/Y', strtotime($item['tanggal'])),
+                    $item['status_progress'],
+                    $item['uraian'],
+                    $item['file'] ? 'Ada' : 'Tidak Ada',
+                    $item['feedback'],
+                    date('d/m/Y', strtotime($item['created_at']))
+                ];
+            });
+            if (count($data) == 0) {
+                throw new Exception('not found', 1);
+            }
+            return Excel::download(new MonevExport($data->toArray()), $file_name);
+        } catch (\Throwable $th) {
+            return abort(404);
+        }
+    }
+    
+
     public function deleteFileMonev($id_fileMonev)
     {
         try {
@@ -409,9 +469,9 @@ class TenantController extends Controller
         $data['buku_kas'] = Monev_Finansial::where('id_user', session('login-data')['id'])->orderby('tanggal', 'DESC')->orderby('created_at', 'DESC')->get();
         $saldo = 0;
         $data['saldo'] = [];
-        for ($i = count($data['buku_kas'])-1; $i >= 0; $i--) { 
+        for ($i = count($data['buku_kas']) - 1; $i >= 0; $i--) {
             if ($data['buku_kas'][$i]->jenis_transaksi == 'Pengeluaran') {
-                $saldo -= $data['buku_kas'][$i]->jumlah; 
+                $saldo -= $data['buku_kas'][$i]->jumlah;
                 $data['saldo'][$i] = $saldo;
             } else {
                 $saldo += $data['buku_kas'][$i]->jumlah;
@@ -470,8 +530,8 @@ class TenantController extends Controller
         $tanggal = explode('/', $request->tanggal);
         $file = $request->file('upload_file');
         if ($file) {
-            FacadesFile::delete("assets/file/" .$prestasi->hasFile->nama_file);
-            File::where('id_file',$prestasi->file)->delete();
+            FacadesFile::delete("assets/file/" . $prestasi->hasFile->nama_file);
+            File::where('id_file', $prestasi->file)->delete();
             $prestasi->file = self::_uploadFile($request, 'upload_file');
         }
         $prestasi->tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
