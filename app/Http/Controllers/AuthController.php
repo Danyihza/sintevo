@@ -8,6 +8,7 @@ use App\Models\Prodi;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -98,5 +99,20 @@ class AuthController extends Controller
         } else {
             return redirect('login')->with('error', 'User Not Found');
         }
+    }
+
+    public function changePassword(Request $request)
+    {
+        $id_user = session('login-data')['id'];
+        $user = User::where('id_user', $id_user)->first();
+        $curr_password = hash('sha256', $request->current_password);
+        $new_password = $request->new_password;
+        if ($curr_password != $user->password) {
+            return Redirect::back()->with('error', 'Current Password does not match');
+        }
+
+        $user->password = hash('sha256', $new_password);
+        $user->save();
+        return Redirect::back()->with('success', 'Password has been updated');
     }
 }

@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('') }}css/tailwind.output.css" />
+    {{-- <link rel="stylesheet" href="{{ asset('') }}css/app.css" /> --}}
     <link rel="stylesheet" href="{{ asset('') }}css/custom.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/remixicon.css" />
     <link
@@ -35,5 +36,18 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{{ asset('') }}js/myscript.js"></script>
+<script>
+    async function loadAvatar(){
+        const id_user = "{{ session('login-data')['id'] }}";
+        const avatar = await fetch(`{{ route('getAvatar') }}/${id_user}`)
+        .then(response => response.json())
+        .then(result => result.data)
+        .catch(error => console.error(error));
+        const path = `{{ asset('/assets/img/tenant') }}/${avatar}`;
+        $('#topbar-image').attr('src', path);
+        // console.log(path);
+    }
+    loadAvatar();
+</script>
 
 @yield('script')

@@ -19,7 +19,8 @@ use Illuminate\Support\Str;
 
 
 
-class Data extends Controller {
+class Data extends Controller
+{
 
     public function getProdi()
     {
@@ -55,6 +56,15 @@ class Data extends Controller {
     {
         $prestasi = Prestasi::with('hasFile')->where('id_prestasi', $id_prestasi)->first();
         return response()->json($prestasi, 200);
+    }
+
+    public function getAvatar($id_user)
+    {
+        $avatar = User::where('id_user', $id_user)->first();
+        return response()->json([
+            'status' => 'success',
+            'data' => $avatar->hasDetail->gambar
+        ], 200);
     }
 
     public function addFeedback(Request $request)
@@ -99,7 +109,7 @@ class Data extends Controller {
             $file->path_file = $upload_path . $file->getClientOriginalName();
             $file->save();
             $upload->move($upload_path, $file->getClientOriginalName());
-            
+
             // Deleting old file
             $old_file = File::find($prestasi->file);
             $old_file->delete();

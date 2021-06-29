@@ -22,4 +22,30 @@ class Auth extends Controller {
         ];
         return response()->json($response, 404);
     }
+
+    public function checkPassword(Request $request)
+    {
+        $id = $request->id_user;
+        $current_password = hash('sha256', $request->password);
+        $password = User::where('id_user', $id)->first()->password;
+
+        if (!$password) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'not found'
+            ], 200);
+        }
+
+        if ($current_password == $password) {   
+            return response()->json([
+                'status' => 'success',
+                'data' => true
+            ],200);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'data' => false
+            ],200);
+        }
+    }
 }

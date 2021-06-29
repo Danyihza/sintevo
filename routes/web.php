@@ -45,9 +45,11 @@ use Illuminate\Support\Facades\Route;
         Route::any('/buku_kas', [TenantController::class, 'buku_kas'])->name('.buku_kas');
         Route::any('/prestasi', [TenantController::class, 'prestasi'])->name('.prestasi');
         Route::any('/kelulusan', [TenantController::class, 'kelulusan'])->name('.kelulusan');
+        Route::get('/changepassword', [TenantController::class, 'changePassword'])->name('.changepassword');
         Route::get('/export/{jenis_monev?}', [TenantController::class, 'exportToExcel'])->name('.export');
         
 
+        Route::post('/changePassword', [AuthController::class, 'changePassword'])->name('.changenewpassword');
         Route::post('/updateProfileUsaha', [TenantController::class, 'updateUsaha'])->name('.updateProfileUsaha');
         Route::post('/tambahAnggota', [TenantController::class, 'tambahAnggota'])->name('.tambahAnggota');
         Route::get('/deleteAnggota/{id_anggota?}', [TenantController::class, 'deleteAnggota'])->name('.deleteAnggota');

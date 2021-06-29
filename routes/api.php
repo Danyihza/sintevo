@@ -37,3 +37,5 @@ use App\Http\Controllers\Api\Auth as ApiAuth;
     Route::get('/getFinansial/{id_finansial?}', [ApiData::class, 'getFinansial'])->name('getFinansial');
     Route::get('/getFileMonev/{id_filemonev?}', [ApiData::class, 'getFileMonev'])->name('getFileMonev');
     Route::get('/getPrestasi/{id_prestasi?}', [ApiData::class, 'getPrestasi'])->name('getPrestasi');
+    Route::post('/checkPassword', [ApiAuth::class, 'checkPassword'])->name('checkPassword');
+    Route::get('/getavatar/{id_user?}', [ApiData::class, 'getAvatar'])->name('getAvatar');

@@ -32,7 +32,7 @@
 
                         <div class="md:grid md:gap-6 mb-8">
                             <div class="mt-5 md:mt-0 md:col-span-2">
-                                <form action="tenant/updateProfileUsaha" method="POST" id="formUpdateUsaha" enctype="multipart/form-data">
+                                <form action="{{ route('user.updateProfileUsaha') }}" method="POST" id="formUpdateUsaha" enctype="multipart/form-data">
                                     @csrf
                                     <input type="text" name="id_detail" value="{{ $usaha->getKey() }}" hidden>
                                     <div class="shadow sm:rounded-md sm:overflow-hidden">

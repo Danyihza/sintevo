@@ -548,6 +548,12 @@ class TenantController extends Controller
         return view('tenant.kelulusan', $data);
     }
 
+    public function changePassword()
+    {
+        $data['title'] = 'changepassword';
+        return view('tenant.changepassword', $data);
+    }
+
     private static function _uploadFile($request, $upload_name)
     {
         try {
