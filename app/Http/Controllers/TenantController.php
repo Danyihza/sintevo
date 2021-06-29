@@ -139,8 +139,10 @@ class TenantController extends Controller
             $profil->prodi = $prodi;
         }
         if ($gambar) {
+            if ($profil->gambar != 'default.png') {
+                FacadesFile::delete('assets/img/tenant/' . $profil->gambar);
+            }
             $time = time();
-            FacadesFile::delete('assets/img/tenant/' . $profil->gambar);
             $gambar->move('assets/img/tenant', $id_detail . '_' . $time . '.' . $gambar->getClientOriginalExtension());
             $profil->gambar = $id_detail . '_' . $time . '.' . $gambar->getClientOriginalExtension();
         }
