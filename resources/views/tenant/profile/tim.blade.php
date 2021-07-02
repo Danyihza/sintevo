@@ -343,7 +343,7 @@
 
         function checkStatus(element){
             const status = $(element).val();
-            if (status == 1) {
+            if (status == 2) {
                 $('#select_prodi').removeClass('hidden');
                 $('#isMahasiswa').val(true);
             } else {
@@ -354,7 +354,7 @@
 
         function checkStatus_edit(element){
             const status = $(element).val();
-            if (status == 1) {
+            if (status == 2) {
                 $('#select_prodi_edit').removeClass('hidden');
                 $('#isMahasiswa_edit').val(true);
             } else {
@@ -373,17 +373,17 @@
         }
 
         async function loadModalEdit(id_anggota) {
-            const data = await fetch(`{{ url("api/getDetailAnggota") }}/${id_anggota}`, {
+            const data = await fetch(`{{ route("getDetailAnggota") }}/${id_anggota}`, {
                 method: 'post'
             })
             .then(response => response)
             .then(result => result.json());
-            const prodi = await fetch(`{{ url("api/getProdi") }}`, {
+            const prodi = await fetch(`{{ route("getProdi") }}`, {
                 method: 'post'
             })
             .then(response => response)
             .then(result => result.json());
-            const status = await fetch(`{{ url("api/getStatus") }}`, {
+            const status = await fetch(`{{ route("getStatus") }}`, {
                 method: 'post'
             })
             .then(response => response)

@@ -187,11 +187,12 @@
                                             </label>
                                             <label class="mt-1 flex rounded-md shadow-sm cursor-pointer">
                                                 <input class="hidden" type="file" name="upload_file" id="upload_file"
+                                                    accept=".pdf, .ppt"
                                                     oninput="showFileName(this, '#file_name')"
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300">
                                                 <input type="text" id="file_name"
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300"
-                                                    placeholder="Jika ada file yang perlu dilampirkan klik Browse"
+                                                    placeholder="Jika ada file yang perlu dilampirkan klik Browse, file type: pdf, ppt"
                                                     disabled>
                                                 <span
                                                     class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">

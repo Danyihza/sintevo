@@ -142,11 +142,11 @@
                                                     Bukti Transaksi
                                                 </label>
                                                 <label class="mt-1 flex rounded-md shadow-sm cursor-pointer">
-                                                    <input class="hidden" type="file" name="bukti_transaksi" id="bukti_transaksi" oninput="showFileName(this, '#file_name')"
+                                                    <input class="hidden" type="file" accept=".jpg, .jpeg, .png" name="bukti_transaksi" id="bukti_transaksi" oninput="showFileName(this, '#file_name')"
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300">
                                                     <input type="text" id="file_name"
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300"
-                                                    placeholder="Upload Bukti Transaksi disini"
+                                                    placeholder="Upload Bukti Transaksi disini, file type: jpg, jpeg, png"
                                                     disabled>
                                                     <span
                                                         class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
@@ -225,6 +225,7 @@
                             History Progress Finansial
                         </h2>
                         <div class="my-auto">
+                            @if(count($finansial) > 0)
                             <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                                 href="{{ route('user.export', 'finansial') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
@@ -243,6 +244,7 @@
                                 </svg>
                                 <span>Export Excel</span>
                             </a>
+                            @endif
                         </div>
 
                     </div>

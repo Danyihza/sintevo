@@ -200,10 +200,11 @@
                                             <label class="mt-1 flex rounded-md shadow-sm cursor-pointer">
                                                 <input class="hidden" type="file" name="upload_file" id="upload_file"
                                                     oninput="showFileName(this)"
+                                                    accept=".jpg, .jpeg, .png, .pdf"
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300">
                                                 <input type="text" id="file_name"
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300"
-                                                    placeholder="Klik Browse untuk menambahkan file" disabled>
+                                                    placeholder="Klik Browse untuk menambahkan file, file type: jpg, jpeg, png, pdf" disabled>
                                                 <span
                                                     class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                                     Browse
@@ -247,7 +248,7 @@
                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                                     @if(count($prestasi) == 0)
                                     <tr>
-                                        <td class="text-center px-4 py-3" colspan="5">
+                                        <td class="text-center px-4 py-3" colspan="6">
                                             <span class="font-normal italic opacity-30 px-2 py-1">
                                                 Data tidak tersedia
                                             </span>

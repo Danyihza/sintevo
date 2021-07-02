@@ -23,6 +23,7 @@
                             Buku Kas
                         </h2>
                         <div class="my-auto">
+                            @if (count($buku_kas) > 0)
                             <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-md text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                                 href="{{ route('user.export', 'kas') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
@@ -41,6 +42,7 @@
                                 </svg>
                                 <span>Export Excel</span>
                             </a>
+                            @endif
                         </div>
                     </div>
                     <!-- New Table -->
@@ -59,13 +61,15 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                    {{-- <tr>
+                                    @if (count($buku_kas) == 0)
+                                    <tr>
                                         <td class="text-center px-4 py-3" colspan="6">
                                             <span class="font-normal italic opacity-30 px-2 py-1">
                                                 Data tidak tersedia
                                             </span>
                                         </td>
-                                    </tr> --}}
+                                    </tr>
+                                    @endif
                                     {{-- {{count($buku_kas)}} --}}
                                     @for($i = 0; $i <= count($buku_kas)-1; $i++)
                                     <tr class="text-center">

@@ -37,6 +37,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{{ asset('') }}js/myscript.js"></script>
 <script>
+    
+</script>
+<script>
+    loadAvatar();
+    // showAnnouncements();
     async function loadAvatar(){
         const id_user = "{{ session('login-data')['id'] }}";
         const avatar = await fetch(`{{ route('getAvatar') }}/${id_user}`)
@@ -45,9 +50,34 @@
         .catch(error => console.error(error));
         const path = `{{ asset('/assets/img/tenant') }}/${avatar}`;
         $('#topbar-image').attr('src', path);
-        // console.log(path);
     }
-    loadAvatar();
+
+    // async function loadAnnouncements(){
+    //     const announcement = await fetch(`{{ route('getpengumuman')}}`)
+    //     .then(response => response.json())
+    //     .then(result => result.data)
+    //     .catch(error => console.error(error));
+    //     const array = Object.keys(announcement).map((value, key) => {
+    //         return [
+    //         value.id_pengumuman,
+    //         value.kode,
+    //         value.pengumuman,
+    //     ]})
+
+    //     // console.log(array);
+    //     return array;
+    // }
+
+    // async function showAnnouncements(){
+    //     const announcement = await loadAnnouncements();
+    //     console.log(announcement);
+    //     announcement.forEach((item, index) => {
+    //         setTimeout(() => {
+    //             $('#announcement_bar').attr('placeholder', item.pengumuman)
+    //         }, 3000 * index);
+    //     })
+    //     // showAnnouncements();
+    // }
 </script>
 
 @yield('script')

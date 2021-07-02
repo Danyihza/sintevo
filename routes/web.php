@@ -73,9 +73,12 @@ use Illuminate\Support\Facades\Route;
         Route::get('/tenant/hapus/{id_tenant?}', [AdminTenant::class, 'hapusSeluruhDataTenant'])->name('hapusTenant');
         Route::get('/adminmanager', [AdminManager::class, 'index'])->name('adminManager');
         Route::get('/pengumuman', [AdminPengumuman::class, 'index'])->name('pengumuman');
+        Route::get('/pengumuman/hapus/{id_pengumuman?}', [AdminPengumuman::class, 'removePengumuman'])->name('removePengumuman');
         Route::post('/pengumuman/tambah', [AdminPengumuman::class, 'addPengumuman'])->name('pengumumanTambah');
         Route::get('/juknis', [AdminPengumuman::class, 'petunjukTeknis'])->name('petunjukteknis');
         Route::post('/juknis/tambah', [AdminPengumuman::class, 'addJuknis'])->name('addjuknis');
+        Route::get('/juknis/hapus/{id_juknis?}', [AdminPengumuman::class, 'removeJuknis'])->name('removeJuknis');
+        Route::post('/kelulusan/tambah', [AdminTenant::class, 'addSertifikat'])->name('addSertifikat');
     });
 
 

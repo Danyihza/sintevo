@@ -133,7 +133,16 @@ function data() {
     },
     closeModalPrestasiEdit() {
       this.isModalPrestasiEdit = false
+    },
+
+    isModalAddSertifikat: false,
+    openModalAddSertifikat() {
+      this.isModalAddSertifikat = true
+    },
+    closeModalAddSertifikat() {
+      this.isModalAddSertifikat = false
     }
+
     // Logout
     // logout(){
     //   const protocol = window.location.protocol;

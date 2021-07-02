@@ -7,6 +7,7 @@ use App\Models\File;
 use App\Models\FileMonev;
 use App\Models\Monev;
 use App\Models\Monev_Finansial;
+use App\Models\Pengumuman;
 use App\Models\Prestasi;
 use App\Models\Prodi;
 use App\Models\Status;
@@ -67,6 +68,15 @@ class Data extends Controller
         ], 200);
     }
 
+    public function getpengumuman()
+    {
+        $announcement = Pengumuman::where('end_at', null)->orWhere('end_at', '>', date('Y-m-d H:i:s', time()))->get();
+        return response()->json([
+            'status' => 'success',
+            'data' => $announcement
+        ], 200);
+    }
+
     public function addFeedback(Request $request)
     {
         $id_monev = $request->id;
@@ -86,6 +96,28 @@ class Data extends Controller
                 'success' => false,
                 'message' => $th->getMessage()
             ], 500);
+        }
+    }
+
+    public function addFileMonevFeedback(Request $request)
+    {
+        $id_filemonev = $request->id;
+        $feedback = $request->feedback;
+
+        try {
+            $fileMonev = FileMonev::where('id_filemonev', $id_filemonev)->first();
+            $fileMonev->feedback = $feedback;
+            $fileMonev->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Data Updated'
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage()
+            ]);
         }
     }
 

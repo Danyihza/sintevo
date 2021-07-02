@@ -6,14 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\Anggota;
 use App\Models\Detail_user;
 use App\Models\File;
+use App\Models\FileMonev;
 use App\Models\Kategori;
+use App\Models\Kelulusan;
 use App\Models\Monev;
 use App\Models\Monev_Finansial as MonevFinansial;
+use App\Models\Pengumuman;
 use App\Models\Prestasi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File as FacadesFile;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
+
 
 class TenantController extends Controller
 {
@@ -27,6 +32,7 @@ class TenantController extends Controller
 
     public function tenantDetail($id_detail)
     {
+        
         $data['title'] = 'tenantmanagement';
         $data['tim'] = User::where('id_user', $id_detail)->with('hasDetail', 'hasDetail.kategoris')->first();
         // dd($data['tim']);
@@ -38,32 +44,48 @@ class TenantController extends Controller
         $data['finansial'] = MonevFinansial::where(['id_user' => $id_detail])->orderBy('tanggal', 'DESC')->get();
         $data['prestasi'] = Prestasi::where(['id_user' => $id_detail])->orderBy('tanggal', 'DESC')->get();
         $data['usaha'] = Detail_user::where(['id_detail' => $id_detail])->first();
+        $data['lampiran'] = FileMonev::where(['id_user' => $id_detail])->orderBy('tanggal', 'DESC')->get();
         return view('admin.tenant.detail', $data);
+    }
+
+    public function addSertifikat(Request $request)
+    {
+        $id_user = $request->id_user;
+        $lulus = $request->kelulusan;
+        $kelulusan = new Kelulusan;
+        $kelulusan->id_kelulusan = Str::random(32);
+        $kelulusan->id_user = $id_user;
+        $kelulusan->kelulusan = $lulus;
+        if ($request->file('upload_file')) {
+            $kelulusan->file = self::_uploadFile($request, 'upload_file');
+        }
+        $kelulusan->save();
+        return Redirect::back()->with('success', 'Sukses Menambahkan Data');
     }
 
     public function hapusSeluruhDataTenant($id_tenant)
     {
-        $file = File::where('uploader', $id_tenant)->get();
-        if (count($file) > 0) {
+        $file = File::where('uploader', $id_tenant);
+        if (count($file->get()) > 0) {
             foreach($file as $f){
                 FacadesFile::delete($f->path_file);
             }
             $file->delete();
         }
-        $prestasi = Prestasi::where('id_user', $id_tenant)->get();
-        if (count($prestasi) > 0) {
+        $prestasi = Prestasi::where('id_user', $id_tenant);
+        if (count($prestasi->get()) > 0) {
             $prestasi->delete();
         }
-        $monev = Monev::where('id_user', $id_tenant)->get();
-        if (count($prestasi) > 0) {
+        $monev = Monev::where('id_user', $id_tenant);
+        if (count($prestasi->get()) > 0) {
             $monev->delete();
         }
-        $monev_finansial = MonevFinansial::where('id_user', $id_tenant)->get();
-        if (count($monev_finansial) > 0) {
+        $monev_finansial = MonevFinansial::where('id_user', $id_tenant);
+        if (count($monev_finansial->get()) > 0) {
             $monev_finansial->delete();
         }
-        $anggota = Anggota::where('id_user', $id_tenant)->get();
-        if (count($anggota) > 0) {
+        $anggota = Anggota::where('id_user', $id_tenant);
+        if (count($anggota->get()) > 0) {
             $anggota->delete();
         }
 
@@ -72,5 +94,25 @@ class TenantController extends Controller
         $tenant->delete();
         User::where('id_user', $id_tenant)->first()->delete();
         return redirect()->route('admin.listTenants')->with('success', "Tenant '$nama' berhasil dihapus");
+    }
+
+    private static function _uploadFile($request, $upload_name)
+    {
+        try {
+            $upload = $request->file($upload_name);
+            $file = new File;
+            $upload_path = 'assets/file/';
+            $file_name = Str::random(32);
+            $file->uploader = session('login-data')['id'];
+            $file->id_file = $file_name;
+            $file->nama_file = $upload->getClientOriginalName();
+            $file->path_file = $upload_path . $file_name;
+            $file->save();
+            $upload->move($upload_path, $file_name);
+            return $file_name;
+        } catch (\Throwable $th) {
+            dd($th);
+            return false;
+        }
     }
 }

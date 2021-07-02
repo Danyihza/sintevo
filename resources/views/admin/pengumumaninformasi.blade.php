@@ -178,7 +178,7 @@
                                             <th class="px-4 py-3">Tanggal</th>
                                             <th class="px-4 py-3">Status</th>
                                             <th class="px-4 py-3">Lampiran</th>
-                                            <th align="center" class="px-4 py-3">Aksi</th>
+                                            <th class="px-4 py-3">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -223,10 +223,25 @@
                                                 @endif
                                             </td>
                                             <td class="px-4 py-3 text-xs">
+                                                @if ($peng->file == null)
+                                                -
+                                                @else
                                                 <a
                                                     href="{{ route('download') . '?file=' . $peng->file}}"
                                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                                     Download
+                                                </a>
+                                                @endif
+                                            </td>
+                                            <td class="px-4 py-3 text-xs">
+                                                {{-- <button type="button"
+                                                    class="mr-1 px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full dark:bg-yellow-700 dark:text-yellow-100">
+                                                    Edit
+                                                </button> --}}
+                                                <a  href="{{ route('admin.removePengumuman', $peng->id_pengumuman) }}"
+                                                    onclick="return confirm('Apakah anda yakin ?')"
+                                                    class="mr-1 px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
+                                                    Delete
                                                 </a>
                                             </td>
                                         </tr>

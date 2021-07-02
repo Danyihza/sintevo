@@ -9,6 +9,8 @@ use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File as FacadesFile;
+
 
 class PengumumanController extends Controller
 {
@@ -41,6 +43,21 @@ class PengumumanController extends Controller
         }
     }
 
+    public function removeJuknis($id_juknis)
+    {
+        try {
+            $juknis = Juknis::where('id_juknis', $id_juknis)->first();
+            if ($juknis->hasFile) {
+                FacadesFile::delete($juknis->hasFile->path_file);
+                File::where('id_file', $juknis->hasFile->id_file)->first()->delete();
+            }
+            $juknis->delete();
+            return Redirect::back()->with('success', 'Sukses Menghapus Data');
+        } catch (\Throwable $th) {
+            return Redirect::back()->with('error', 'Something went wrong: ' . $th->getMessage());
+        }
+    }
+
     public function addPengumuman(Request $request)
     {
         try {
@@ -54,13 +71,30 @@ class PengumumanController extends Controller
             $newPengumuman->id_pengumuman = Str::random(16);
             $newPengumuman->kode = $kode;
             $newPengumuman->pengumuman = $pengumuman;
-            $newPengumuman->file = self::_uploadFile($request, 'upload_file');
+            if ($request->file('upload_file')) {
+                $newPengumuman->file = self::_uploadFile($request, 'upload_file');
+            }
             if ($is_permanent == null) {
                 $tanggal = explode('/', $tanggal);
                 $newPengumuman->end_at = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
             }
             $newPengumuman->save();
             return Redirect::back()->with('success', 'Sukses Menambahkan Data');
+        } catch (\Throwable $th) {
+            return Redirect::back()->with('error', 'Something went wrong: ' . $th->getMessage());
+        }
+    }
+
+    public function removePengumuman($id_pengumuman)
+    {
+        try {
+            $pengumuman = Pengumuman::where('id_pengumuman', $id_pengumuman)->first();
+            if ($pengumuman->hasFile) {
+                FacadesFile::delete($pengumuman->hasFile->path_file);
+                File::where('id_file', $pengumuman->hasFile->id_file)->first()->delete();
+            }
+            $pengumuman->delete();
+            return Redirect::back()->with('success', 'Sukses Menghapus Data');
         } catch (\Throwable $th) {
             return Redirect::back()->with('error', 'Something went wrong: ' . $th->getMessage());
         }

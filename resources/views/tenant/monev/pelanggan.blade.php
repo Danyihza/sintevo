@@ -202,6 +202,7 @@
                             History Progress Pelanggan
                         </h2>
                         <div class="my-auto">
+                            @if (count($history) > 0)
                             <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                                 href="{{ route('user.export', 'pelanggan') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
@@ -220,6 +221,7 @@
                                 </svg>
                                 <span>Export Excel</span>
                             </a>
+                            @endif
                         </div>
 
                     </div>
