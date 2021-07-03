@@ -17,16 +17,7 @@
                         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                             Dashboard
                         </h2>
-                        <!-- CTA -->
-                        {{-- <a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-lightBlue-100 bg-lightBlue-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-lightBlue"
-                            href="https://github.com/estevanmaito/windmill-dashboard">
-                            <div class="flex items-center">
-                                <span>Aftermeet</span>
-                            </div>
-                        </a> --}}
-                        <!-- Cards -->
-                        <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-                            <!-- Card -->
+                        {{-- <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
                             <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                                 <div
                                     class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
@@ -41,12 +32,10 @@
                                     </p>
                                 </div>
                             </div>
-                            <!-- Card -->
                             <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                                 <div
                                     class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
                                     <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 14.062V20h2v-5.938c3.946.492 7 3.858 7 7.938H4a8.001 8.001 0 0 1 7-7.938zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z"/></svg>
-                                    {{-- <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg> --}}
                                 </div>
                                 <div>
                                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -57,12 +46,10 @@
                                     </p>
                                 </div>
                             </div>
-                            <!-- Card -->
                             <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                                 <div
                                     class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
                                     <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
-                                    {{-- <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0-2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.25a1.25 1.25 0 0 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM12 4c-2.474 0-2.878.007-4.029.058-.784.037-1.31.142-1.798.332-.434.168-.747.369-1.08.703a2.89 2.89 0 0 0-.704 1.08c-.19.49-.295 1.015-.331 1.798C4.006 9.075 4 9.461 4 12c0 2.474.007 2.878.058 4.029.037.783.142 1.31.331 1.797.17.435.37.748.702 1.08.337.336.65.537 1.08.703.494.191 1.02.297 1.8.333C9.075 19.994 9.461 20 12 20c2.474 0 2.878-.007 4.029-.058.782-.037 1.309-.142 1.797-.331.433-.169.748-.37 1.08-.702.337-.337.538-.65.704-1.08.19-.493.296-1.02.332-1.8.052-1.104.058-1.49.058-4.029 0-2.474-.007-2.878-.058-4.029-.037-.782-.142-1.31-.332-1.798a2.911 2.911 0 0 0-.703-1.08 2.884 2.884 0 0 0-1.08-.704c-.49-.19-1.016-.295-1.798-.331C14.925 4.006 14.539 4 12 4zm0-2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2z"/></svg> --}}
                                 </div>
                                 <div>
                                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -73,7 +60,6 @@
                                     </a>
                                 </div>
                             </div>
-                            <!-- Card -->
                             <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                                 <div
                                     class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
@@ -88,10 +74,10 @@
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!-- New Table -->
-                        <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                        {{-- <div class="w-full overflow-hidden rounded-lg shadow-xs">
                             <div class="w-full overflow-x-auto">
                                 <table class="w-full whitespace-no-wrap">
                                     <thead>
@@ -480,10 +466,10 @@
                                     </nav>
                                 </span>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!-- Charts -->
-                        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                        {{-- <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                             Charts
                         </h2>
                         <div class="grid gap-6 mb-8 md:grid-cols-2">
@@ -525,7 +511,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </main>
                 {{-- End of Content --}}

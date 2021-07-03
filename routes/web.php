@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\TenantController as AdminTenant;
 use App\Http\Controllers\Admin\AdminController as AdminManager;
@@ -72,6 +73,8 @@ use Illuminate\Support\Facades\Route;
         Route::get('/tenant/{id_tenant?}', [AdminTenant::class, 'tenantDetail'])->name('tenant');
         Route::get('/tenant/hapus/{id_tenant?}', [AdminTenant::class, 'hapusSeluruhDataTenant'])->name('hapusTenant');
         Route::get('/adminmanager', [AdminManager::class, 'index'])->name('adminManager');
+        Route::post('/adminmanager/tambah', [AdminManager::class, 'addAdmin'])->name('addAdmin');
+        Route::get('/adminmanager/hapus/{id_user?}', [AdminManager::class, 'removeAdmin'])->name('removeAdmin');
         Route::get('/pengumuman', [AdminPengumuman::class, 'index'])->name('pengumuman');
         Route::get('/pengumuman/hapus/{id_pengumuman?}', [AdminPengumuman::class, 'removePengumuman'])->name('removePengumuman');
         Route::post('/pengumuman/tambah', [AdminPengumuman::class, 'addPengumuman'])->name('pengumumanTambah');
@@ -79,6 +82,12 @@ use Illuminate\Support\Facades\Route;
         Route::post('/juknis/tambah', [AdminPengumuman::class, 'addJuknis'])->name('addjuknis');
         Route::get('/juknis/hapus/{id_juknis?}', [AdminPengumuman::class, 'removeJuknis'])->name('removeJuknis');
         Route::post('/kelulusan/tambah', [AdminTenant::class, 'addSertifikat'])->name('addSertifikat');
+        Route::get('/kelulusan/hapus/{id_kelulusan?}', [AdminTenant::class, 'removeSertifikat'])->name('removeSertifikat');
+        Route::get('/accountpage', [AccountController::class, 'accountPage'])->name('accountPage');
+        Route::post('/updateAdmin', [AccountController::class, 'updateAdmin'])->name('updateAdmin');
+        
+
+        Route::get('/export/{jenis_monev?}/{id_user?}', [AdminTenant::class, 'exportToExcel'])->name('export');
     });
 
 

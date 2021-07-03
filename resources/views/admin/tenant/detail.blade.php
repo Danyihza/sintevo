@@ -4,6 +4,11 @@
 
 @section('body')
 
+@php
+$url = explode('/', url()->current());
+$id_user = end($url);
+@endphp
+
 <body>
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
         @include('template.admin.sidebar.desktop')
@@ -238,7 +243,7 @@
                                         x-bind:style="selected == 2 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''">
                                         <div class="p-6">
                                             <!-- New Table -->
-                                            <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                                            <div class="w-full overflow-hidden rounded-sm border">
                                                 <div class="w-full overflow-x-auto">
                                                     <table class="w-full whitespace-no-wrap">
                                                         <thead>
@@ -323,7 +328,27 @@
                                         x-ref="container1"
                                         x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
                                         <div class="p-6">
-                                            <div class="w-full overflow-hidden rounded-lg shadow-xs mb-6">
+                                            <div class="flex justify-end mb-5">
+                                                <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                                    href="{{ route('admin.export', ['jenis_monev' => 'produk', 'id_user' => $id_user]) }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                                                        viewBox="0 0 172 172" style=" fill:#000000;">
+                                                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                                            stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+                                                            stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+                                                            font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                                                            <g fill="#ffffff">
+                                                                <path
+                                                                    d="M43,14.33333c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333h-7.16667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333c0,7.91917 6.41417,14.33333 14.33333,14.33333h7.16667v14.33333c0,7.91917 6.41417,14.33333 14.33333,14.33333h58.5651l-14.33333,-14.33333h-44.23177v-14.33333h71.66667v-21.5c0,-3.956 3.21067,-7.16667 7.16667,-7.16667h21.5v-50.16667l-35.83333,-35.83333zM43,28.66667h57.33333v28.66667h28.66667v7.16667h-86zM21.68197,78.83333h8.94434l5.19303,12.30371l5.20703,-12.30371h8.93034l-9.08431,17.7627l9.29427,18.07064h-9.04232l-5.30501,-12.52767l-5.27702,12.52767h-9.04232l9.28027,-18.07064zM57.33333,78.83333h7.16667v28.66667h14.33333v7.16667h-21.5zM96.68001,78.83333c10.19817,0.29383 10.81999,9.19416 10.81999,10.77799h-6.94271c0.00072,-0.75797 0.1117,-4.99707 -4.00326,-4.99707c-1.25417,0 -4.06428,0.55575 -3.84928,4.01725c0.20783,3.1605 4.38421,4.66706 5.15104,5.01106c1.60533,0.58767 9.55171,4.12789 9.61621,11.35189c0.01433,1.53367 -0.38218,9.5647 -10.65202,9.6722c-11.17283,0.12183 -11.92578,-9.4927 -11.92578,-11.47786h6.9847c0,1.0535 0.08925,6.14709 4.94109,5.75293c2.91683,-0.24367 3.55298,-2.34294 3.65332,-3.90527c0.16483,-2.63017 -2.3454,-4.21131 -4.99707,-5.48698c-3.72667,-1.79167 -9.62069,-3.99362 -9.72819,-10.97396c-0.09317,-6.28517 4.52496,-9.92135 10.93196,-9.74219zM129,114.66667v28.66667h-21.5l28.66667,28.66667l28.66667,-28.66667h-21.5v-28.66667z">
+                                                                </path>
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                    <span>Export Excel</span>
+                                                </a>
+                                            </div>
+                                            <div class="w-full overflow-hidden rounded-sm border mb-6">
                                                 <div class="w-full overflow-x-auto">
                                                     <table class="w-full whitespace-no-wrap">
                                                         <thead>
@@ -454,7 +479,27 @@
                                         x-ref="container2"
                                         x-bind:style="selected == 2 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''">
                                         <div class="p-6">
-                                            <div class="w-full overflow-hidden rounded-lg shadow-xs mb-6">
+                                            <div class="flex justify-end mb-5">
+                                                <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                                    href="{{ route('admin.export', ['jenis_monev' => 'pelanggan', 'id_user' => $id_user]) }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                                                        viewBox="0 0 172 172" style=" fill:#000000;">
+                                                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                                            stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+                                                            stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+                                                            font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                                                            <g fill="#ffffff">
+                                                                <path
+                                                                    d="M43,14.33333c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333h-7.16667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333c0,7.91917 6.41417,14.33333 14.33333,14.33333h7.16667v14.33333c0,7.91917 6.41417,14.33333 14.33333,14.33333h58.5651l-14.33333,-14.33333h-44.23177v-14.33333h71.66667v-21.5c0,-3.956 3.21067,-7.16667 7.16667,-7.16667h21.5v-50.16667l-35.83333,-35.83333zM43,28.66667h57.33333v28.66667h28.66667v7.16667h-86zM21.68197,78.83333h8.94434l5.19303,12.30371l5.20703,-12.30371h8.93034l-9.08431,17.7627l9.29427,18.07064h-9.04232l-5.30501,-12.52767l-5.27702,12.52767h-9.04232l9.28027,-18.07064zM57.33333,78.83333h7.16667v28.66667h14.33333v7.16667h-21.5zM96.68001,78.83333c10.19817,0.29383 10.81999,9.19416 10.81999,10.77799h-6.94271c0.00072,-0.75797 0.1117,-4.99707 -4.00326,-4.99707c-1.25417,0 -4.06428,0.55575 -3.84928,4.01725c0.20783,3.1605 4.38421,4.66706 5.15104,5.01106c1.60533,0.58767 9.55171,4.12789 9.61621,11.35189c0.01433,1.53367 -0.38218,9.5647 -10.65202,9.6722c-11.17283,0.12183 -11.92578,-9.4927 -11.92578,-11.47786h6.9847c0,1.0535 0.08925,6.14709 4.94109,5.75293c2.91683,-0.24367 3.55298,-2.34294 3.65332,-3.90527c0.16483,-2.63017 -2.3454,-4.21131 -4.99707,-5.48698c-3.72667,-1.79167 -9.62069,-3.99362 -9.72819,-10.97396c-0.09317,-6.28517 4.52496,-9.92135 10.93196,-9.74219zM129,114.66667v28.66667h-21.5l28.66667,28.66667l28.66667,-28.66667h-21.5v-28.66667z">
+                                                                </path>
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                    <span>Export Excel</span>
+                                                </a>
+                                            </div>
+                                            <div class="w-full overflow-hidden rounded-sm border mb-6">
                                                 <div class="w-full overflow-x-auto">
                                                     <table class="w-full whitespace-no-wrap">
                                                         <thead>
@@ -584,7 +629,27 @@
                                         x-ref="container3"
                                         x-bind:style="selected == 3 ? 'max-height: ' + $refs.container3.scrollHeight + 'px' : ''">
                                         <div class="p-6">
-                                            <div class="w-full overflow-hidden rounded-lg shadow-xs mb-6">
+                                            <div class="flex justify-end mb-5">
+                                                <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                                    href="{{ route('admin.export', ['jenis_monev' => 'pemasaran', 'id_user' => $id_user]) }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                                                        viewBox="0 0 172 172" style=" fill:#000000;">
+                                                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                                            stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+                                                            stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+                                                            font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                                                            <g fill="#ffffff">
+                                                                <path
+                                                                    d="M43,14.33333c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333h-7.16667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333c0,7.91917 6.41417,14.33333 14.33333,14.33333h7.16667v14.33333c0,7.91917 6.41417,14.33333 14.33333,14.33333h58.5651l-14.33333,-14.33333h-44.23177v-14.33333h71.66667v-21.5c0,-3.956 3.21067,-7.16667 7.16667,-7.16667h21.5v-50.16667l-35.83333,-35.83333zM43,28.66667h57.33333v28.66667h28.66667v7.16667h-86zM21.68197,78.83333h8.94434l5.19303,12.30371l5.20703,-12.30371h8.93034l-9.08431,17.7627l9.29427,18.07064h-9.04232l-5.30501,-12.52767l-5.27702,12.52767h-9.04232l9.28027,-18.07064zM57.33333,78.83333h7.16667v28.66667h14.33333v7.16667h-21.5zM96.68001,78.83333c10.19817,0.29383 10.81999,9.19416 10.81999,10.77799h-6.94271c0.00072,-0.75797 0.1117,-4.99707 -4.00326,-4.99707c-1.25417,0 -4.06428,0.55575 -3.84928,4.01725c0.20783,3.1605 4.38421,4.66706 5.15104,5.01106c1.60533,0.58767 9.55171,4.12789 9.61621,11.35189c0.01433,1.53367 -0.38218,9.5647 -10.65202,9.6722c-11.17283,0.12183 -11.92578,-9.4927 -11.92578,-11.47786h6.9847c0,1.0535 0.08925,6.14709 4.94109,5.75293c2.91683,-0.24367 3.55298,-2.34294 3.65332,-3.90527c0.16483,-2.63017 -2.3454,-4.21131 -4.99707,-5.48698c-3.72667,-1.79167 -9.62069,-3.99362 -9.72819,-10.97396c-0.09317,-6.28517 4.52496,-9.92135 10.93196,-9.74219zM129,114.66667v28.66667h-21.5l28.66667,28.66667l28.66667,-28.66667h-21.5v-28.66667z">
+                                                                </path>
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                    <span>Export Excel</span>
+                                                </a>
+                                            </div>
+                                            <div class="w-full overflow-hidden rounded-sm border mb-6">
                                                 <div class="w-full overflow-x-auto">
                                                     <table class="w-full whitespace-no-wrap">
                                                         <thead>
@@ -715,7 +780,27 @@
                                         x-ref="container4"
                                         x-bind:style="selected == 4 ? 'max-height: ' + $refs.container4.scrollHeight + 'px' : ''">
                                         <div class="p-6">
-                                            <div class="w-full overflow-hidden rounded-lg shadow-xs mb-6">
+                                            <div class="flex justify-end mb-5">
+                                                <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                                    href="{{ route('admin.export', ['jenis_monev' => 'operasional', 'id_user' => $id_user]) }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                                                        viewBox="0 0 172 172" style=" fill:#000000;">
+                                                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                                            stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+                                                            stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+                                                            font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                                                            <g fill="#ffffff">
+                                                                <path
+                                                                    d="M43,14.33333c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333h-7.16667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333c0,7.91917 6.41417,14.33333 14.33333,14.33333h7.16667v14.33333c0,7.91917 6.41417,14.33333 14.33333,14.33333h58.5651l-14.33333,-14.33333h-44.23177v-14.33333h71.66667v-21.5c0,-3.956 3.21067,-7.16667 7.16667,-7.16667h21.5v-50.16667l-35.83333,-35.83333zM43,28.66667h57.33333v28.66667h28.66667v7.16667h-86zM21.68197,78.83333h8.94434l5.19303,12.30371l5.20703,-12.30371h8.93034l-9.08431,17.7627l9.29427,18.07064h-9.04232l-5.30501,-12.52767l-5.27702,12.52767h-9.04232l9.28027,-18.07064zM57.33333,78.83333h7.16667v28.66667h14.33333v7.16667h-21.5zM96.68001,78.83333c10.19817,0.29383 10.81999,9.19416 10.81999,10.77799h-6.94271c0.00072,-0.75797 0.1117,-4.99707 -4.00326,-4.99707c-1.25417,0 -4.06428,0.55575 -3.84928,4.01725c0.20783,3.1605 4.38421,4.66706 5.15104,5.01106c1.60533,0.58767 9.55171,4.12789 9.61621,11.35189c0.01433,1.53367 -0.38218,9.5647 -10.65202,9.6722c-11.17283,0.12183 -11.92578,-9.4927 -11.92578,-11.47786h6.9847c0,1.0535 0.08925,6.14709 4.94109,5.75293c2.91683,-0.24367 3.55298,-2.34294 3.65332,-3.90527c0.16483,-2.63017 -2.3454,-4.21131 -4.99707,-5.48698c-3.72667,-1.79167 -9.62069,-3.99362 -9.72819,-10.97396c-0.09317,-6.28517 4.52496,-9.92135 10.93196,-9.74219zM129,114.66667v28.66667h-21.5l28.66667,28.66667l28.66667,-28.66667h-21.5v-28.66667z">
+                                                                </path>
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                    <span>Export Excel</span>
+                                                </a>
+                                            </div>
+                                            <div class="w-full overflow-hidden rounded-sm border mb-6">
                                                 <div class="w-full overflow-x-auto">
                                                     <table class="w-full whitespace-no-wrap">
                                                         <thead>
@@ -850,8 +935,28 @@
                                         x-ref="container5"
                                         x-bind:style="selected == 5 ? 'max-height: ' + $refs.container5.scrollHeight + 'px' : ''">
                                         <div class="p-6">
+                                            <div class="flex justify-end mb-5">
+                                                <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                                    href="{{ route('admin.export', ['jenis_monev' => 'finansial', 'id_user' => $id_user]) }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                                                        viewBox="0 0 172 172" style=" fill:#000000;">
+                                                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                                            stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+                                                            stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+                                                            font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                                                            <g fill="#ffffff">
+                                                                <path
+                                                                    d="M43,14.33333c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333h-7.16667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333c0,7.91917 6.41417,14.33333 14.33333,14.33333h7.16667v14.33333c0,7.91917 6.41417,14.33333 14.33333,14.33333h58.5651l-14.33333,-14.33333h-44.23177v-14.33333h71.66667v-21.5c0,-3.956 3.21067,-7.16667 7.16667,-7.16667h21.5v-50.16667l-35.83333,-35.83333zM43,28.66667h57.33333v28.66667h28.66667v7.16667h-86zM21.68197,78.83333h8.94434l5.19303,12.30371l5.20703,-12.30371h8.93034l-9.08431,17.7627l9.29427,18.07064h-9.04232l-5.30501,-12.52767l-5.27702,12.52767h-9.04232l9.28027,-18.07064zM57.33333,78.83333h7.16667v28.66667h14.33333v7.16667h-21.5zM96.68001,78.83333c10.19817,0.29383 10.81999,9.19416 10.81999,10.77799h-6.94271c0.00072,-0.75797 0.1117,-4.99707 -4.00326,-4.99707c-1.25417,0 -4.06428,0.55575 -3.84928,4.01725c0.20783,3.1605 4.38421,4.66706 5.15104,5.01106c1.60533,0.58767 9.55171,4.12789 9.61621,11.35189c0.01433,1.53367 -0.38218,9.5647 -10.65202,9.6722c-11.17283,0.12183 -11.92578,-9.4927 -11.92578,-11.47786h6.9847c0,1.0535 0.08925,6.14709 4.94109,5.75293c2.91683,-0.24367 3.55298,-2.34294 3.65332,-3.90527c0.16483,-2.63017 -2.3454,-4.21131 -4.99707,-5.48698c-3.72667,-1.79167 -9.62069,-3.99362 -9.72819,-10.97396c-0.09317,-6.28517 4.52496,-9.92135 10.93196,-9.74219zM129,114.66667v28.66667h-21.5l28.66667,28.66667l28.66667,-28.66667h-21.5v-28.66667z">
+                                                                </path>
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                    <span>Export Excel</span>
+                                                </a>
+                                            </div>
                                             <!-- New Table -->
-                                            <div class="w-full overflow-hidden rounded-lg shadow-xs mb-6">
+                                            <div class="w-full overflow-hidden rounded-sm border mb-6">
                                                 <div class="w-full overflow-x-auto">
                                                     <table class="w-full whitespace-no-wrap">
                                                         <thead>
@@ -963,7 +1068,27 @@
                                         x-ref="container6"
                                         x-bind:style="selected == 6 ? 'max-height: ' + $refs.container6.scrollHeight + 'px' : ''">
                                         <div class="p-6">
-                                            <div class="w-full overflow-hidden rounded-lg shadow-xs mb-6">
+                                            <div class="flex justify-end mb-5">
+                                                <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                                    href="{{ route('admin.export', ['jenis_monev' => 'kendala', 'id_user' => $id_user]) }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                                                        viewBox="0 0 172 172" style=" fill:#000000;">
+                                                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                                            stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+                                                            stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+                                                            font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                                                            <g fill="#ffffff">
+                                                                <path
+                                                                    d="M43,14.33333c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333h-7.16667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333c0,7.91917 6.41417,14.33333 14.33333,14.33333h7.16667v14.33333c0,7.91917 6.41417,14.33333 14.33333,14.33333h58.5651l-14.33333,-14.33333h-44.23177v-14.33333h71.66667v-21.5c0,-3.956 3.21067,-7.16667 7.16667,-7.16667h21.5v-50.16667l-35.83333,-35.83333zM43,28.66667h57.33333v28.66667h28.66667v7.16667h-86zM21.68197,78.83333h8.94434l5.19303,12.30371l5.20703,-12.30371h8.93034l-9.08431,17.7627l9.29427,18.07064h-9.04232l-5.30501,-12.52767l-5.27702,12.52767h-9.04232l9.28027,-18.07064zM57.33333,78.83333h7.16667v28.66667h14.33333v7.16667h-21.5zM96.68001,78.83333c10.19817,0.29383 10.81999,9.19416 10.81999,10.77799h-6.94271c0.00072,-0.75797 0.1117,-4.99707 -4.00326,-4.99707c-1.25417,0 -4.06428,0.55575 -3.84928,4.01725c0.20783,3.1605 4.38421,4.66706 5.15104,5.01106c1.60533,0.58767 9.55171,4.12789 9.61621,11.35189c0.01433,1.53367 -0.38218,9.5647 -10.65202,9.6722c-11.17283,0.12183 -11.92578,-9.4927 -11.92578,-11.47786h6.9847c0,1.0535 0.08925,6.14709 4.94109,5.75293c2.91683,-0.24367 3.55298,-2.34294 3.65332,-3.90527c0.16483,-2.63017 -2.3454,-4.21131 -4.99707,-5.48698c-3.72667,-1.79167 -9.62069,-3.99362 -9.72819,-10.97396c-0.09317,-6.28517 4.52496,-9.92135 10.93196,-9.74219zM129,114.66667v28.66667h-21.5l28.66667,28.66667l28.66667,-28.66667h-21.5v-28.66667z">
+                                                                </path>
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                    <span>Export Excel</span>
+                                                </a>
+                                            </div>
+                                            <div class="w-full overflow-hidden rounded-sm border mb-6">
                                                 <div class="w-full overflow-x-auto">
                                                     <table class="w-full whitespace-no-wrap">
                                                         <thead>
@@ -1084,11 +1209,111 @@
 
                     <div class="my-5 md:grid md:gap-6">
                         <div class="mt-5 md:mt-0 md:col-span-2">
+                            <h1 class="font-medium pb-4">Buku Kas</h1>
+                            <div class="border border-gray-300 sm:overflow-hidden">
+                                <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                                    <div class="flex justify-between">
+                                        <h1 class="text-lg">Kas</h1>
+                                        <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                            href="{{ route('admin.export', ['jenis_monev' => 'kas', 'id_user' => $id_user]) }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                                                viewBox="0 0 172 172" style=" fill:#000000;">
+                                                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                                    stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+                                                    stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+                                                    font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                                    <path d="M0,172v-172h172v172z" fill="none"></path>
+                                                    <g fill="#ffffff">
+                                                        <path
+                                                            d="M43,14.33333c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333h-7.16667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333c0,7.91917 6.41417,14.33333 14.33333,14.33333h7.16667v14.33333c0,7.91917 6.41417,14.33333 14.33333,14.33333h58.5651l-14.33333,-14.33333h-44.23177v-14.33333h71.66667v-21.5c0,-3.956 3.21067,-7.16667 7.16667,-7.16667h21.5v-50.16667l-35.83333,-35.83333zM43,28.66667h57.33333v28.66667h28.66667v7.16667h-86zM21.68197,78.83333h8.94434l5.19303,12.30371l5.20703,-12.30371h8.93034l-9.08431,17.7627l9.29427,18.07064h-9.04232l-5.30501,-12.52767l-5.27702,12.52767h-9.04232l9.28027,-18.07064zM57.33333,78.83333h7.16667v28.66667h14.33333v7.16667h-21.5zM96.68001,78.83333c10.19817,0.29383 10.81999,9.19416 10.81999,10.77799h-6.94271c0.00072,-0.75797 0.1117,-4.99707 -4.00326,-4.99707c-1.25417,0 -4.06428,0.55575 -3.84928,4.01725c0.20783,3.1605 4.38421,4.66706 5.15104,5.01106c1.60533,0.58767 9.55171,4.12789 9.61621,11.35189c0.01433,1.53367 -0.38218,9.5647 -10.65202,9.6722c-11.17283,0.12183 -11.92578,-9.4927 -11.92578,-11.47786h6.9847c0,1.0535 0.08925,6.14709 4.94109,5.75293c2.91683,-0.24367 3.55298,-2.34294 3.65332,-3.90527c0.16483,-2.63017 -2.3454,-4.21131 -4.99707,-5.48698c-3.72667,-1.79167 -9.62069,-3.99362 -9.72819,-10.97396c-0.09317,-6.28517 4.52496,-9.92135 10.93196,-9.74219zM129,114.66667v28.66667h-21.5l28.66667,28.66667l28.66667,-28.66667h-21.5v-28.66667z">
+                                                        </path>
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                            <span>Export Excel</span>
+                                        </a>
+                                    </div>
+                                    <div class="w-full overflow-hidden rounded-sm border mb-6">
+                                        <div class="w-full overflow-x-auto">
+                                            <table class="w-full whitespace-no-wrap ">
+                                                <thead>
+                                                    <tr
+                                                        class="text-xs font-semibold text-center tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                                        <th class="pr-4 py-3">Tanggal Transaksi</th>
+                                                        <th class="px-4 py-3">Bukti Transaksi</th>
+                                                        <th class="px-4 py-3">Keterangan Transaksi</th>
+                                                        <th class="px-4 py-3">Pendapatan (Rp)</th>
+                                                        <th class="px-4 py-3">Pengeluaran (Rp)</th>
+                                                        <th class="px-4 py-3">Saldo</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                                    @if (count($buku_kas) == 0)
+                                                    <tr>
+                                                        <td class="text-center px-4 py-3" colspan="6">
+                                                            <span class="font-normal italic opacity-30 px-2 py-1">
+                                                                Data tidak tersedia
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    @endif
+                                                    @for($i = 0; $i <= count($buku_kas)-1; $i++)
+                                                    <tr class="text-center">
+                                                        <td class="py-3">
+                                                            {{ date('d/m/Y', strtotime($buku_kas[$i]->tanggal)) }}
+                                                        </td>
+                                                        <td class="py-3 justify-center flex">
+                                                            <a data-tippy-content="Lihat Bukti" href="{{ route('download') . '?file=' . $buku_kas[$i]->file }}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9C2.121 6.88 6.608 3 12 3zm0 16a9.005 9.005 0 0 0 8.777-7 9.005 9.005 0 0 0-17.554 0A9.005 9.005 0 0 0 12 19zm0-2.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-2a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="rgba(38,132,199,1)"/></svg>
+                                                            </a>
+                                                        </td>
+                                                        <td class="py-3">
+                                                            {{ $buku_kas[$i]->keterangan_transaksi }}
+                                                        </td>
+                                                        <td class="py-3">
+                                                            @if ($buku_kas[$i]->jenis_transaksi == 'Pendapatan')
+                                                            <span class="text-green-500 jenis">
+                                                                +
+                                                            </span>
+                                                            <span class="text-green-500 jumlah">
+                                                                {{ $buku_kas[$i]->jumlah }}
+                                                            </span>
+                                                            @else
+                                                            -
+                                                            @endif
+                                                        </td>
+                                                        <td class="py-3">
+                                                            @if ($buku_kas[$i]->jenis_transaksi == 'Pengeluaran')
+                                                            <span class="text-red-500 jenis">
+                                                                -
+                                                            </span>
+                                                            <span class="text-red-500 jumlah">
+                                                                {{ $buku_kas[$i]->jumlah }}
+                                                            </span>
+                                                            @else
+                                                            -
+                                                            @endif
+                                                        </td>
+                                                        <td class="py-3 jumlah" id="saldo">
+                                                            {{ $saldos[$i] }}
+                                                        </td>
+                                                    </tr>
+                                                    @endfor
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-5 md:grid md:gap-6">
+                        <div class="mt-5 md:mt-0 md:col-span-2">
                             <h1 class="font-medium pb-4">File & Lampiran</h1>
                             <div class="border border-gray-300 sm:overflow-hidden">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                     <h1 class="text-lg">Pencatatan Monev</h1>
-                                    <div class="w-full overflow-hidden rounded-sm mb-6">
+                                    <div class="w-full overflow-hidden rounded-sm border mb-6">
                                         <div class="w-full overflow-x-auto">
                                             <table class="w-full whitespace-no-wrap">
                                                 <thead>
@@ -1190,7 +1415,7 @@
                             <div class="border border-gray-300 sm:overflow-hidden">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                     <h1 class="text-lg">Prestasi Tenant</h1>
-                                    <div class="w-full overflow-hidden rounded-sm mb-6">
+                                    <div class="w-full overflow-hidden rounded-sm border mb-6">
                                         <div class="w-full overflow-x-auto">
                                             <table class="w-full whitespace-no-wrap">
                                                 <thead>
@@ -1280,7 +1505,7 @@
                             <div class="border border-gray-300 sm:overflow-hidden">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                     <div class="flex flex-row w- justify-between">
-                                        <h1 class="text-lg">Prestasi Tenant</h1>
+                                        <h1 class="text-lg">Sertifikat Tenant</h1>
                                         <button @click="openModalAddSertifikat"
                                             class="disabled:opacity-50 disabled:cursor-not-allowed inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightBlue-500"
                                             type="button">
@@ -1293,78 +1518,69 @@
                                             </svg>
                                         </button>
                                     </div>
-                                    <div class="w-full overflow-hidden rounded-sm mb-6">
+                                    <div class="w-full overflow-hidden rounded-sm border mb-6">
                                         <div class="w-full overflow-x-auto">
                                             <table class="w-full whitespace-no-wrap">
                                                 <thead>
                                                     <tr
                                                         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                                        <th class="px-4 py-3">Tanggal</th>
-                                                        <th class="px-4 py-3">Kegiatan</th>
-                                                        <th class="px-4 py-3">Prestasi</th>
-                                                        <th class="px-4 py-3">Tingkat Prestasi</th>
-                                                        <th class="px-4 py-3">File</th>
+                                                        <th class="px-4 py-3">Kelulusan</th>
+                                                        <th class="px-4 py-3">Sertifikat</th>
+                                                        <th class="px-4 py-3">Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                                    @if(count($prestasi) == 0)
-                                                    <tr>
-                                                        <td class="text-center px-4 py-3" colspan="5">
-                                                            <span class="font-normal italic opacity-30 px-2 py-1">
-                                                                Data tidak tersedia
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                                    @endif
-                                                    @foreach($prestasi as $p)
-                                                    <tr>
-                                                        <td class="px-4 py-3 text-sm">
-                                                            {{ date('d/m/Y', strtotime($p->tanggal)) }}
-                                                        </td>
-                                                        <td class="px-4 py-3 text-sm">
-                                                            {{ $p->jenis_kegiatan }}
-                                                        </td>
-                                                        <td class="px-4 py-3 text-sm">
-                                                            {{ $p->prestasi }}
-                                                        </td>
-                                                        <td class="px-4 py-3 text-sm">
-                                                            {{ $p->tingkat_prestasi }}
-                                                        </td>
-                                                        <td class="px-4 py-3 flex items-center text-sm">
-                                                            @if($p->file)
-                                                            <a href="{{ route('download') }}?file={{ $p->file }}"
-                                                                target="_blank">
-                                                                <?php $get = explode('.', $p->hasFile->nama_file); $extention = end($get); ?>
-                                                                @switch($extention)
-                                                                @case('pdf')
-                                                                <div data-tippy-content="{{ strtoupper($extention) }}">
-                                                                    @include('template.tenant.assets.icon.pdf')
+                                                    @foreach($kelulusan as $lulus)
+                                                    <tr class="text-gray-700 dark:text-gray-400">
+                                                        <td class="px-4 py-3">
+                                                            <div class="flex items-center text-sm">
+                                                                <div
+                                                                    class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                                                    @php
+                                                                    $ext = explode('.', $lulus->hasfile->nama_file);
+                                                                    $extension = end($ext);
+                                                                    @endphp
+                                                                    @switch($extension)
+                                                                    @case('pdf')
+                                                                        @include('template.tenant.assets.icon.pdf')
+                                                                    @break
+                                                                    @case('docx')
+                                                                    @case('doc')
+                                                                        @include('template.tenant.assets.icon.word')
+                                                                    @break
+                                                                    @case('jpg')
+                                                                    @case('jpeg')
+                                                                    @case('png')
+                                                                    @case('jfif')
+                                                                    @case('gif')
+                                                                        @include('template.tenant.assets.icon.image')
+                                                                    @break
+                                                                    @default
+                                                                        @include('template.tenant.assets.icon.default')
+                                                                    @endswitch
                                                                 </div>
-                                                                @break
-                                                                @case('docx')
-                                                                @case('doc')
-                                                                <div data-tippy-content="{{ strtoupper($extention) }}">
-                                                                    @include('template.tenant.assets.icon.word')
+                                                                <div>
+                                                                    <p class="font-semibold">
+                                                                        {{ $lulus->kelulusan }}
+                                                                    </p>
+                                                                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                                                                        {{ strtoupper($extension) }}
+                                                                    </p>
                                                                 </div>
-                                                                @break
-                                                                @case('jpg')
-                                                                @case('jpeg')
-                                                                @case('png')
-                                                                @case('jfif')
-                                                                @case('gif')
-                                                                <div data-tippy-content="{{ strtoupper($extention) }}">
-                                                                    @include('template.tenant.assets.icon.image')
-                                                                </div>
-                                                                @break
-                                                                @default
-                                                                <div data-tippy-content="{{ strtoupper($extention) }}">
-                                                                    @include('template.tenant.assets.icon.default')
-                                                                </div>
-                                                                @endswitch
+                                                            </div>
+                                                        </td>
+                                                        <td class="px-4 py-3 text-xs">
+                                                            <a href="{{ route('download') }}?file={{ $lulus->file }}"
+                                                                class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">
+                                                                Download
                                                             </a>
-                                                            @else
-                                                            -
-                                                            @endif
+                                                        </td>
+                                                        <td class="px-4 py-3 text-xs">
+                                                            <a href="{{ route('admin.removeSertifikat', $lulus->id_kelulusan) }}"
+                                                                onclick="return confirm('Apakah anda yakin ?')"
+                                                                class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full">
+                                                                Hapus
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -1445,10 +1661,11 @@
                 Tambah Sertifikat
             </p>
             <div class="mt-5 md:col-span-2" id="form_regis">
-                <form action="{{ route('admin.addSertifikat') }}" id="formAddSertifikat" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.addSertifikat') }}" id="formAddSertifikat" method="POST"
+                    enctype="multipart/form-data">
                     @php
-                        $url = explode('/', url()->current());
-                        $id_user = end($url);
+                    $url = explode('/', url()->current());
+                    $id_user = end($url);
                     @endphp
                     @csrf
                     <input type="hidden" name="id_user" value="{{ $id_user }}">
@@ -1516,7 +1733,7 @@
 </script>
 
 <script>
-    function submit(form){
+    function submit(form) {
         $(`#${form}`).submit();
     }
 

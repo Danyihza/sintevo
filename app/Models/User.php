@@ -66,9 +66,12 @@ class User extends Authenticatable
         if (!$last_id) {
             switch ($role) {
                 case 1:
-                    $result = 'MHS0001';
+                    $result = 'ADM0001';
                     break;
                 case 2:
+                    $result = 'MHS0001';
+                    break;
+                case 3:
                     $result = 'DOS0001';
                     break;
                 default:
@@ -81,9 +84,12 @@ class User extends Authenticatable
         $number++;
         switch ($role) {
             case 1:
-                $str = 'MHS';
+                $str = 'ADM';
                 break;
             case 2:
+                $str = 'MHS';
+                break;
+            case 3:
                 $str = 'DOS';
                 break;
             default:
