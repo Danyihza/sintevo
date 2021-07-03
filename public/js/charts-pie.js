@@ -11,11 +11,11 @@ const pieConfig = {
          * These colors come from Tailwind CSS palette
          * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
          */
-        backgroundColor: ['#0694a2', '#1c64f2', '#7e3af2'],
+        backgroundColor: ['#3F82F8', '#1D7481', '#2784C7'],
         label: 'Dataset 1',
       },
     ],
-    labels: ['Shoes', 'Shirts', 'Bags'],
+    labels: ['Regional', 'Kampus', 'Nasional'],
   },
   options: {
     responsive: true,

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2021 at 12:39 PM
+-- Generation Time: Jul 03, 2021 at 08:38 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -116,11 +116,13 @@ CREATE TABLE `file` (
 INSERT INTO `file` (`id_file`, `uploader`, `nama_file`, `path_file`, `created_at`, `updated_at`) VALUES
 ('1VUchgAicCYUva2N5JFGsZoou2OAGQa2', 'admin', 'unnamed.png', 'assets/file/1VUchgAicCYUva2N5JFGsZoou2OAGQa2', '2021-07-02 13:38:50', '2021-07-02 13:38:50'),
 ('3SBmJB6zJD9BWPIMwdkGQoEMOl7wGGgp', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/3SBmJB6zJD9BWPIMwdkGQoEMOl7wGGgp', '2021-05-08 00:38:02', '2021-05-08 00:38:02'),
+('6k6vqMJEmtUHXxs8NfLdFi3nzOh527ut', 'admin', 'Cheese_PNG_Clipart-3141.png', 'assets/file/6k6vqMJEmtUHXxs8NfLdFi3nzOh527ut', '2021-07-02 20:51:34', '2021-07-02 20:51:34'),
 ('8Qb1gHRZf4InDLZF5hvU1L8CyBdlgPLx', 'DOS0001', 'h1.png', 'assets/file/8Qb1gHRZf4InDLZF5hvU1L8CyBdlgPLx', '2021-06-22 02:57:38', '2021-06-22 02:57:38'),
 ('AGjaFFtFUTdgplBCH7T0RXB8u1nztF3T', 'admin', 'asdadasdas.png', 'assets/file/AGjaFFtFUTdgplBCH7T0RXB8u1nztF3T', '2021-06-20 13:22:32', '2021-06-20 13:22:32'),
 ('AMwSYxiQhvWy2QyGW0fSCnpm2FbSM9YW', 'DOS0001', 'Cheese_PNG_Clipart-3141.png', 'assets/file/AMwSYxiQhvWy2QyGW0fSCnpm2FbSM9YW', '2021-06-22 01:57:04', '2021-06-22 01:57:04'),
 ('ATpWZoJYkhymKEDBTVAYCGZCBfLRLVaU', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/ATpWZoJYkhymKEDBTVAYCGZCBfLRLVaU', '2021-05-08 01:02:26', '2021-05-08 01:02:26'),
 ('DY8P6UwUYmCMdWOzt9yDHlXZzkpQzKd7', 'admin', 'asdasdasd.png', 'assets/file/DY8P6UwUYmCMdWOzt9yDHlXZzkpQzKd7', '2021-06-19 23:36:12', '2021-06-19 23:36:12'),
+('epFvDNPIsBlkfLkmcFLtZo0tt7njbeSO', 'admin', 'unnamed.png', 'assets/file/epFvDNPIsBlkfLkmcFLtZo0tt7njbeSO', '2021-07-02 21:04:21', '2021-07-02 21:04:21'),
 ('HKLL2yrdsakra1T4Cx7J1uSc7uxuRZDo', 'DOS0001', 'Cheese_PNG_Clipart-3141.png', 'assets/file/HKLL2yrdsakra1T4Cx7J1uSc7uxuRZDo', '2021-06-24 19:21:44', '2021-06-24 19:21:44'),
 ('iYnoECNIfdemvRueMzT16crhAqEKgeQn', 'DOS0001', 'Template Laporan Akhir PKMV 2021.pdf', 'assets/file/iYnoECNIfdemvRueMzT16crhAqEKgeQn', '2021-06-24 19:14:09', '2021-06-24 19:14:09'),
 ('J3wSl6xA6s8uh1iZwRGjC6bdrvQYEP7N', 'DOS0001', 'h1.png', 'assets/file/J3wSl6xA6s8uh1iZwRGjC6bdrvQYEP7N', '2021-06-21 20:56:49', '2021-06-21 20:56:49'),
@@ -131,7 +133,6 @@ INSERT INTO `file` (`id_file`, `uploader`, `nama_file`, `path_file`, `created_at
 ('NrxW79aRdfl7rAI8Nfq4sVUnmQ4zTtis', 'admin', 'asdasdasd.png', 'assets/file/NrxW79aRdfl7rAI8Nfq4sVUnmQ4zTtis', '2021-06-19 23:32:19', '2021-06-19 23:32:19'),
 ('oNMI02J0gAXpTnPIbQUFSXB9byp33Wuc', 'DOS0001', 'Rekap Nilai Praktikum ADSI TI-B.pdf', 'assets/file/oNMI02J0gAXpTnPIbQUFSXB9byp33Wuc', '2021-06-21 21:49:34', '2021-06-21 21:49:34'),
 ('oSWPLqGunlILzcy0qJNEnwOOclGVwRR3', 'admin', 'aldo.jpeg', 'assets/file/oSWPLqGunlILzcy0qJNEnwOOclGVwRR3', '2021-06-20 10:25:04', '2021-06-20 10:25:04'),
-('OVzMGIZFJx7pmukxPlyxDG6iOVG9ZhGh', 'admin', 'tes.png', 'assets/file/OVzMGIZFJx7pmukxPlyxDG6iOVG9ZhGh', '2021-07-02 15:55:00', '2021-07-02 15:55:00'),
 ('rg2z6OGR0GT0mAyJ5Ob83Kth4tOv1NCn', 'admin', 'aldo.jpeg', 'assets/file/rg2z6OGR0GT0mAyJ5Ob83Kth4tOv1NCn', '2021-06-19 10:23:09', '2021-06-19 10:23:09'),
 ('rmdl9KI7VLQX34pkxyYaTAltP6laEbsC', 'DOS0001', 'Template Laporan Akhir PKMV 2021.pdf', 'assets/file/rmdl9KI7VLQX34pkxyYaTAltP6laEbsC', '2021-06-24 19:07:08', '2021-06-24 19:07:08'),
 ('skL0k2PrDr64cds4AJDhbxaPiyfbwdju', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/skL0k2PrDr64cds4AJDhbxaPiyfbwdju', '2021-05-08 00:43:18', '2021-05-08 00:43:18'),
@@ -139,7 +140,6 @@ INSERT INTO `file` (`id_file`, `uploader`, `nama_file`, `path_file`, `created_at
 ('TniBbKBptwyMULJFoojCAvvIQo7cCqGj', 'admin', 'Template Laporan Akhir PKMV 2021.pdf', 'assets/file/TniBbKBptwyMULJFoojCAvvIQo7cCqGj', '2021-06-23 14:28:12', '2021-06-23 14:28:12'),
 ('uRLh5VU5HqmU5R9a9kes31N2NlFxWn8K', 'DOS0001', '400 (1).jpeg', 'assets/file/uRLh5VU5HqmU5R9a9kes31N2NlFxWn8K', '2021-05-19 13:09:46', '2021-05-19 13:09:46'),
 ('vOQS6AmaHCCess1XONEsGKSlszmnjbIp', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/vOQS6AmaHCCess1XONEsGKSlszmnjbIp', '2021-05-08 01:00:00', '2021-05-08 01:00:00'),
-('WrUD1BEtjqeBbQnbNC454j9oiTbd5aod', 'admin', 'final.txt', 'assets/file/WrUD1BEtjqeBbQnbNC454j9oiTbd5aod', '2021-07-02 15:49:25', '2021-07-02 15:49:25'),
 ('xqZyEaDiiaQieDInzW1C1Z8lzfrZ4Dur', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/xqZyEaDiiaQieDInzW1C1Z8lzfrZ4Dur', '2021-05-08 01:00:50', '2021-05-08 01:00:50'),
 ('y6BMSmU0QAgBRN4rGU34IkXCAbdyw0EY', 'DOS0001', 'WhatsApp Image 2020-09-09 at 9.46.44 AM.jpeg', 'assets/file/y6BMSmU0QAgBRN4rGU34IkXCAbdyw0EY', '2021-06-24 19:21:09', '2021-06-24 19:21:09'),
 ('Y7MYIUBQKCv37zx8hfSn3Zwn5mo39Eqk', 'admin', '285-2855629_profile-clipart-hd-png-download.png', 'assets/file/Y7MYIUBQKCv37zx8hfSn3Zwn5mo39Eqk', '2021-06-19 23:37:24', '2021-06-19 23:37:24'),
@@ -219,8 +219,8 @@ CREATE TABLE `kelulusan` (
 --
 
 INSERT INTO `kelulusan` (`id_kelulusan`, `id_user`, `kelulusan`, `file`, `created_at`, `updated_at`) VALUES
-('7UwccnpRwJToo8F9SbmhmSsKipLFgIWQ', 'DOS0001', 'Sertifikat Kelulusan', 'WrUD1BEtjqeBbQnbNC454j9oiTbd5aod', '2021-07-02 08:49:25', '2021-07-02 08:49:25'),
-('gDHUtZUp1TdL7qy1Xh02uE5TCNFgnpKL', 'DOS0001', 'Sertifikat Kelulusan 2.0', 'OVzMGIZFJx7pmukxPlyxDG6iOVG9ZhGh', '2021-07-02 08:55:00', '2021-07-02 08:55:00');
+('gIm4cFI9xxf48hRgpQNexkVsLvEPv7K3', 'DOS0001', 'Sertifikat Kelulusan 2.0', '6k6vqMJEmtUHXxs8NfLdFi3nzOh527ut', '2021-07-02 13:51:34', '2021-07-02 13:51:34'),
+('WfNrll2pALmaPo1SsxLRBA7kgoQdJG2N', 'DOS0001', 'Sertifikat Kelulusan', 'epFvDNPIsBlkfLkmcFLtZo0tt7njbeSO', '2021-07-02 14:04:21', '2021-07-02 14:04:21');
 
 -- --------------------------------------------------------
 
@@ -471,7 +471,7 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int(11) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -482,8 +482,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `email`, `password`, `role`, `email_verified_at`, `token`, `remember_token`, `created_at`, `updated_at`) VALUES
-('ADM001', 'fb@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 1, NULL, 'ABVDE322', NULL, '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
-('admin', 'admin@admin.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 0, NULL, '-', NULL, '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+('ADM0001', 'fb@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 1, NULL, 'ABVDE322', NULL, '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+('ADM0002', 'jojoko', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 1, NULL, NULL, NULL, '2021-07-03 05:51:16', '2021-07-03 05:51:16'),
+('admin', 'admin@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 0, NULL, '-', NULL, '2021-04-25 08:25:39', '2021-07-03 05:39:07'),
 ('DOS0001', 'google@gmail.com', '8d23cf6c86e834a7aa6eded54c26ce2bb2e74903538c61bdd5d2197997ab2f72', 2, NULL, '7ZWEFLBJ', NULL, '2021-04-25 08:25:39', '2021-06-29 19:18:50'),
 ('DOS0003', 'danyahmadihza99@gmail.com', '6f190e0aa1044a83cbead45ed26b9d2adbe99f8a503c2e99b0442b293ad9dab4', 2, NULL, '05FYBTW3', NULL, '2021-06-29 19:53:53', '2021-06-29 19:53:53');
 
