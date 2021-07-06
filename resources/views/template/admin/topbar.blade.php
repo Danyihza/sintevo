@@ -21,15 +21,15 @@
                 <button class="align-middle rounded-full focus:shadow-outline-lightBlue focus:outline-none"
                     @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
                     aria-haspopup="true">
-                    @if(session('login-data')['role'] == 0)
-                    <img class="object-cover w-8 h-8 rounded-full"
-                        src="https://img.icons8.com/fluent/50/000000/microsoft-admin.png"
+                    {{-- @if(session('login-data')['role'] == 0) --}}
+                    <img class="object-cover w-10 h-10 rounded-full"
+                        src="{{ asset('assets/images') }}/icon.png"
                         alt="" aria-hidden="true" />
-                    @else
+                    {{-- @else
                     <img class="object-cover w-8 h-8 rounded-full"
                         src="https://img.icons8.com/fluent/48/000000/admin-settings-male.png"
                         alt="" aria-hidden="true" />
-                    @endif
+                    @endif --}}
                 </button>
                 <template x-if="isProfileMenuOpen">
                     <ul x-transition:leave="transition ease-in duration-150"

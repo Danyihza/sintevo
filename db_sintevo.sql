@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2021 at 08:38 AM
+-- Generation Time: Jul 06, 2021 at 04:36 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -46,6 +46,26 @@ CREATE TABLE `anggota` (
 INSERT INTO `anggota` (`id_anggota`, `id_user`, `nama`, `status`, `prodi`, `no_identify`, `jabatan`, `created_at`, `updated_at`) VALUES
 (2, 'DOS0001', 'Budi Santoso', 3, NULL, '1234', 'CFO', '2021-05-06 03:39:35', '2021-06-30 06:05:05'),
 (5, 'DOS0001', 'Dany Ahmad Ihza Prakoso', 2, 3, '4343434', 'CEO', '2021-06-30 06:04:36', '2021-06-30 06:04:36');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dashboard_pengumuman`
+--
+
+CREATE TABLE `dashboard_pengumuman` (
+  `id` int(11) NOT NULL,
+  `file` varchar(128) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `dashboard_pengumuman`
+--
+
+INSERT INTO `dashboard_pengumuman` (`id`, `file`, `created_at`, `updated_at`) VALUES
+(1, 'NqXMFAz22qrUb7DB3dej2ZVms4EbTZuo', '2021-07-06 14:07:43', '2021-07-06 14:15:57');
 
 -- --------------------------------------------------------
 
@@ -130,6 +150,7 @@ INSERT INTO `file` (`id_file`, `uploader`, `nama_file`, `path_file`, `created_at
 ('jHUKWzN9yn3sJW8o7ss4ZmM2A17nyONW', 'admin', '176-0.jpg', 'assets/file/jHUKWzN9yn3sJW8o7ss4ZmM2A17nyONW', '2021-06-19 02:14:49', '2021-06-19 02:14:49'),
 ('JUvvAcy2NG7gSIHDrbtNDaqjewVtuCO9', 'DOS0001', 'banner_img.png', 'assets/file/JUvvAcy2NG7gSIHDrbtNDaqjewVtuCO9', '2021-05-19 13:11:00', '2021-05-19 13:11:00'),
 ('lPo2ZvWEixKSnXASqks9Ox1yX5DdPi6z', 'DOS0001', 'Template Laporan Akhir PKMV 2021.pdf', 'assets/file/lPo2ZvWEixKSnXASqks9Ox1yX5DdPi6z', '2021-06-24 19:10:24', '2021-06-24 19:10:24'),
+('NqXMFAz22qrUb7DB3dej2ZVms4EbTZuo', 'admin', 'Pedoman Pelaksanaan Kurikulum TI-FILKOM 2020.pdf', 'assets/file/NqXMFAz22qrUb7DB3dej2ZVms4EbTZuo', '2021-07-06 21:15:57', '2021-07-06 21:15:57'),
 ('NrxW79aRdfl7rAI8Nfq4sVUnmQ4zTtis', 'admin', 'asdasdasd.png', 'assets/file/NrxW79aRdfl7rAI8Nfq4sVUnmQ4zTtis', '2021-06-19 23:32:19', '2021-06-19 23:32:19'),
 ('oNMI02J0gAXpTnPIbQUFSXB9byp33Wuc', 'DOS0001', 'Rekap Nilai Praktikum ADSI TI-B.pdf', 'assets/file/oNMI02J0gAXpTnPIbQUFSXB9byp33Wuc', '2021-06-21 21:49:34', '2021-06-21 21:49:34'),
 ('oSWPLqGunlILzcy0qJNEnwOOclGVwRR3', 'admin', 'aldo.jpeg', 'assets/file/oSWPLqGunlILzcy0qJNEnwOOclGVwRR3', '2021-06-20 10:25:04', '2021-06-20 10:25:04'),
@@ -499,6 +520,12 @@ ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
+-- Indexes for table `dashboard_pengumuman`
+--
+ALTER TABLE `dashboard_pengumuman`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `detail_users`
 --
 ALTER TABLE `detail_users`
@@ -605,6 +632,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `anggota`
   MODIFY `id_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `dashboard_pengumuman`
+--
+ALTER TABLE `dashboard_pengumuman`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`

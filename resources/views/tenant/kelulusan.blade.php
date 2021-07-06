@@ -30,26 +30,26 @@
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                        {{-- @foreach($juknis as $jn)
+                                        @foreach($sertifikat as $st)
                                         <tr class="text-gray-700 dark:text-gray-400">
                                             <td class="px-4 py-3">
                                                 <div class="flex items-center text-sm">
                                                     <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                                         @php
-                                                        $ext = explode('.', $jn->hasfile->nama_file);
+                                                        $ext = explode('.', $st->hasfile->nama_file);
                                                         $extension = end($ext);
                                                         @endphp
                                                         @switch($extension)
                                                         @case('pdf')
                                                         <div
-                                                            data-tippy-content="{{ $jn->kode }}">
+                                                            data-tippy-content="{{ $st->kode }}">
                                                             @include('template.tenant.assets.icon.pdf')
                                                         </div>
                                                         @break
                                                         @case('docx')
                                                         @case('doc')
                                                         <div
-                                                            data-tippy-content="{{ $jn->kode }}">
+                                                            data-tippy-content="{{ $st->kode }}">
                                                             @include('template.tenant.assets.icon.word')
                                                         </div>
                                                         @break
@@ -59,19 +59,19 @@
                                                         @case('jfif')
                                                         @case('gif')
                                                         <div
-                                                            data-tippy-content="{{ $jn->kode }}">
+                                                            data-tippy-content="{{ $st->kode }}">
                                                             @include('template.tenant.assets.icon.image')
                                                         </div>
                                                         @break
                                                         @default
                                                         <div
-                                                            data-tippy-content="{{ $jn->kode }}">
+                                                            data-tippy-content="{{ $st->kode }}">
                                                             @include('template.tenant.assets.icon.default')
                                                         </div>
                                                         @endswitch
                                                     </div>
                                                     <div>
-                                                        <p class="font-semibold">{{ explode('.', $jn->hasfile->nama_file)[0] }}</p>
+                                                        <p class="font-semibold">{{ explode('.', $st->hasfile->nama_file)[0] }}</p>
                                                         <p class="text-xs text-gray-600 dark:text-gray-400">
                                                             {{ strtoupper($extension) }}
                                                         </p>
@@ -80,14 +80,14 @@
                                             </td>
                                             <td class="px-4 py-3 text-xs">
                                                 <a
-                                                    href="{{ route('download') }}?file={{ $jn->file }}"
+                                                    href="{{ route('download') }}?file={{ $st->file }}"
                                                     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                                     
                                                     Download
                                                 </a>
                                             </td>
                                         </tr>
-                                        @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

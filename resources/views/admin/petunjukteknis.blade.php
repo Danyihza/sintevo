@@ -1,6 +1,6 @@
 @extends('template.admin.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Admin')
 
 @section('body')
 

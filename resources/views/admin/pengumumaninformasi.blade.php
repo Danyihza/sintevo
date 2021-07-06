@@ -1,6 +1,6 @@
 @extends('template.admin.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Admin')
 
 @section('body')
 
@@ -133,19 +133,19 @@
                                             </div>
                                             
                                             <div class="col-span-6 sm:col-span-4">
-                                                <label for="pengumuman" class="block text-sm font-medium text-gray-700">Pengumuman</label>
+                                                <label for="pengumuman" class="block text-sm font-medium text-gray-700">Keterangan Pengumuman</label>
                                                 <input type="text" name="pengumuman" id="pengumuman"
-                                                    placeholder="Masukkan Pengumuman"
+                                                    placeholder="Masukkan Keterangan Pengumuman"
                                                     class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
     
                                             <div class="col-span-6 sm:col-span-4">
                                                 <label for="upload_file" class="block text-sm font-medium text-gray-700">
-                                                    Upload File
+                                                    Upload File Lampiran Pengumuman
                                                 </label>
                                                 <label class="mt-1 flex rounded-md shadow-sm cursor-pointer">
                                                     <input class="hidden" type="file" name="upload_file" id="upload_file" oninput="showFileName(this)" class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300">
-                                                    <input type="text" id="file_name" class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300" placeholder="Klik Browse untuk menambahkan file" disabled>
+                                                    <input type="text" id="file_name" class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300" placeholder="Klik Browse untuk menambahkan file, File type: all. Max file size 10 MB" disabled>
                                                     <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                                         Browse
                                                     </span>

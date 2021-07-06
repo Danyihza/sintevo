@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\KasAdminExport;
 use App\Exports\KasExport;
 use App\Exports\MonevExport;
+use App\Exports\TenantExport;
 use App\Http\Controllers\Controller;
 use App\Models\Anggota;
 use App\Models\Detail_user;
@@ -30,14 +31,14 @@ class TenantController extends Controller
     public function index()
     {
         $data['title'] = 'tenantmanagement';
-        $data['tenant'] = Detail_user::with('kategoris','statuses')->get();
+        $data['tenant'] = Detail_user::with('kategoris', 'statuses')->get();
         // dd($data['tenant']);
         return view('admin.tenantmanagement', $data);
     }
 
     public function tenantDetail($id_detail)
     {
-        
+
         $data['title'] = 'tenantmanagement';
         $data['tim'] = User::where('id_user', $id_detail)->with('hasDetail', 'hasDetail.kategoris')->first();
         // dd($data['tim']);
@@ -101,39 +102,43 @@ class TenantController extends Controller
 
     public function hapusSeluruhDataTenant($id_tenant)
     {
-        $file = File::where('uploader', $id_tenant);
-        if (count($file->get()) > 0) {
-            foreach($file as $f){
-                FacadesFile::delete($f->path_file);
+        try {
+            $file = File::where('uploader', $id_tenant);
+            if (count($file->get()) > 0) {
+                foreach ($file as $f) {
+                    FacadesFile::delete($f->path_file);
+                }
+                $file->delete();
             }
-            $file->delete();
-        }
-        $prestasi = Prestasi::where('id_user', $id_tenant);
-        if (count($prestasi->get()) > 0) {
-            $prestasi->delete();
-        }
-        $monev = Monev::where('id_user', $id_tenant);
-        if (count($prestasi->get()) > 0) {
-            $monev->delete();
-        }
-        $monev_finansial = MonevFinansial::where('id_user', $id_tenant);
-        if (count($monev_finansial->get()) > 0) {
-            $monev_finansial->delete();
-        }
-        $anggota = Anggota::where('id_user', $id_tenant);
-        if (count($anggota->get()) > 0) {
-            $anggota->delete();
-        }
-        $kelulusan = Kelulusan::where('id_user', $id_tenant);
-        if (count($kelulusan->get()) > 0) {
-            $kelulusan->delete();
-        }
+            $prestasi = Prestasi::where('id_user', $id_tenant);
+            if (count($prestasi->get()) > 0) {
+                $prestasi->delete();
+            }
+            $monev = Monev::where('id_user', $id_tenant);
+            if (count($prestasi->get()) > 0) {
+                $monev->delete();
+            }
+            $monev_finansial = MonevFinansial::where('id_user', $id_tenant);
+            if (count($monev_finansial->get()) > 0) {
+                $monev_finansial->delete();
+            }
+            $anggota = Anggota::where('id_user', $id_tenant);
+            if (count($anggota->get()) > 0) {
+                $anggota->delete();
+            }
+            $kelulusan = Kelulusan::where('id_user', $id_tenant);
+            if (count($kelulusan->get()) > 0) {
+                $kelulusan->delete();
+            }
 
-        $tenant = Detail_user::where('id_detail', $id_tenant)->first();
-        $nama = $tenant->nama_brand;
-        $tenant->delete();
-        User::where('id_user', $id_tenant)->first()->delete();
-        return redirect()->route('admin.listTenants')->with('success', "Tenant '$nama' berhasil dihapus");
+            $tenant = Detail_user::where('id_detail', $id_tenant)->first();
+            $nama = $tenant->nama_brand;
+            $tenant->delete();
+            User::where('id_user', $id_tenant)->first()->delete();
+            return redirect()->route('admin.listTenants')->with('success', "Tenant '$nama' berhasil dihapus");
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.listTenants')->with('error', "Tenant '$nama' gagal dihapus");
+        }
     }
 
     public function exportToExcel($jenis_monev, $id_user)
@@ -155,7 +160,7 @@ class TenantController extends Controller
         if ($jenis_monev == 'finansial') {
             try {
                 $finansial = Monev_Finansial::orderBy('tanggal', 'DESC')->where('id_user', $id_user)->get();
-                $data = $finansial->map(function($item){
+                $data = $finansial->map(function ($item) {
                     return [
                         date('d/m/Y', strtotime($item['tanggal'])),
                         $item['jenis_transaksi'],
@@ -171,7 +176,6 @@ class TenantController extends Controller
             } catch (\Throwable $th) {
                 return abort(404);
             }
-
         }
         try {
             $monev = Monev::orderBy('tanggal', 'DESC')->where('id_user', $id_user)->where('jenis_monev', $jenis_monev)->get();
@@ -192,6 +196,11 @@ class TenantController extends Controller
         } catch (\Throwable $th) {
             return abort(404);
         }
+    }
+
+    public function exporttenant()
+    {
+        return Excel::download(new TenantExport, 'Data Seluruh Tenant.xlsx');
     }
 
     private static function _uploadFile($request, $upload_name)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\KasExport;
 use App\Exports\MonevExport;
+use App\Exports\TimExport;
 use Exception;
 use Carbon\Carbon;
 use App\Models\File;
@@ -12,11 +13,13 @@ use App\Models\Monev;
 use App\Models\Prodi;
 use App\Models\Status;
 use App\Models\Anggota;
+use App\Models\Dashboard;
 use App\Models\Kategori;
 use App\Models\Prestasi;
 use App\Models\Detail_user;
 use App\Models\FileMonev;
 use App\Models\Juknis;
+use App\Models\Kelulusan;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Monev_Finansial;
@@ -40,6 +43,7 @@ class TenantController extends Controller
     {
         $data['title'] = 'home';
         $data['owner'] = Detail_user::where(['id_detail' => session('login-data')['id']])->first();
+        $data['informasi'] = Dashboard::latest()->first();
         return view('tenant.home', $data);
     }
 
@@ -431,6 +435,11 @@ class TenantController extends Controller
         }
     }
     
+    public function exporttim()
+    {
+        $data = Detail_user::where('id_detail', session('login-data')['id'])->first();
+        return Excel::download(new TimExport(session('login-data')['id']), "$data->nama_brand Data Profile Tim.xlsx");
+    }
 
     public function deleteFileMonev($id_fileMonev)
     {
@@ -547,6 +556,7 @@ class TenantController extends Controller
     public function kelulusan()
     {
         $data['title'] = 'kelulusan';
+        $data['sertifikat'] = Kelulusan::where('id_user', session('login-data')['id'])->get();
         return view('tenant.kelulusan', $data);
     }
 

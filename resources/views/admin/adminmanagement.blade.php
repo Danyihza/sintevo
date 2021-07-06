@@ -1,6 +1,6 @@
 @extends('template.admin.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Admin')
 
 @section('body')
 
@@ -63,7 +63,7 @@
                                         </div>
                                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                             <button disabled type="submit" id="btn-submit" class="disabled:opacity-50 disabled:cursor-not-allowed inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightBlue-500">
-                                                Submit
+                                                Tambahkan Admin
                                             </button>
                                         </div>
                                     </div>

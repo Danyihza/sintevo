@@ -48,6 +48,7 @@ use Illuminate\Support\Facades\Route;
         Route::any('/kelulusan', [TenantController::class, 'kelulusan'])->name('.kelulusan');
         Route::get('/changepassword', [TenantController::class, 'changePassword'])->name('.changepassword');
         Route::get('/export/{jenis_monev?}', [TenantController::class, 'exportToExcel'])->name('.export');
+        Route::get('/exporttim', [TenantController::class, 'exporttim'])->name('.exporttim');
         
 
         Route::post('/changePassword', [AuthController::class, 'changePassword'])->name('.changenewpassword');
@@ -68,6 +69,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::group(['prefix' => 'admin', 'middleware' => 'loggedin', 'as' => 'admin.'], function () {
         Route::get('/test', [AdminController::class, 'index']);
+        Route::post('/updateinformasidashboard', [AdminDashboard::class, 'updateinformasidashboard'])->name('updateinformasidashboard');
         Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
         Route::get('/tenant', [AdminTenant::class, 'index'])->name('listTenants');
         Route::get('/tenant/{id_tenant?}', [AdminTenant::class, 'tenantDetail'])->name('tenant');
@@ -88,6 +90,7 @@ use Illuminate\Support\Facades\Route;
         
 
         Route::get('/export/{jenis_monev?}/{id_user?}', [AdminTenant::class, 'exportToExcel'])->name('export');
+        Route::get('/exporttenant', [AdminTenant::class, 'exporttenant'])->name('exporttenant');
     });
 
 

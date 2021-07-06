@@ -1,6 +1,6 @@
 @extends('template.admin.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Admin')
 
 @section('body')
 
@@ -407,10 +407,10 @@ $id_user = end($url);
                                                                     {{ $pro->uraian }}
                                                                 </td>
                                                                 <td class="px-4 py-3 flex items-center text-sm">
-                                                                    @if($pro->nama_file)
-                                                                    <a href="{{ route('download') }}?file={{ $pro->id_monev }}"
+                                                                    @if($pro->file)
+                                                                    <a href="{{ route('download') }}?file={{ $pro->file }}"
                                                                         target="_blank">
-                                                                        <?php $get = explode('.', $pro->nama_file); $extention = end($get); ?>
+                                                                        <?php $get = explode('.', $pro->hasFile->nama_file); $extention = end($get); ?>
                                                                         @switch($extention)
                                                                         @case('pdf')
                                                                         <div
@@ -558,10 +558,10 @@ $id_user = end($url);
                                                                     {{ $plg->uraian }}
                                                                 </td>
                                                                 <td class="px-4 py-3 flex items-center text-sm">
-                                                                    @if($plg->nama_file)
-                                                                    <a href="{{ route('download') }}?file={{ $plg->id_monev }}"
+                                                                    @if($plg->file)
+                                                                    <a href="{{ route('download') }}?file={{ $plg->file }}"
                                                                         target="_blank">
-                                                                        <?php $get = explode('.', $plg->nama_file); $extention = end($get); ?>
+                                                                        <?php $get = explode('.', $plg->hasFile->nama_file); $extention = end($get); ?>
                                                                         @switch($extention)
                                                                         @case('pdf')
                                                                         <div
@@ -708,10 +708,10 @@ $id_user = end($url);
                                                                     {{ $data->uraian }}
                                                                 </td>
                                                                 <td class="px-4 py-3 flex items-center text-sm">
-                                                                    @if($data->nama_file)
-                                                                    <a href="{{ route('download') }}?file={{ $data->id_monev }}"
+                                                                    @if($data->file)
+                                                                    <a href="{{ route('download') }}?file={{ $data->file }}"
                                                                         target="_blank">
-                                                                        <?php $get = explode('.', $data->nama_file); $extention = end($get); ?>
+                                                                        <?php $get = explode('.', $data->hasFile->nama_file); $extention = end($get); ?>
                                                                         @switch($extention)
                                                                         @case('pdf')
                                                                         <div
@@ -859,10 +859,10 @@ $id_user = end($url);
                                                                     {{ $data->uraian }}
                                                                 </td>
                                                                 <td class="px-4 py-3 flex items-center text-sm">
-                                                                    @if($data->nama_file)
-                                                                    <a href="{{ route('download') }}?file={{ $data->id_monev }}"
+                                                                    @if($data->file)
+                                                                    <a href="{{ route('download') }}?file={{ $data->file }}"
                                                                         target="_blank">
-                                                                        <?php $get = explode('.', $data->nama_file); $extention = end($get); ?>
+                                                                        <?php $get = explode('.', $data->hasFile->nama_file); $extention = end($get); ?>
                                                                         @switch($extention)
                                                                         @case('pdf')
                                                                         <div
@@ -980,7 +980,7 @@ $id_user = end($url);
                                                                 </td>
                                                                 <td class="px-4 py-3 justify-center flex text-sm">
                                                                     <a data-tippy-content="Lihat Bukti"
-                                                                        href="{{ route('download') }}?file={{ $finan->id_finansial }}">
+                                                                        href="{{ route('download') }}?file={{ $finan->file }}">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             viewBox="0 0 24 24" width="18" height="18">
                                                                             <path fill="none" d="M0 0h24v24H0z" />
@@ -1147,10 +1147,10 @@ $id_user = end($url);
                                                                     {{ $data->uraian }}
                                                                 </td>
                                                                 <td class="px-4 py-3 flex items-center text-sm">
-                                                                    @if($data->nama_file)
-                                                                    <a href="{{ route('download') }}?file={{ $data->id_monev }}"
+                                                                    @if($data->file)
+                                                                    <a href="{{ route('download') }}?file={{ $data->file }}"
                                                                         target="_blank">
-                                                                        <?php $get = explode('.', $data->nama_file); $extention = end($get); ?>
+                                                                        <?php $get = explode('.', $data->hasFile->nama_file); $extention = end($get); ?>
                                                                         @switch($extention)
                                                                         @case('pdf')
                                                                         <div
@@ -1687,7 +1687,7 @@ $id_user = end($url);
                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300">
                                 <input type="text" id="file_name"
                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300"
-                                    placeholder="Upload Sertifikat disini" disabled>
+                                    placeholder="Upload Sertifikat disini, File type: All. Max file size 10 MB" disabled>
                                 <span
                                     class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                     Browse

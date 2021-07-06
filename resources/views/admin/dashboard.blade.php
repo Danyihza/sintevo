@@ -1,6 +1,6 @@
 @extends('template.admin.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Admin')
 
 @section('body')
 
@@ -13,505 +13,135 @@
                 @include('template.admin.topbar')
                 {{-- Content --}}
                 <main class="h-full overflow-y-auto">
+                    @include('template.admin.notification')
                     <div class="container px-6 mx-auto grid">
-                        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                        <h2 class="my-6 text-2xl font-bold text-gray-700 dark:text-gray-200">
                             Dashboard
                         </h2>
-                        {{-- <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-                            <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <h2 class="my-2 text-md font-semibold text-gray-700">
+                            Informasi pada dashboard tenant
+                        </h2>
+
+                        <form action="{{ route('admin.updateinformasidashboard') }}" method="post" enctype="multipart/form-data" id="formDashboard">
+                            @csrf
+                            <div class="mb-4">
+                                <label class="flex rounded-md shadow-sm cursor-pointer">
+                                    <input class="hidden" type="file" name="upload_file" id="upload_file"
+                                    oninput="showFileName(this, '#file_name'); document.getElementById('formDashboard').submit();"
+                                    class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300">
+                                    <input type="text" id="file_name"
+                                    class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300"
+                                    placeholder="Belum ada file yang diatur, Upload disini, File type: All"
+                                    value="{{ $informasi ? $informasi->hasFile->nama_file : '' }}"
+                                    disabled>
+                                    <span
+                                    class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                    Ubah
+                                </span>
+                            </label>
+                        </div>
+                        </form>
+
+                        <h2 class="my-2 text-md font-semibold text-gray-700">
+                            Statistik
+                        </h2>
+
+                        <div class="grid gap-10 mb-8 grid-cols-3">
+                            <div class="flex flex-column items-center p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
                                 <div
                                     class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path><path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path></svg>
                                 </div>
                                 <div>
                                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                        Nama Brand
+                                        Jumlah Tenant
                                     </p>
-                                    <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                        Aftermeet Academy
-                                    </p>
+                                    <a href="{{ route('admin.listTenants') }}" class="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-lightBlue-600">
+                                        {{ $jumlah_tenant }} Tenant
+                                    </a>
                                 </div>
                             </div>
-                            <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                            <div class="flex items-center p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
                                 <div
                                     class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
                                     <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 14.062V20h2v-5.938c3.946.492 7 3.858 7 7.938H4a8.001 8.001 0 0 1 7-7.938zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z"/></svg>
                                 </div>
                                 <div>
                                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                        Nama Ketua
+                                        Jumlah Admin
                                     </p>
-                                    <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                        Muhammad Fauzi
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                                <div
-                                    class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
-                                    <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
-                                </div>
-                                <div>
-                                    <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                        Instagram
-                                    </p>
-                                    <a href="https://www.instagram.com" class="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-lightBlue-600">
-                                        {{ '@aftermeet' }} 
+                                    <a href="{{ route('admin.adminManager') }}" class="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-lightBlue-600">
+                                        {{ $jumlah_admin }} Admin Aktif
                                     </a>
                                 </div>
                             </div>
-                            <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                            <div class="flex items-center p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
                                 <div
-                                    class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
-                                    <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M2.05 13h5.477a17.9 17.9 0 0 0 2.925 8.88A10.005 10.005 0 0 1 2.05 13zm0-2a10.005 10.005 0 0 1 8.402-8.88A17.9 17.9 0 0 0 7.527 11H2.05zm19.9 0h-5.477a17.9 17.9 0 0 0-2.925-8.88A10.005 10.005 0 0 1 21.95 11zm0 2a10.005 10.005 0 0 1-8.402 8.88A17.9 17.9 0 0 0 16.473 13h5.478zM9.53 13h4.94A15.908 15.908 0 0 1 12 20.592 15.908 15.908 0 0 1 9.53 13zm0-2A15.908 15.908 0 0 1 12 3.408 15.908 15.908 0 0 1 14.47 11H9.53z"/></svg>
+                                    class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
                                 </div>
                                 <div>
                                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                        Website
+                                        Informasi Terbaru
                                     </p>
-                                    <p class="text-md font-semibold text-gray-700 dark:text-gray-500">
-                                        Belum Tersedia
-                                    </p>
+                                    <a href="https://www.instagram.com" class="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-lightBlue-600">
+                                        Lihat Disini
+                                    </a>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
 
-                        <!-- New Table -->
-                        {{-- <div class="w-full overflow-hidden rounded-lg shadow-xs">
-                            <div class="w-full overflow-x-auto">
-                                <table class="w-full whitespace-no-wrap">
-                                    <thead>
-                                        <tr
-                                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                            <th class="px-4 py-3">Client</th>
-                                            <th class="px-4 py-3">Amount</th>
-                                            <th class="px-4 py-3">Status</th>
-                                            <th class="px-4 py-3">Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Hans Burger</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            10x Developer
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 863.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Approved
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&facepad=3&fit=facearea&s=707b9c33066bf8808c934c8ab394dff6"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Jolina Angelie</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Unemployed
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 369.95
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">
-                                                    Pending
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1551069613-1904dbdcda11?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Sarah Curry</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Designer
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 86.00
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">
-                                                    Denied
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1551006917-3b4c078c47c9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Rulia Joberts</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Actress
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 1276.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Approved
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1546456073-6712f79251bb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Wenzel Dashington</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Actor
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 863.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700">
-                                                    Expired
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1502720705749-871143f0e671?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=b8377ca9f985d80264279f277f3a67f5"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Dave Li</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Influencer
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 863.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Approved
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Maria Ramovic</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Runner
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 863.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Approved
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/photo-1566411520896-01e7ca4726af?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Hitney Wouston</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            Singer
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 863.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Approved
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-
-                                        <tr class="text-gray-700 dark:text-gray-400">
-                                            <td class="px-4 py-3">
-                                                <div class="flex items-center text-sm">
-                                                    <!-- Avatar with inset shadow -->
-                                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                        <img class="object-cover w-full h-full rounded-full"
-                                                            src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                                                            alt="" loading="lazy" />
-                                                        <div class="absolute inset-0 rounded-full shadow-inner"
-                                                            aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-semibold">Hans Burger</p>
-                                                        <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                            10x Developer
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                $ 863.45
-                                            </td>
-                                            <td class="px-4 py-3 text-xs">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Approved
-                                                </span>
-                                            </td>
-                                            <td class="px-4 py-3 text-sm">
-                                                6/10/2020
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div
-                                class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
-                                <span class="flex items-center col-span-3">
-                                    Showing 21-30 of 100
-                                </span>
-                                <span class="col-span-2"></span>
-                                <!-- Pagination -->
-                                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                                    <nav aria-label="Table navigation">
-                                        <ul class="inline-flex items-center">
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-lightBlue"
-                                                    aria-label="Previous">
-                                                    <svg aria-hidden="true" class="w-4 h-4 fill-current"
-                                                        viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                                            clip-rule="evenodd" fill-rule="evenodd"></path>
-                                                    </svg>
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-lightBlue">
-                                                    1
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-lightBlue">
-                                                    2
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 text-white transition-colors duration-150 bg-lightBlue-600 border border-r-0 border-lightBlue-600 rounded-md focus:outline-none focus:shadow-outline-lightBlue">
-                                                    3
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-lightBlue">
-                                                    4
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <span class="px-3 py-1">...</span>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-lightBlue">
-                                                    8
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-lightBlue">
-                                                    9
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-lightBlue"
-                                                    aria-label="Next">
-                                                    <svg class="w-4 h-4 fill-current" aria-hidden="true"
-                                                        viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                            clip-rule="evenodd" fill-rule="evenodd"></path>
-                                                    </svg>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </span>
-                            </div>
-                        </div> --}}
-
-                        <!-- Charts -->
-                        {{-- <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                            Charts
+                        <h2 class="my-2 text-md font-semibold text-gray-700">
+                            Menu
                         </h2>
-                        <div class="grid gap-6 mb-8 md:grid-cols-2">
-                            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                                    Revenue
-                                </h4>
-                                <canvas id="pie"></canvas>
-                                <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-                                    <!-- Chart legend -->
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"></span>
-                                        <span>Shirts</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                                        <span>Shoes</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-lightBlue-600 rounded-full"></span>
-                                        <span>Bags</span>
-                                    </div>
+
+                        <div class="grid gap-4 mb-8 grid-cols-2">
+                            <div class="flex flex-column items-center bg-white rounded-lg shadow-md dark:bg-gray-800">
+                                <div
+                                    class="p-3 mr-4 text-red-500 bg-red-100 rounded-sm">
+                                    <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 13.242V20h1v2H2v-2h1v-6.758A4.496 4.496 0 0 1 1 9.5c0-.827.224-1.624.633-2.303L4.345 2.5a1 1 0 0 1 .866-.5H18.79a1 1 0 0 1 .866.5l2.702 4.682A4.496 4.496 0 0 1 21 13.242zm-2 .73a4.496 4.496 0 0 1-3.75-1.36A4.496 4.496 0 0 1 12 14.001a4.496 4.496 0 0 1-3.25-1.387A4.496 4.496 0 0 1 5 13.973V20h14v-6.027zM5.789 4L3.356 8.213a2.5 2.5 0 0 0 4.466 2.216c.335-.837 1.52-.837 1.856 0a2.5 2.5 0 0 0 4.644 0c.335-.837 1.52-.837 1.856 0a2.5 2.5 0 1 0 4.457-2.232L18.21 4H5.79z"/></svg>
+                                </div>
+                                <div>
+                                    <a href="{{ route('admin.listTenants') }}" class="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-red-600">
+                                        Tenant Management
+                                    </a>
                                 </div>
                             </div>
-                            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                                    Traffic
-                                </h4>
-                                <canvas id="line"></canvas>
-                                <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-                                    <!-- Chart legend -->
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                                        <span>Organic</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-lightBlue-600 rounded-full"></span>
-                                        <span>Paid</span>
-                                    </div>
+                            <div class="flex items-center bg-white rounded-lg shadow-md dark:bg-gray-800">
+                                <div
+                                    class="p-3 mr-4 text-red-500 bg-red-100 rounded-sm">
+                                    <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 14v2a6 6 0 0 0-6 6H4a8 8 0 0 1 8-8zm0-1c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm2.595 7.812a3.51 3.51 0 0 1 0-1.623l-.992-.573 1-1.732.992.573A3.496 3.496 0 0 1 17 14.645V13.5h2v1.145c.532.158 1.012.44 1.405.812l.992-.573 1 1.732-.992.573a3.51 3.51 0 0 1 0 1.622l.992.573-1 1.732-.992-.573a3.496 3.496 0 0 1-1.405.812V22.5h-2v-1.145a3.496 3.496 0 0 1-1.405-.812l-.992.573-1-1.732.992-.572zM18 19.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+                                </div>
+                                <div>
+                                    <a href="{{ route('admin.adminManager') }}" class="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-red-600">
+                                        Administrator Management
+                                    </a>
                                 </div>
                             </div>
-                        </div> --}}
+                            <div class="flex items-center bg-white rounded-lg shadow-md dark:bg-gray-800">
+                                <div
+                                    class="p-3 mr-4 text-red-500 bg-red-100 rounded-sm dark:text-blue-100 dark:bg-blue-500">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                                </div>
+                                <div>
+                                    <a href="{{ route('admin.pengumuman') }}" class="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-red-600">
+                                        Pengumuman
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-center bg-white rounded-lg shadow-md dark:bg-gray-800">
+                                <div
+                                    class="p-3 mr-4 text-red-500 bg-red-100 rounded-sm dark:text-blue-100 dark:bg-blue-500">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                                </div>
+                                <div>
+                                    <a href="{{ route('admin.petunjukteknis') }}" class="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-red-600">
+                                        Petunjuk Teknis
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </main>
                 {{-- End of Content --}}
@@ -526,7 +156,11 @@
 
 @section('script')
     <script>
-        
+        function showFileName(param, target) { 
+            const value = $(param).val();
+            const fileName = value.split('\\').pop();
+            $(target).val(fileName);
+        }
     </script>
 
     </html>
