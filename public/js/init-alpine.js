@@ -141,7 +141,16 @@ function data() {
     },
     closeModalAddSertifikat() {
       this.isModalAddSertifikat = false
-    }
+    },
+    
+    isModalMonevEdit: false,
+    openModalMonevEdit() {
+      this.isModalMonevEdit = true
+    },
+    closeModalMonevEdit() {
+      this.isModalMonevEdit = false
+    },
+
 
     // Logout
     // logout(){

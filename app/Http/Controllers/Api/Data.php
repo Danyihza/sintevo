@@ -77,6 +77,15 @@ class Data extends Controller
         ], 200);
     }
 
+    public function getMonev($id_monev)
+    {
+        $monev = Monev::with('hasFile')->where('id_monev', $id_monev)->first();
+        return response()->json([
+            'status' => 'success',
+            'data' => $monev
+        ], 200);
+    }
+
     public function addFeedback(Request $request)
     {
         $id_monev = $request->id;
@@ -150,4 +159,6 @@ class Data extends Controller
         $prestasi->save();
         return Redirect::back()->with('success', 'Data berhasil diperbarui');
     }
+    
+    
 }

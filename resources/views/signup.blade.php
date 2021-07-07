@@ -126,9 +126,9 @@
 
                                 <div class="col-span-6 sm:col-span-4">
                                     <label for="instagram"
-                                        class="block text-sm font-medium text-gray-700">Instagram</label>
+                                        class="block text-sm font-medium text-gray-700">Instagram (Gunakan '@')</label>
                                     <input type="text" name="instagram" id="instagram"
-                                        placeholder="Masukkan Username Instagram Usaha (Kosongkan Jika Tidak Ada)"
+                                        placeholder="Masukkan Username Instagram Usaha (Kosongkan Jika Tidak Ada), ex: @example"
                                         oninput="checkValue()"
                                         class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     <p class="text-xs italic md ml-2 text-gray-300">
@@ -140,7 +140,13 @@
                                 </p>
 
                             </div>
-                            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                            <div class="px-4 py-3 bg-gray-50 flex justify-between sm:px-6">
+                                <p class="text-center text-sm text-gray-600">
+                                    Sudah punya akun ?
+                                    <a href="{{ route('login') }}" class="font-medium text-lightBlue-600 hover:text-lightBlue-500">
+                                        Login disini
+                                    </a>
+                                </p>
                                 <button type="button" id="btn-continue" disabled
                                     class="disabled:opacity-50 disabled:cursor-not-allowed inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightBlue-500">
                                     Continue

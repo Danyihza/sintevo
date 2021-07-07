@@ -49,14 +49,16 @@ use Illuminate\Support\Facades\Route;
         Route::get('/changepassword', [TenantController::class, 'changePassword'])->name('.changepassword');
         Route::get('/export/{jenis_monev?}', [TenantController::class, 'exportToExcel'])->name('.export');
         Route::get('/exporttim', [TenantController::class, 'exporttim'])->name('.exporttim');
+        Route::get('/exportLampiran', [TenantController::class, 'exportLampiran'])->name('.exportLampiran');
         
-
         Route::post('/changePassword', [AuthController::class, 'changePassword'])->name('.changenewpassword');
         Route::post('/updateProfileUsaha', [TenantController::class, 'updateUsaha'])->name('.updateProfileUsaha');
         Route::post('/tambahAnggota', [TenantController::class, 'tambahAnggota'])->name('.tambahAnggota');
         Route::get('/deleteAnggota/{id_anggota?}', [TenantController::class, 'deleteAnggota'])->name('.deleteAnggota');
         Route::post('/updateAnggota', [TenantController::class, 'updateAnggota'])->name('.updateAnggota');
         Route::post('/monev/tambah/{sub_monev?}', [TenantController::class, 'monev_tambah'])->name('.monevTambah');
+        Route::get('/monev/delete/{id_monev?}', [TenantController::class, 'hapusMonev'])->name('.hapusMonev');
+        Route::post('/monev/update/monev', [TenantController::class, 'updateMonev'])->name('.updateMonev');
         Route::post('/monev/finansial/update', [TenantController::class, 'updateFinansial'])->name('.updateFinansial');
         Route::get('/monev/finansial/delete/{id_finansial?}', [TenantController::class, 'deleteFinansial'])->name('.deleteFinansial');
         Route::post('/prestasi/tambah', [TenantController::class, 'addPrestasi'])->name('.prestasiTambah');

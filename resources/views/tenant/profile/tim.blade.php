@@ -65,7 +65,7 @@
                                             <th class="px-4 py-3 text-left">No</th>
                                             <th class="px-4 py-3 text-left">Nama Lengkap</th>
                                             <th class="px-4 py-3 text-left">Status</th>
-                                            <th class="px-4 py-3 text-left">NRP/NIDN</th>
+                                            <th class="px-4 py-3 text-left">NRP/NIDN/NIP</th>
                                             <th class="px-4 py-3 text-left">Jabatan</th>
                                             <th class="px-4 py-3 text-center">Aksi</th>
                                         </tr>
@@ -208,7 +208,7 @@
                                     <label for="no_identify"
                                         class="block text-sm font-medium text-gray-700">NRP/NIDN</label>
                                     <input type="text" name="no_identify" id="no_identify"
-                                        placeholder="Masukan NRP/NIDN"
+                                        placeholder="Masukan NRP/NIDN (Ketik '0' jika tidak memiliki)"
                                         class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         >
                                 </div>

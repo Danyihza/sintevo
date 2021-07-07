@@ -148,9 +148,13 @@
                                                 <select id="jenis_kegiatan" name="jenis_kegiatan"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
                                                     <option value="0" disabled selected>Pilih Jenis Kegiatan</option>
+                                                    <option value="PWMV">PWMV</option>
                                                     <option value="KIBM">KIBM</option>
                                                     <option value="KBMI">KBMI</option>
                                                     <option value="PKM">PKM</option>
+                                                    <option value="Pra Startup">Pra Startup</option>
+                                                    <option value="Startup">Startup</option>
+                                                    <option value="Scale-up">Scale-up</option>
                                                     <option value="Business Plan">Business Plan</option>
                                                     <option value="Lainnya">Lainnya</option>
                                                 </select>
@@ -195,7 +199,7 @@
 
                                         <div class="col-span-6 sm:col-span-4">
                                             <label for="upload_file" class="block text-sm font-medium text-gray-700">
-                                                Upload File
+                                                Upload File Sertifikat/Dokumentasi
                                             </label>
                                             <label class="mt-1 flex rounded-md shadow-sm cursor-pointer">
                                                 <input class="hidden" type="file" name="upload_file" id="upload_file"
@@ -204,7 +208,7 @@
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300">
                                                 <input type="text" id="file_name"
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300"
-                                                    placeholder="Klik Browse untuk menambahkan file, file type: jpg, jpeg, png, pdf" disabled>
+                                                    placeholder="Klik Browse untuk menambahkan file, file type: jpg, jpeg, png, pdf, Max file size 10 mb" disabled>
                                                 <span
                                                     class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                                     Browse

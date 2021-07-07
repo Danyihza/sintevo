@@ -146,7 +146,7 @@
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300">
                                                     <input type="text" id="file_name"
                                                     class="focus:ring-lightBlue-500 focus:border-lightBlue-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300"
-                                                    placeholder="Upload Bukti Transaksi disini, file type: jpg, jpeg, png"
+                                                    placeholder="Upload Bukti Transaksi disini, file type: jpg, jpeg, png, Max file size 10 mb"
                                                     disabled>
                                                     <span
                                                         class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">

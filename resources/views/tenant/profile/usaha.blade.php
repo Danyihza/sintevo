@@ -55,6 +55,8 @@
                                                         <div class="mb-4">
                                                             <span class="text-sm text-lightBlue-700">
                                                                 Sangat direkomendasikan menggunakan gambar dengan rasio 1:1
+                                                                <br>
+                                                                File type: PNG, JPG, JPEG. Max file size: 10 mb
                                                             </span>
                                                         </div>
                                                         <div class="flex items-center">

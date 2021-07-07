@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\KasExport;
+use App\Exports\LampiranExport;
 use App\Exports\MonevExport;
 use App\Exports\TimExport;
 use Exception;
@@ -350,6 +351,42 @@ class TenantController extends Controller
         return Redirect::back()->with('success', 'Sukses data terhapus');
     }
 
+    public function hapusMonev($id_monev)
+    {
+        $monev = Monev::with('hasFile')->where('id_monev', $id_monev)->first();
+        if ($monev->file) {
+            FacadesFile::delete('assets/file/' . $monev->hasFile->nama_file);
+            File::where('id_file', $monev->file)->delete();
+        }
+        $monev->delete();
+        return Redirect::back()->with('success', 'Sukses data terhapus');
+    }
+
+    public function updateMonev(Request $request)
+    {
+        try {
+            $id_monev = $request->id_monev;
+            $monev = Monev::where('id_monev', $id_monev)->first();
+            $tanggal = explode('/', $request->tanggal);
+            $file = $request->file('upload_file');
+            if ($file) {
+                if ($monev->file) {
+                    FacadesFile::delete("assets/file/" . $monev->hasFile->nama_file);
+                    File::where('id_file', $monev->file)->delete();
+                }
+                $monev->file = self::_uploadFile($request, 'upload_file');
+            }
+            $monev->tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
+            $monev->status_progress = $request->status_progress;
+            $monev->uraian = $request->uraian;
+            $monev->save();
+            return Redirect::back()->with('success', 'Sukses mengubah data');
+        } catch (\Throwable $th) {
+            dd($th);
+            return Redirect::back()->with('error', 'Something went wrong' . $th->getMessage());
+        }
+    }
+
     public function upload_file()
     {
         $data['title'] = 'upload_file';
@@ -396,7 +433,7 @@ class TenantController extends Controller
         if ($jenis_monev == 'finansial') {
             try {
                 $finansial = Monev_Finansial::orderBy('tanggal', 'DESC')->where('id_user', session('login-data')['id'])->get();
-                $data = $finansial->map(function($item){
+                $data = $finansial->map(function ($item) {
                     return [
                         date('d/m/Y', strtotime($item['tanggal'])),
                         $item['jenis_transaksi'],
@@ -412,7 +449,6 @@ class TenantController extends Controller
             } catch (\Throwable $th) {
                 return abort(404);
             }
-
         }
         try {
             $monev = Monev::orderBy('tanggal', 'DESC')->where('id_user', session('login-data')['id'])->where('jenis_monev', $jenis_monev)->get();
@@ -434,11 +470,17 @@ class TenantController extends Controller
             return abort(404);
         }
     }
-    
+
     public function exporttim()
     {
         $data = Detail_user::where('id_detail', session('login-data')['id'])->first();
         return Excel::download(new TimExport(session('login-data')['id']), "$data->nama_brand Data Profile Tim.xlsx");
+    }
+
+    public function exportLampiran()
+    {
+        $data = Detail_user::where('id_detail', session('login-data')['id'])->first();
+        return Excel::download(new LampiranExport(session('login-data')['id']), "$data->nama_brand History Inkubasi.xlsx");
     }
 
     public function deleteFileMonev($id_fileMonev)
