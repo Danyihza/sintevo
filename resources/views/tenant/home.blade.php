@@ -102,32 +102,20 @@
                         </div>
 
                         <!-- Charts -->
-                        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                        <h2 id="chart_title" class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                             Charts
                         </h2>
                         <div class="grid gap-6 mb-8 md:grid-cols-2">
-                            <div class="min-w-0 p-4 bg-white rounded-lg shadow-md border dark:bg-gray-800">
+                            <div id="pie-chart" class="min-w-0 p-4 bg-white rounded-lg shadow-md border dark:bg-gray-800">
                                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                                     Prestasi
                                 </h4>
                                 <canvas id="pie"></canvas>
-                                <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-                                    <!-- Chart legend -->
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"></span>
-                                        <span>Regional</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                                        <span>Kampus</span>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="inline-block w-3 h-3 mr-1 bg-lightBlue-600 rounded-full"></span>
-                                        <span>Nasional</span>
-                                    </div>
+                                <div class="place-items-center mt-4 grid grid-cols-3 text-md text-gray-600 dark:text-gray-400">
+
                                 </div>
                             </div>
-                            <div class="min-w-0 p-4 bg-white rounded-lg shadow-md border dark:bg-gray-800">
+                            <div id="line-chart" class="min-w-0 p-4 bg-white rounded-lg shadow-md border dark:bg-gray-800">
                                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                                     Kas
                                 </h4>
@@ -136,7 +124,7 @@
                                     <!-- Chart legend -->
                                     <div class="flex items-center">
                                         <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                                        <span>Organic</span>
+                                        <span>Saldo</span>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +143,135 @@
 
 @section('script')
     <script>
-        
+        async function lineChart(){
+            const dataKas = await fetch(`{{ route('getBukuKas', session('login-data')['id'])}}`)
+            .then(response => response.json())
+            .then(result => result);
+            console.log(dataKas);
+            const lineConfig = {
+            type: 'line',
+            data: {
+                labels: dataKas.data?.tanggal,
+                datasets: [
+                {
+                    label: 'Saldo',
+                    /**
+                     * These colors come from Tailwind CSS palette
+                     * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
+                     */
+                    backgroundColor: '#1D7481',
+                    borderColor: '#1D7481',
+                    data: dataKas.data?.saldo,
+                    fill: false,
+                }
+                ],
+            },
+            options: {
+                responsive: true,
+                /**
+                 * Default legends are ugly and impossible to style.
+                 * See examples in charts.html to add your own legends
+                 *  */
+                legend: {
+                display: false,
+                },
+                tooltips: {
+                mode: 'index',
+                intersect: false,
+                },
+                hover: {
+                mode: 'nearest',
+                intersect: true,
+                },
+                scales: {
+                x: {
+                    display: true,
+                    scaleLabel: {
+                    display: true,
+                    labelString: 'Month',
+                    },
+                },
+                y: {
+                    display: true,
+                    scaleLabel: {
+                    display: true,
+                    labelString: 'Value',
+                    },
+                },
+                },
+            },
+            }
+
+            if (dataKas.status == 'failed') {
+                const lineChart = document.getElementById('line-chart');
+                lineChart.classList.add('hidden');
+                return 0;
+            }
+
+            // change this to the id of your chart element in HMTL
+            const lineCtx = document.getElementById('line')
+            window.myLine = new Chart(lineCtx, lineConfig)
+            return 1;
+        }
+
+        async function pieChart(){
+            const prestasi = await fetch(`{{ route('countPrestasi', session('login-data')['id'])}}`)
+            .then(response => response.json())
+            .then(result => result);
+            console.log(prestasi);
+            const pieConfig = {
+            type: 'doughnut',
+            data: {
+                datasets: [
+                {
+                    data: prestasi.data?.total,
+                    /**
+                     * These colors come from Tailwind CSS palette
+                     * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
+                     */
+                    backgroundColor: ['#3F82F8', '#1D7481', '#5850EC', '#F05252', '#057A55', '#9F580A'],
+                    // label: 'Dataset 1',
+                },
+                ],
+                labels: prestasi.data?.tingkat_prestasi,
+            },
+            options: {
+                responsive: true,
+                cutoutPercentage: 80,
+                /**
+                 * Default legends are ugly and impossible to style.
+                 * See examples in charts.html to add your own legends
+                 *  */
+                legend: {
+                display: true,
+                },
+            },
+            }
+
+            // change this to the id of your chart element in HMTL
+            if (prestasi.status == 'failed') {
+                const pieChart = document.getElementById('pie-chart');
+                pieChart.classList.add('hidden');
+                return 0;
+            }
+            const pieCtx = document.getElementById('pie')
+            window.myPie = new Chart(pieCtx, pieConfig)
+            return 1;
+        }
+
+        async function checkCharts() {
+            const kas = await lineChart();
+            const prestasi = await pieChart();
+            if (kas == 0 && prestasi == 0) {
+                document.getElementById('chart_title').classList.add('hidden');
+            }
+        }
+
+        checkCharts();
+        lineChart();
+        pieChart();
+
+
     </script>
 
     </html>

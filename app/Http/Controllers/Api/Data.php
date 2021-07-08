@@ -12,8 +12,10 @@ use App\Models\Prestasi;
 use App\Models\Prodi;
 use App\Models\Status;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -84,6 +86,76 @@ class Data extends Controller
             'status' => 'success',
             'data' => $monev
         ], 200);
+    }
+
+    public function getBukuKas($id_user)
+    {
+        try {
+            $buku = Monev_Finansial::where('id_user', $id_user)->orderby('tanggal', 'ASC')->orderby('created_at', 'ASC')->get();
+            $tanggal = $buku->map(function ($item) {
+                return date('d/m/Y', strtotime($item['tanggal']));
+            });
+            if (count($tanggal) < 2) {
+                throw new Exception('Data kurang');
+            }
+            $saldo = 0;
+            $data['saldo'] = [];
+            for ($i = 0; $i < count($buku); $i++) {
+                if ($buku[$i]->jenis_transaksi == 'Pengeluaran') {
+                    $saldo -= $buku[$i]->jumlah;
+                    $data['saldo'][$i] = $saldo;
+                } else {
+                    $saldo += $buku[$i]->jumlah;
+                    $data['saldo'][$i] = $saldo;
+                }
+            }
+            $result = $data['saldo'];
+            return response()->json([
+                'status' => 'success',
+                'data' => [
+                    'saldo' => $result,
+                    'tanggal' => $tanggal
+                ]
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 'failed',
+                'data' => $th->getMessage()
+            ]);
+        }
+    }
+
+    public function countPrestasi($id_user)
+    {
+        try {
+            $prestasi = DB::table('prestasi')
+                ->select('tingkat_prestasi', DB::raw('count(*) as total'))
+                ->where('id_user', $id_user)
+                ->groupBy('tingkat_prestasi')
+                ->get();
+            if (count($prestasi) == 0) {
+                throw new Exception('Data not found');
+            }
+            $tingkat_prestasi = $prestasi->map(function ($item) {
+                return $item->tingkat_prestasi;
+            });
+            $total = $prestasi->map(function ($item) {
+                return $item->total;
+            });
+            // dd($tingkat_prestasi);
+            return response()->json([
+                'status' => 'success',
+                'data' => [
+                    'tingkat_prestasi' => $tingkat_prestasi,
+                    'total' => $total
+                ]
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => $th->getMessage(),
+            ], 404);
+        }
     }
 
     public function addFeedback(Request $request)
@@ -159,6 +231,4 @@ class Data extends Controller
         $prestasi->save();
         return Redirect::back()->with('success', 'Data berhasil diperbarui');
     }
-    
-    
 }
