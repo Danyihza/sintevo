@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2021 at 04:36 PM
+-- Generation Time: Jul 08, 2021 at 05:06 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -95,7 +95,7 @@ CREATE TABLE `detail_users` (
 --
 
 INSERT INTO `detail_users` (`id_detail`, `kategori`, `nama_brand`, `deskripsi`, `alamat`, `nama_ketua`, `no_whatsapp`, `status`, `prodi`, `website`, `instagram`, `gambar`, `created_at`, `updated_at`) VALUES
-('DOS0001', 1, 'Aftermeet Academy 2.0', 'testing', 'Desa Rondokuning Kraksaan Kabupaten Probolinggo Jawa Timur', 'Dany Ahmad', '082331147549', 2, NULL, 'www.mediarraihan.com', '@danyihza', 'DOS0001_1625032588.png', '2021-04-25 08:25:39', '2021-06-30 05:56:28'),
+('DOS0001', 1, 'Aftermeet Academy 2.0', 'testing', 'Desa Rondokuning Kraksaan Kabupaten Probolinggo Jawa Timur', 'Dany Ahmad', '082331147549', 2, NULL, NULL, NULL, 'DOS0001_1625032588.png', '2021-04-25 08:25:39', '2021-07-08 15:05:10'),
 ('DOS0003', 7, 'EatSambel', 'adadadsbfdfg', 'Testing', 'Arini Firdausiyah', '082331147549', 2, 13, NULL, NULL, 'DOS0003_1624996560.png', '2021-06-29 19:53:53', '2021-06-29 19:56:00');
 
 -- --------------------------------------------------------
@@ -137,31 +137,26 @@ INSERT INTO `file` (`id_file`, `uploader`, `nama_file`, `path_file`, `created_at
 ('1VUchgAicCYUva2N5JFGsZoou2OAGQa2', 'admin', 'unnamed.png', 'assets/file/1VUchgAicCYUva2N5JFGsZoou2OAGQa2', '2021-07-02 13:38:50', '2021-07-02 13:38:50'),
 ('3SBmJB6zJD9BWPIMwdkGQoEMOl7wGGgp', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/3SBmJB6zJD9BWPIMwdkGQoEMOl7wGGgp', '2021-05-08 00:38:02', '2021-05-08 00:38:02'),
 ('6k6vqMJEmtUHXxs8NfLdFi3nzOh527ut', 'admin', 'Cheese_PNG_Clipart-3141.png', 'assets/file/6k6vqMJEmtUHXxs8NfLdFi3nzOh527ut', '2021-07-02 20:51:34', '2021-07-02 20:51:34'),
-('8Qb1gHRZf4InDLZF5hvU1L8CyBdlgPLx', 'DOS0001', 'h1.png', 'assets/file/8Qb1gHRZf4InDLZF5hvU1L8CyBdlgPLx', '2021-06-22 02:57:38', '2021-06-22 02:57:38'),
 ('AGjaFFtFUTdgplBCH7T0RXB8u1nztF3T', 'admin', 'asdadasdas.png', 'assets/file/AGjaFFtFUTdgplBCH7T0RXB8u1nztF3T', '2021-06-20 13:22:32', '2021-06-20 13:22:32'),
 ('AMwSYxiQhvWy2QyGW0fSCnpm2FbSM9YW', 'DOS0001', 'Cheese_PNG_Clipart-3141.png', 'assets/file/AMwSYxiQhvWy2QyGW0fSCnpm2FbSM9YW', '2021-06-22 01:57:04', '2021-06-22 01:57:04'),
-('ATpWZoJYkhymKEDBTVAYCGZCBfLRLVaU', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/ATpWZoJYkhymKEDBTVAYCGZCBfLRLVaU', '2021-05-08 01:02:26', '2021-05-08 01:02:26'),
 ('DY8P6UwUYmCMdWOzt9yDHlXZzkpQzKd7', 'admin', 'asdasdasd.png', 'assets/file/DY8P6UwUYmCMdWOzt9yDHlXZzkpQzKd7', '2021-06-19 23:36:12', '2021-06-19 23:36:12'),
 ('epFvDNPIsBlkfLkmcFLtZo0tt7njbeSO', 'admin', 'unnamed.png', 'assets/file/epFvDNPIsBlkfLkmcFLtZo0tt7njbeSO', '2021-07-02 21:04:21', '2021-07-02 21:04:21'),
-('HKLL2yrdsakra1T4Cx7J1uSc7uxuRZDo', 'DOS0001', 'Cheese_PNG_Clipart-3141.png', 'assets/file/HKLL2yrdsakra1T4Cx7J1uSc7uxuRZDo', '2021-06-24 19:21:44', '2021-06-24 19:21:44'),
-('iYnoECNIfdemvRueMzT16crhAqEKgeQn', 'DOS0001', 'Template Laporan Akhir PKMV 2021.pdf', 'assets/file/iYnoECNIfdemvRueMzT16crhAqEKgeQn', '2021-06-24 19:14:09', '2021-06-24 19:14:09'),
+('HE2Kx4tJCAGwWrsHtfHI2MxNIYFXJL3k', 'DOS0001', 'hasil.xlsx', 'assets/file/HE2Kx4tJCAGwWrsHtfHI2MxNIYFXJL3k', '2021-07-08 02:13:44', '2021-07-08 02:13:44'),
 ('J3wSl6xA6s8uh1iZwRGjC6bdrvQYEP7N', 'DOS0001', 'h1.png', 'assets/file/J3wSl6xA6s8uh1iZwRGjC6bdrvQYEP7N', '2021-06-21 20:56:49', '2021-06-21 20:56:49'),
 ('JGM9NX2qgiXLhn4pOKyZNfnPG7x0HMv5', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/JGM9NX2qgiXLhn4pOKyZNfnPG7x0HMv5', '2021-05-08 00:39:23', '2021-05-08 00:39:23'),
 ('jHUKWzN9yn3sJW8o7ss4ZmM2A17nyONW', 'admin', '176-0.jpg', 'assets/file/jHUKWzN9yn3sJW8o7ss4ZmM2A17nyONW', '2021-06-19 02:14:49', '2021-06-19 02:14:49'),
 ('JUvvAcy2NG7gSIHDrbtNDaqjewVtuCO9', 'DOS0001', 'banner_img.png', 'assets/file/JUvvAcy2NG7gSIHDrbtNDaqjewVtuCO9', '2021-05-19 13:11:00', '2021-05-19 13:11:00'),
 ('lPo2ZvWEixKSnXASqks9Ox1yX5DdPi6z', 'DOS0001', 'Template Laporan Akhir PKMV 2021.pdf', 'assets/file/lPo2ZvWEixKSnXASqks9Ox1yX5DdPi6z', '2021-06-24 19:10:24', '2021-06-24 19:10:24'),
+('LvqRhOUoc9IrZK8pZjiGCUh542QXcMxo', 'DOS0001', '215-388-1-SM.pdf', 'assets/file/LvqRhOUoc9IrZK8pZjiGCUh542QXcMxo', '2021-07-08 02:07:47', '2021-07-08 02:07:47'),
 ('NqXMFAz22qrUb7DB3dej2ZVms4EbTZuo', 'admin', 'Pedoman Pelaksanaan Kurikulum TI-FILKOM 2020.pdf', 'assets/file/NqXMFAz22qrUb7DB3dej2ZVms4EbTZuo', '2021-07-06 21:15:57', '2021-07-06 21:15:57'),
 ('NrxW79aRdfl7rAI8Nfq4sVUnmQ4zTtis', 'admin', 'asdasdasd.png', 'assets/file/NrxW79aRdfl7rAI8Nfq4sVUnmQ4zTtis', '2021-06-19 23:32:19', '2021-06-19 23:32:19'),
-('oNMI02J0gAXpTnPIbQUFSXB9byp33Wuc', 'DOS0001', 'Rekap Nilai Praktikum ADSI TI-B.pdf', 'assets/file/oNMI02J0gAXpTnPIbQUFSXB9byp33Wuc', '2021-06-21 21:49:34', '2021-06-21 21:49:34'),
 ('oSWPLqGunlILzcy0qJNEnwOOclGVwRR3', 'admin', 'aldo.jpeg', 'assets/file/oSWPLqGunlILzcy0qJNEnwOOclGVwRR3', '2021-06-20 10:25:04', '2021-06-20 10:25:04'),
+('qRsxwlN0TynCHlfK19NDI3KrN7ZpAYsO', 'DOS0001', 'Aftermeet Academy 2.0 History Inkubasi.xlsx', 'assets/file/qRsxwlN0TynCHlfK19NDI3KrN7ZpAYsO', '2021-07-08 01:57:24', '2021-07-08 01:57:24'),
 ('rg2z6OGR0GT0mAyJ5Ob83Kth4tOv1NCn', 'admin', 'aldo.jpeg', 'assets/file/rg2z6OGR0GT0mAyJ5Ob83Kth4tOv1NCn', '2021-06-19 10:23:09', '2021-06-19 10:23:09'),
 ('rmdl9KI7VLQX34pkxyYaTAltP6laEbsC', 'DOS0001', 'Template Laporan Akhir PKMV 2021.pdf', 'assets/file/rmdl9KI7VLQX34pkxyYaTAltP6laEbsC', '2021-06-24 19:07:08', '2021-06-24 19:07:08'),
-('skL0k2PrDr64cds4AJDhbxaPiyfbwdju', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/skL0k2PrDr64cds4AJDhbxaPiyfbwdju', '2021-05-08 00:43:18', '2021-05-08 00:43:18'),
-('T3B1rMMC47Tj8S8qpmXc938IhtFsYLcF', 'DOS0001', 'WhatsApp Image 2020-09-09 at 2.10.00 PM.jpeg', 'assets/file/T3B1rMMC47Tj8S8qpmXc938IhtFsYLcF', '2021-06-24 19:17:10', '2021-06-24 19:17:10'),
 ('TniBbKBptwyMULJFoojCAvvIQo7cCqGj', 'admin', 'Template Laporan Akhir PKMV 2021.pdf', 'assets/file/TniBbKBptwyMULJFoojCAvvIQo7cCqGj', '2021-06-23 14:28:12', '2021-06-23 14:28:12'),
 ('uRLh5VU5HqmU5R9a9kes31N2NlFxWn8K', 'DOS0001', '400 (1).jpeg', 'assets/file/uRLh5VU5HqmU5R9a9kes31N2NlFxWn8K', '2021-05-19 13:09:46', '2021-05-19 13:09:46'),
-('vOQS6AmaHCCess1XONEsGKSlszmnjbIp', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/vOQS6AmaHCCess1XONEsGKSlszmnjbIp', '2021-05-08 01:00:00', '2021-05-08 01:00:00'),
-('xqZyEaDiiaQieDInzW1C1Z8lzfrZ4Dur', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/xqZyEaDiiaQieDInzW1C1Z8lzfrZ4Dur', '2021-05-08 01:00:50', '2021-05-08 01:00:50'),
+('vDxTZ6uW5y9gJDMPkjo4sC67YLavGHMZ', 'DOS0001', 'Data Seluruh Tenant.xlsx', 'assets/file/vDxTZ6uW5y9gJDMPkjo4sC67YLavGHMZ', '2021-07-08 02:05:05', '2021-07-08 02:05:05'),
 ('y6BMSmU0QAgBRN4rGU34IkXCAbdyw0EY', 'DOS0001', 'WhatsApp Image 2020-09-09 at 9.46.44 AM.jpeg', 'assets/file/y6BMSmU0QAgBRN4rGU34IkXCAbdyw0EY', '2021-06-24 19:21:09', '2021-06-24 19:21:09'),
 ('Y7MYIUBQKCv37zx8hfSn3Zwn5mo39Eqk', 'admin', '285-2855629_profile-clipart-hd-png-download.png', 'assets/file/Y7MYIUBQKCv37zx8hfSn3Zwn5mo39Eqk', '2021-06-19 23:37:24', '2021-06-19 23:37:24'),
 ('YrvnHq6pD0OVOYUaSYLsnl10nXCEeTL0', 'DOS0001', '400 (1).jpeg', 'assets/file/YrvnHq6pD0OVOYUaSYLsnl10nXCEeTL0', '2021-05-19 13:10:27', '2021-05-19 13:10:27');
@@ -218,7 +213,15 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `created_at`, `updated_a
 (6, 'Sosial & Budaya', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
 (7, 'Transportasi', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
 (8, 'Material', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
-(9, 'Pertahanan', '2021-04-25 08:25:39', '2021-04-25 08:25:39');
+(9, 'Pertahanan Keamanan', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(10, 'Pendidikan', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(11, 'Maritim', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(12, 'Pertanian', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(13, 'Industri Kreatif', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(14, 'Food and Beverage', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(15, 'Jasa', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(16, 'Kesehatan', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(17, 'Multidisiplin dan Lintas Sektoral', '2021-04-25 08:25:39', '2021-04-25 08:25:39');
 
 -- --------------------------------------------------------
 
@@ -296,22 +299,14 @@ CREATE TABLE `monev` (
 --
 
 INSERT INTO `monev` (`id_monev`, `id_user`, `jenis_monev`, `status_progress`, `uraian`, `tanggal`, `file`, `feedback`, `created_at`, `updated_at`) VALUES
-('1dyeBtQL', 'DOS0001', 'kendala', 'Berat', 'Variasi meningkat membuat banyak pilihan bagi konsumen menjadi lebih bervariasi, tetapi perlu diperhatikan produksi menjadi lebih kompleks', '2021-10-28 00:00:00', NULL, 'Variasi meningkat membuat banyak pilihan bagi konsumen menjadi lebih bervariasi, tetapi perlu diperhatikan produksi menjadi lebih kompleks', NULL, NULL),
-('asvukLLw', 'DOS0001', 'pemasaran', 'Ada Progress', 'asdasd', '2021-04-30 00:00:00', NULL, NULL, NULL, NULL),
-('fnP6N2hX', 'DOS0001', 'pelanggan', 'Ada Progress', '1414123124', '2021-06-24 00:00:00', NULL, NULL, '2021-06-24 12:16:56', '2021-06-24 12:16:56'),
+('1dyeBtQL', 'DOS0001', 'kendala', 'Ringan', 'Variasi meningkat membuat banyak pilihan bagi konsumen menjadi lebih bervariasi, tetapi perlu diperhatikan produksi menjadi lebih kompleks', '2021-07-08 00:00:00', 'qRsxwlN0TynCHlfK19NDI3KrN7ZpAYsO', 'Variasi meningkat membuat banyak pilihan bagi konsumen menjadi lebih bervariasi, tetapi perlu diperhatikan produksi menjadi lebih kompleks', NULL, '2021-07-07 18:57:24'),
+('1YtKq2Bk', 'DOS0001', 'operasional', 'Ada Progress', 'asdsadasdasd', '2021-07-08 00:00:00', 'vDxTZ6uW5y9gJDMPkjo4sC67YLavGHMZ', NULL, '2021-07-07 19:04:53', '2021-07-07 19:05:05'),
+('asvukLLw', 'DOS0001', 'pemasaran', 'Ada Progress', 'asdasd', '2021-07-08 00:00:00', 'HE2Kx4tJCAGwWrsHtfHI2MxNIYFXJL3k', NULL, NULL, '2021-07-07 19:13:44'),
 ('GG8z2GGl', 'DOS0001', 'produk', 'Ada Progress', 'asdsad', '2021-06-24 00:00:00', NULL, NULL, NULL, NULL),
 ('iHUByGba', 'DOS0001', 'pelanggan', 'Progress Melampaui', 'adsadsadasd', '2021-05-08 00:00:00', NULL, NULL, NULL, NULL),
-('JnLnuvuE', 'DOS0001', 'kendala', 'Sedang', '323121312', '2021-06-24 00:00:00', 'HKLL2yrdsakra1T4Cx7J1uSc7uxuRZDo', 'test feedback', '2021-06-24 12:21:44', '2021-07-02 06:08:02'),
-('kfaQmTNn', 'DOS0001', 'produk', 'Ada Progress', 'asdadasd', '2021-05-08 00:00:00', NULL, NULL, NULL, NULL),
-('P3lTKN46', 'DOS0001', 'pelanggan', 'Progress Melampaui', '231312321', '2021-06-25 00:00:00', 'T3B1rMMC47Tj8S8qpmXc938IhtFsYLcF', NULL, '2021-06-24 12:17:10', '2021-06-24 12:17:10'),
-('pO68r9b2', 'DOS0001', 'operasional', 'Progress Melampaui', 'asdasdsadasd', '2021-01-05 00:00:00', NULL, 'bagus', NULL, NULL),
 ('ppRR8rQe', 'DOS0001', 'produk', 'Tidak Ada Progress', 'asdsadasd', '2021-06-24 00:00:00', NULL, NULL, NULL, NULL),
 ('pUhb09bM', 'DOS0001', 'operasional', 'Progress Melampaui', 'asdadasd', '2021-06-24 00:00:00', 'y6BMSmU0QAgBRN4rGU34IkXCAbdyw0EY', NULL, '2021-06-24 12:21:09', '2021-06-24 12:21:09'),
-('s5mELsC1', 'DOS0001', 'pemasaran', 'Progress Melampaui', 'asasdasd', '2021-05-08 00:00:00', NULL, NULL, NULL, NULL),
-('VGI2IxnF', 'DOS0001', 'produk', 'Tidak Ada Progress', '12131313', '2021-06-23 00:00:00', 'iYnoECNIfdemvRueMzT16crhAqEKgeQn', NULL, '2021-06-24 12:14:09', '2021-06-24 12:14:09'),
-('XiSyPCzF', 'DOS0001', 'pelanggan', 'Ada Progress', 'asdsadadad', '2021-06-30 00:00:00', NULL, NULL, '2021-06-28 12:31:26', '2021-06-28 12:31:26'),
-('ZbKqP7d5', 'DOS0001', 'pemasaran', 'Ada Progress', 'asdsadasd', '2021-03-31 00:00:00', NULL, NULL, NULL, NULL),
-('zxA60j3b', 'DOS0001', 'pemasaran', 'Ada Progress', 'ASDASDAD', '2021-05-19 00:00:00', 'skL0k2PrDr64cds4AJDhbxaPiyfbwdju', NULL, NULL, NULL);
+('XiSyPCzF', 'DOS0001', 'pelanggan', 'Ada Progress', 'asdsadadad', '2020-12-28 00:00:00', 'LvqRhOUoc9IrZK8pZjiGCUh542QXcMxo', NULL, '2021-06-28 12:31:26', '2021-07-07 19:07:58');
 
 -- --------------------------------------------------------
 
@@ -336,11 +331,7 @@ CREATE TABLE `monev_finansial` (
 --
 
 INSERT INTO `monev_finansial` (`id_finansial`, `id_user`, `tanggal`, `jenis_transaksi`, `keterangan_transaksi`, `jumlah`, `file`, `created_at`, `updated_at`) VALUES
-('2Zy4RZ7CBC2HOrFt', 'DOS0001', '2021-05-08 00:00:00', 'Pendapatan', 'Pendapatan tunai', 232323, 'xqZyEaDiiaQieDInzW1C1Z8lzfrZ4Dur', '2021-05-07 18:00:50', '2021-05-07 18:00:50'),
-('f1MjJss06tjICMUd', 'DOS0001', '2021-05-08 01:03:09', 'Pengeluaran', 'Pembayaran hutang', 233345, 'vOQS6AmaHCCess1XONEsGKSlszmnjbIp', '2021-05-07 18:00:00', '2021-05-07 18:00:00'),
-('N51TMnn2JnzyXWx1', 'DOS0001', '2021-02-28 00:00:00', 'Pendapatan', 'Pendapatan tunai', 1000000, 'AMwSYxiQhvWy2QyGW0fSCnpm2FbSM9YW', '2021-06-21 18:57:04', '2021-06-22 02:42:00'),
-('OBg4BCr2jV0op8Vg', 'DOS0001', '2021-06-22 00:00:00', 'Pengeluaran', 'Pembayaran upah dan gaji', 233333, 'ATpWZoJYkhymKEDBTVAYCGZCBfLRLVaU', '2021-05-07 18:02:26', '2021-06-21 20:01:54'),
-('oy2C1e59IYPx5sZ8', 'DOS0001', '2021-06-22 00:00:00', 'Pendapatan', 'Pendapatan tunai', 123000, '8Qb1gHRZf4InDLZF5hvU1L8CyBdlgPLx', '2021-06-21 19:57:38', '2021-06-21 19:57:38');
+('N51TMnn2JnzyXWx1', 'DOS0001', '2021-02-28 00:00:00', 'Pendapatan', 'Pendapatan tunai', 1000000, 'AMwSYxiQhvWy2QyGW0fSCnpm2FbSM9YW', '2021-06-21 18:57:04', '2021-06-22 02:42:00');
 
 -- --------------------------------------------------------
 
@@ -417,13 +408,6 @@ CREATE TABLE `prestasi` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `prestasi`
---
-
-INSERT INTO `prestasi` (`id_prestasi`, `id_user`, `tanggal`, `jenis_kegiatan`, `prestasi`, `tingkat_prestasi`, `file`, `created_at`, `updated_at`) VALUES
-('Pmk4m7BVduys6kyI', 'DOS0001', '2021-06-21 00:00:00', 'Business Plan', 'Juara 1', 'Provinsi', 'oNMI02J0gAXpTnPIbQUFSXB9byp33Wuc', '2021-05-19 13:11:42', '2021-06-21 21:49:34');
-
 -- --------------------------------------------------------
 
 --
@@ -455,7 +439,8 @@ INSERT INTO `prodis` (`id_prodi`, `nama_prodi`, `created_at`, `updated_at`) VALU
 (11, 'D4 Teknik Keselamatan dan Kesehatan Kerja', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
 (12, 'D4 Teknik Pengolahan Limbah', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
 (13, 'D4 Teknik Desain dan Manufaktur', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
-(14, 'D4 Manajemen Bisnis', '2021-04-25 08:25:39', '2021-04-25 08:25:39');
+(14, 'D4 Manajemen Bisnis', '2021-04-25 08:25:39', '2021-04-25 08:25:39'),
+(15, 'Lainnya', '2021-04-25 08:25:39', '2021-04-25 08:25:39');
 
 -- --------------------------------------------------------
 
@@ -649,7 +634,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_kategori` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -661,7 +646,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `prodis`
 --
 ALTER TABLE `prodis`
-  MODIFY `id_prodi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_prodi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `statuses`
