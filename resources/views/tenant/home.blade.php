@@ -79,9 +79,15 @@
                                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                                         Instagram
                                     </p>
+                                    @if($owner->instagram)
                                     <a href="https://www.instagram.com/{{ str_replace('@','', $owner->instagram) }}" class="text-md font-semibold text-gray-700 dark:text-gray-200 hover:text-lightBlue-600">
                                         {{ $owner->instagram }} 
                                     </a>
+                                    @else
+                                    <span class="text-md font-semibold text-gray-700 dark:text-gray-200">
+                                        -
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
                             <!-- Card -->
@@ -94,9 +100,15 @@
                                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                                         Website
                                     </p>
+                                    @if($owner->website)
                                     <a target="_blank" href="https://{{ $owner->website }}" class="text-md font-semibold text-gray-700 dark:text-gray-500 hover:text-lightBlue-600">
                                         Kunjungi Website
                                     </a>
+                                    @else
+                                    <span class="text-md font-semibold text-gray-700 dark:text-gray-200">
+                                        -
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
