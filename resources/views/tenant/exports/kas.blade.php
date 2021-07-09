@@ -1,33 +1,33 @@
 <table>
     <thead>
         <tr>
-            <th>Tanggal Transaksi</th>
-            <th>Keterangan Transaksi</th>
-            <th>Pendapatan (Rp)</th>
-            <th>Pengeluaran (Rp)</th>
-            <th>Saldo</th>
+            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Tanggal Transaksi</th>
+            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Keterangan Transaksi</th>
+            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Pendapatan (Rp)</th>
+            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Pengeluaran (Rp)</th>
+            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Saldo</th>
         </tr>
     </thead>
     <tbody>
         @for($i = 0; $i <= count($buku_kas)-1; $i++)
         <tr>
-            <td>
+            <td align="center" style="border: 1px solid #000000;">
                 {{ date('d/m/Y', strtotime($buku_kas[$i]->tanggal)) }}
             </td>
-            <td>
+            <td align="center" style="border: 1px solid #000000;">
                 {{ $buku_kas[$i]->keterangan_transaksi }}
             </td>
-            <td>
+            <td align="center" style="border: 1px solid #000000;">
                 @if ($buku_kas[$i]->jenis_transaksi == 'Pendapatan')
                     {{ $buku_kas[$i]->jumlah }}
                 @endif
             </td>
-            <td>
+            <td align="center" style="border: 1px solid #000000;">
                 @if ($buku_kas[$i]->jenis_transaksi == 'Pengeluaran')
                     {{ $buku_kas[$i]->jumlah }}
                 @endif
             </td>
-            <td>
+            <td align="center" style="border: 1px solid #000000;">
                 {{ $saldos[$i] }}
             </td>
         </tr>

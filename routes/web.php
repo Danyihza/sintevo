@@ -50,6 +50,7 @@ use Illuminate\Support\Facades\Route;
         Route::get('/export/{jenis_monev?}', [TenantController::class, 'exportToExcel'])->name('.export');
         Route::get('/exporttim', [TenantController::class, 'exporttim'])->name('.exporttim');
         Route::get('/exportLampiran', [TenantController::class, 'exportLampiran'])->name('.exportLampiran');
+        Route::get('/exportPrestasi', [TenantController::class, 'exportPrestasi'])->name('.exportPrestasi');
         
         Route::post('/changePassword', [AuthController::class, 'changePassword'])->name('.changenewpassword');
         Route::post('/updateProfileUsaha', [TenantController::class, 'updateUsaha'])->name('.updateProfileUsaha');

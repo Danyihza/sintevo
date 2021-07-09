@@ -206,9 +206,9 @@
                             <div class="px-4 bg-white md:space-y-1 sm:py-1">
                                 <div class="col-span-6 sm:col-span-4">
                                     <label for="no_identify"
-                                        class="block text-sm font-medium text-gray-700">NRP/NIDN</label>
+                                        class="block text-sm font-medium text-gray-700">NRP/NIDN/NIP</label>
                                     <input type="text" name="no_identify" id="no_identify"
-                                        placeholder="Masukan NRP/NIDN (Ketik '0' jika tidak memiliki)"
+                                        placeholder="Masukan NRP/NIDN/NIP (Ketik '0' jika tidak memiliki)"
                                         class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                         >
                                 </div>
@@ -466,9 +466,9 @@
                         <div class="px-4 bg-white md:space-y-1 sm:py-1">
                             <div class="col-span-6 sm:col-span-4">
                                 <label for="no_identify"
-                                    class="block text-sm font-medium text-gray-700">NRP/NIDN</label>
+                                    class="block text-sm font-medium text-gray-700">NRP/NIDN/NIP</label>
                                 <input type="text" name="no_identify" id="no_identify_edit"
-                                    placeholder="Masukan NRP/NIDN"
+                                    placeholder="Masukan NRP/NIDN/NIP (Ketik '0' jika tidak memiliki)"
                                     value="${data.no_identify}"
                                     class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                     >

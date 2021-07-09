@@ -2,36 +2,32 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromArray;
+use App\Models\Monev;
+use App\Models\Monev_Finansial;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class MonevExport implements FromArray, WithHeadings, ShouldAutoSize
+class MonevExport implements FromView, ShouldAutoSize
 {
 
-    protected $data;
+    protected $id_user;
     protected $isFinansial;
 
-    public function __construct(array $data, bool $isFinansial = false)
+    public function __construct($id_user, bool $isFinansial = false)
     {
-        $this->data = $data;
+        $this->id_user = $id_user;
         $this->isFinansial = $isFinansial;
     }
 
-    public function array(): array
+    public function view(): View
     {
-        return $this->data;
+        if ($this->isFinansial == true) {
+            $data['finansial'] = Monev_Finansial::where('id_user', $this->id_user)->orderBy('tanggal', 'DESC')->get();
+            return view('tenant.exports.finansial', $data);
+        }
+        $data['monev'] = Monev::where('id_user', $this->id_user)->get();
+        return view('tenant.exports.monev', $data);
     }
 
-    public function headings(): array
-    {
-        if ($this->isFinansial) {
-            return [
-                'Tanggal Transaksi', 'Jenis Transaksi', 'Keterangan Transaksi', 'Jumlah', 'Tanggal Input'
-            ];
-        }
-        return [
-            'Tanggal', 'Status', 'Uraian', 'File', 'Feedback', 'Tanggal Input'
-        ];
-    }
 }

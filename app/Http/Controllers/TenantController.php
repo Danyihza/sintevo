@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\KasExport;
 use App\Exports\LampiranExport;
 use App\Exports\MonevExport;
+use App\Exports\PrestasiExport;
 use App\Exports\TimExport;
 use Exception;
 use Carbon\Carbon;
@@ -257,6 +258,12 @@ class TenantController extends Controller
             return self::tambahMonevFinansial($request);
         } else {
             // dd($request->file('upload_file'));
+            $request->validate([
+                'status_progress' => 'required',
+                'uraian' => 'required',
+            ],[
+                'required' => 'Formulir tidak diisi dengan lengkap, penambahan monev tidak berhasil'
+            ]);
             try {
                 $monev = new Monev;
                 $monev->id_monev = Str::random(8);
@@ -319,6 +326,8 @@ class TenantController extends Controller
             'jenis_transaksi' => 'required',
             'keterangan_transaksi' => 'required',
             'jumlah' => 'required'
+        ],[
+            'required' => 'Formulir tidak diisi dengan lengkap, penambahan monev tidak berhasil'
         ]);
         try {
             $finansial = new Monev_Finansial;
@@ -387,6 +396,12 @@ class TenantController extends Controller
 
     public function updateMonev(Request $request)
     {
+        $request->validate([
+            'status_progress' => 'required',
+            'uraian' => 'required',
+        ], [
+            'required' => 'Formulir tidak diisi dengan lengkap, edit monev gagal'
+        ]);
         try {
             $id_monev = $request->id_monev;
             $monev = Monev::where('id_monev', $id_monev)->first();
@@ -480,7 +495,7 @@ class TenantController extends Controller
                 if (count($data) == 0) {
                     throw new Exception('not found', 1);
                 }
-                return Excel::download(new MonevExport($data->toArray(), true), $file_name);
+                return Excel::download(new MonevExport(session('login-data')['id'], true), $file_name);
             } catch (\Throwable $th) {
                 return abort(404);
             }
@@ -500,7 +515,7 @@ class TenantController extends Controller
             if (count($data) == 0) {
                 throw new Exception('not found', 1);
             }
-            return Excel::download(new MonevExport($data->toArray()), $file_name);
+            return Excel::download(new MonevExport(session('login-data')['id']), $file_name);
         } catch (\Throwable $th) {
             return abort(404);
         }
@@ -516,6 +531,12 @@ class TenantController extends Controller
     {
         $data = Detail_user::where('id_detail', session('login-data')['id'])->first();
         return Excel::download(new LampiranExport(session('login-data')['id']), "$data->nama_brand History Inkubasi.xlsx");
+    }
+
+    public function exportPrestasi()
+    {
+        $data = Detail_user::where('id_detail', session('login-data')['id'])->first();
+        return Excel::download(new PrestasiExport(session('login-data')['id']), "$data->nama_brand Prestasi.xlsx");
     }
 
     public function deleteFileMonev($id_fileMonev)
