@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2021 at 05:06 PM
+-- Generation Time: Jul 09, 2021 at 04:44 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -45,7 +45,8 @@ CREATE TABLE `anggota` (
 
 INSERT INTO `anggota` (`id_anggota`, `id_user`, `nama`, `status`, `prodi`, `no_identify`, `jabatan`, `created_at`, `updated_at`) VALUES
 (2, 'DOS0001', 'Budi Santoso', 3, NULL, '1234', 'CFO', '2021-05-06 03:39:35', '2021-06-30 06:05:05'),
-(5, 'DOS0001', 'Dany Ahmad Ihza Prakoso', 2, 3, '4343434', 'CEO', '2021-06-30 06:04:36', '2021-06-30 06:04:36');
+(5, 'DOS0001', 'Dany Ahmad Ihza Prakoso', 2, 1, '4343434', 'CEO', '2021-06-30 06:04:36', '2021-07-09 07:45:44'),
+(7, 'DOS0001', 'Dany', 2, 15, '0', 'adsada', '2021-07-09 07:48:59', '2021-07-09 07:52:33');
 
 -- --------------------------------------------------------
 
@@ -136,13 +137,13 @@ CREATE TABLE `file` (
 INSERT INTO `file` (`id_file`, `uploader`, `nama_file`, `path_file`, `created_at`, `updated_at`) VALUES
 ('1VUchgAicCYUva2N5JFGsZoou2OAGQa2', 'admin', 'unnamed.png', 'assets/file/1VUchgAicCYUva2N5JFGsZoou2OAGQa2', '2021-07-02 13:38:50', '2021-07-02 13:38:50'),
 ('3SBmJB6zJD9BWPIMwdkGQoEMOl7wGGgp', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/3SBmJB6zJD9BWPIMwdkGQoEMOl7wGGgp', '2021-05-08 00:38:02', '2021-05-08 00:38:02'),
+('5U7zGFgiK2eLHm5sLDULMcnmzELur3V4', 'DOS0001', 'ti.png', 'assets/file/5U7zGFgiK2eLHm5sLDULMcnmzELur3V4', '2021-07-09 15:25:11', '2021-07-09 15:25:11'),
 ('6k6vqMJEmtUHXxs8NfLdFi3nzOh527ut', 'admin', 'Cheese_PNG_Clipart-3141.png', 'assets/file/6k6vqMJEmtUHXxs8NfLdFi3nzOh527ut', '2021-07-02 20:51:34', '2021-07-02 20:51:34'),
 ('AGjaFFtFUTdgplBCH7T0RXB8u1nztF3T', 'admin', 'asdadasdas.png', 'assets/file/AGjaFFtFUTdgplBCH7T0RXB8u1nztF3T', '2021-06-20 13:22:32', '2021-06-20 13:22:32'),
 ('AMwSYxiQhvWy2QyGW0fSCnpm2FbSM9YW', 'DOS0001', 'Cheese_PNG_Clipart-3141.png', 'assets/file/AMwSYxiQhvWy2QyGW0fSCnpm2FbSM9YW', '2021-06-22 01:57:04', '2021-06-22 01:57:04'),
 ('DY8P6UwUYmCMdWOzt9yDHlXZzkpQzKd7', 'admin', 'asdasdasd.png', 'assets/file/DY8P6UwUYmCMdWOzt9yDHlXZzkpQzKd7', '2021-06-19 23:36:12', '2021-06-19 23:36:12'),
 ('epFvDNPIsBlkfLkmcFLtZo0tt7njbeSO', 'admin', 'unnamed.png', 'assets/file/epFvDNPIsBlkfLkmcFLtZo0tt7njbeSO', '2021-07-02 21:04:21', '2021-07-02 21:04:21'),
 ('HE2Kx4tJCAGwWrsHtfHI2MxNIYFXJL3k', 'DOS0001', 'hasil.xlsx', 'assets/file/HE2Kx4tJCAGwWrsHtfHI2MxNIYFXJL3k', '2021-07-08 02:13:44', '2021-07-08 02:13:44'),
-('J3wSl6xA6s8uh1iZwRGjC6bdrvQYEP7N', 'DOS0001', 'h1.png', 'assets/file/J3wSl6xA6s8uh1iZwRGjC6bdrvQYEP7N', '2021-06-21 20:56:49', '2021-06-21 20:56:49'),
 ('JGM9NX2qgiXLhn4pOKyZNfnPG7x0HMv5', 'DOS0001', 'Tugas 6_185150701111017_Dany Ahmad Ihza Prakoso_AWS ECS.pdf', 'assets/file/JGM9NX2qgiXLhn4pOKyZNfnPG7x0HMv5', '2021-05-08 00:39:23', '2021-05-08 00:39:23'),
 ('jHUKWzN9yn3sJW8o7ss4ZmM2A17nyONW', 'admin', '176-0.jpg', 'assets/file/jHUKWzN9yn3sJW8o7ss4ZmM2A17nyONW', '2021-06-19 02:14:49', '2021-06-19 02:14:49'),
 ('JUvvAcy2NG7gSIHDrbtNDaqjewVtuCO9', 'DOS0001', 'banner_img.png', 'assets/file/JUvvAcy2NG7gSIHDrbtNDaqjewVtuCO9', '2021-05-19 13:11:00', '2021-05-19 13:11:00'),
@@ -154,6 +155,7 @@ INSERT INTO `file` (`id_file`, `uploader`, `nama_file`, `path_file`, `created_at
 ('qRsxwlN0TynCHlfK19NDI3KrN7ZpAYsO', 'DOS0001', 'Aftermeet Academy 2.0 History Inkubasi.xlsx', 'assets/file/qRsxwlN0TynCHlfK19NDI3KrN7ZpAYsO', '2021-07-08 01:57:24', '2021-07-08 01:57:24'),
 ('rg2z6OGR0GT0mAyJ5Ob83Kth4tOv1NCn', 'admin', 'aldo.jpeg', 'assets/file/rg2z6OGR0GT0mAyJ5Ob83Kth4tOv1NCn', '2021-06-19 10:23:09', '2021-06-19 10:23:09'),
 ('rmdl9KI7VLQX34pkxyYaTAltP6laEbsC', 'DOS0001', 'Template Laporan Akhir PKMV 2021.pdf', 'assets/file/rmdl9KI7VLQX34pkxyYaTAltP6laEbsC', '2021-06-24 19:07:08', '2021-06-24 19:07:08'),
+('RpRfxVmwbkoAVC2pcVpWvWxSuE62iXM6', 'DOS0001', 'WhatsApp Image 2021-07-01 at 8.48.19 PM.jpeg', 'assets/file/RpRfxVmwbkoAVC2pcVpWvWxSuE62iXM6', '2021-07-09 21:43:11', '2021-07-09 21:43:11'),
 ('TniBbKBptwyMULJFoojCAvvIQo7cCqGj', 'admin', 'Template Laporan Akhir PKMV 2021.pdf', 'assets/file/TniBbKBptwyMULJFoojCAvvIQo7cCqGj', '2021-06-23 14:28:12', '2021-06-23 14:28:12'),
 ('uRLh5VU5HqmU5R9a9kes31N2NlFxWn8K', 'DOS0001', '400 (1).jpeg', 'assets/file/uRLh5VU5HqmU5R9a9kes31N2NlFxWn8K', '2021-05-19 13:09:46', '2021-05-19 13:09:46'),
 ('vDxTZ6uW5y9gJDMPkjo4sC67YLavGHMZ', 'DOS0001', 'Data Seluruh Tenant.xlsx', 'assets/file/vDxTZ6uW5y9gJDMPkjo4sC67YLavGHMZ', '2021-07-08 02:05:05', '2021-07-08 02:05:05'),
@@ -184,7 +186,6 @@ CREATE TABLE `file_monev` (
 --
 
 INSERT INTO `file_monev` (`id_filemonev`, `id_user`, `jenis_kegiatan`, `keterangan_file`, `file`, `feedback`, `tanggal`, `created_at`, `updated_at`) VALUES
-('xWpSzxhq6CGI2dZR', 'DOS0001', 'Pra Startup', 'Laporan Akhir', 'J3wSl6xA6s8uh1iZwRGjC6bdrvQYEP7N', NULL, '2021-06-29 17:00:00', '2021-06-20 13:32:07', '2021-07-02 06:06:09'),
 ('ySIunJRpElNBke0Q', 'DOS0002', 'KBMI', 'Lembar Pengesahan', 'mVrJwLVlJaVrulXsV3r4YNnbzfT7HmTI', NULL, '2021-06-20 17:00:00', '2021-06-20 17:39:09', '2021-06-20 17:39:09');
 
 -- --------------------------------------------------------
@@ -301,8 +302,8 @@ CREATE TABLE `monev` (
 INSERT INTO `monev` (`id_monev`, `id_user`, `jenis_monev`, `status_progress`, `uraian`, `tanggal`, `file`, `feedback`, `created_at`, `updated_at`) VALUES
 ('1dyeBtQL', 'DOS0001', 'kendala', 'Ringan', 'Variasi meningkat membuat banyak pilihan bagi konsumen menjadi lebih bervariasi, tetapi perlu diperhatikan produksi menjadi lebih kompleks', '2021-07-08 00:00:00', 'qRsxwlN0TynCHlfK19NDI3KrN7ZpAYsO', 'Variasi meningkat membuat banyak pilihan bagi konsumen menjadi lebih bervariasi, tetapi perlu diperhatikan produksi menjadi lebih kompleks', NULL, '2021-07-07 18:57:24'),
 ('1YtKq2Bk', 'DOS0001', 'operasional', 'Ada Progress', 'asdsadasdasd', '2021-07-08 00:00:00', 'vDxTZ6uW5y9gJDMPkjo4sC67YLavGHMZ', NULL, '2021-07-07 19:04:53', '2021-07-07 19:05:05'),
-('asvukLLw', 'DOS0001', 'pemasaran', 'Ada Progress', 'asdasd', '2021-07-08 00:00:00', 'HE2Kx4tJCAGwWrsHtfHI2MxNIYFXJL3k', NULL, NULL, '2021-07-07 19:13:44'),
-('GG8z2GGl', 'DOS0001', 'produk', 'Ada Progress', 'asdsad', '2021-06-24 00:00:00', NULL, NULL, NULL, NULL),
+('asvukLLw', 'DOS0001', 'pemasaran', 'Tidak Ada Progress', 'asdasdas', '2021-07-09 00:00:00', 'HE2Kx4tJCAGwWrsHtfHI2MxNIYFXJL3k', NULL, NULL, '2021-07-09 13:22:24'),
+('GG8z2GGl', 'DOS0001', 'produk', 'Ada Progress', 'asdsad', '2021-07-09 00:00:00', NULL, NULL, NULL, '2021-07-09 13:32:54'),
 ('iHUByGba', 'DOS0001', 'pelanggan', 'Progress Melampaui', 'adsadsadasd', '2021-05-08 00:00:00', NULL, NULL, NULL, NULL),
 ('ppRR8rQe', 'DOS0001', 'produk', 'Tidak Ada Progress', 'asdsadasd', '2021-06-24 00:00:00', NULL, NULL, NULL, NULL),
 ('pUhb09bM', 'DOS0001', 'operasional', 'Progress Melampaui', 'asdadasd', '2021-06-24 00:00:00', 'y6BMSmU0QAgBRN4rGU34IkXCAbdyw0EY', NULL, '2021-06-24 12:21:09', '2021-06-24 12:21:09'),
@@ -331,6 +332,7 @@ CREATE TABLE `monev_finansial` (
 --
 
 INSERT INTO `monev_finansial` (`id_finansial`, `id_user`, `tanggal`, `jenis_transaksi`, `keterangan_transaksi`, `jumlah`, `file`, `created_at`, `updated_at`) VALUES
+('mWwUScDfCkWDkR1h', 'DOS0001', '2021-07-09 00:00:00', 'Pengeluaran', 'Pembayaran biaya promosi/pemasaran', 123123, 'RpRfxVmwbkoAVC2pcVpWvWxSuE62iXM6', '2021-07-09 14:43:11', '2021-07-09 14:43:11'),
 ('N51TMnn2JnzyXWx1', 'DOS0001', '2021-02-28 00:00:00', 'Pendapatan', 'Pendapatan tunai', 1000000, 'AMwSYxiQhvWy2QyGW0fSCnpm2FbSM9YW', '2021-06-21 18:57:04', '2021-06-22 02:42:00');
 
 -- --------------------------------------------------------
@@ -407,6 +409,13 @@ CREATE TABLE `prestasi` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `prestasi`
+--
+
+INSERT INTO `prestasi` (`id_prestasi`, `id_user`, `tanggal`, `jenis_kegiatan`, `prestasi`, `tingkat_prestasi`, `file`, `created_at`, `updated_at`) VALUES
+('I4jigsAfk8tuLhVy', 'DOS0001', '2021-07-09 00:00:00', 'KBMI', 'Juara 3', 'Kampus', '5U7zGFgiK2eLHm5sLDULMcnmzELur3V4', '2021-07-09 15:25:11', '2021-07-09 15:25:11');
 
 -- --------------------------------------------------------
 
@@ -616,7 +625,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `dashboard_pengumuman`
