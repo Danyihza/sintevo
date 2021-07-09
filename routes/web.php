@@ -93,6 +93,9 @@ use Illuminate\Support\Facades\Route;
 
         Route::get('/export/{jenis_monev?}/{id_user?}', [AdminTenant::class, 'exportToExcel'])->name('export');
         Route::get('/exporttenant', [AdminTenant::class, 'exporttenant'])->name('exporttenant');
+        Route::get('/exporttim/{id_user?}', [AdminTenant::class, 'exporttim'])->name('exporttim');
+        Route::get('/exportLampiran/{id_user?}', [AdminTenant::class, 'exportLampiran'])->name('exportLampiran');
+        Route::get('/exportPrestasi/{id_user?}', [AdminTenant::class, 'exportPrestasi'])->name('exportPrestasi');
     });
 
 

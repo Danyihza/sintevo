@@ -30,6 +30,14 @@ class PengumumanController extends Controller
 
     public function addJuknis(Request $request)
     {
+        $request->validate(
+            [
+                'upload_file' => 'required'
+            ],
+            [
+                'upload_file.required' => 'Formulir tidak diisi dengan lengkap, penambahan petunjuk teknis tidak berhasil'
+            ]
+        );
         try {
             $kode = $request->kode;
             $juknis = new Juknis;
@@ -60,6 +68,14 @@ class PengumumanController extends Controller
 
     public function addPengumuman(Request $request)
     {
+        $request->validate(
+            [
+                'upload_file' => 'required'
+            ],
+            [
+                'upload_file.required' => 'Formulir tidak diisi dengan lengkap, penambahan pengumuman tidak berhasil'
+            ]
+        );
         try {
             $tanggal = $request->tanggal;
             $is_permanent = $request->is_permanent;

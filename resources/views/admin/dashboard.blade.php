@@ -84,7 +84,7 @@
                                     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                                         Informasi Terbaru
                                     </p>
-                                    <a href="https://www.instagram.com" class="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-lightBlue-600">
+                                    <a href="{{ route('admin.pengumuman') }}" class="text-lg font-semibold text-gray-700 dark:text-gray-200 hover:text-lightBlue-600">
                                         Lihat Disini
                                     </a>
                                 </div>

@@ -224,16 +224,16 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-
-            <footer
+                
+                <footer
                 class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
-                <button type="button" id="btn_submit" onclick="submit('formTambahAnggota')"
-                    class="w-full text-center px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-lightBlue-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:shadow-outline-lightBlue">
-                    Tambah
-                </button>
+                <button type="submit"
+                class="w-full text-center px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-lightBlue-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:shadow-outline-lightBlue">
+                Tambah
+            </button>
+        </form>
             </footer>
         </div>
     </div>
@@ -299,7 +299,7 @@
         <div x-show="isModalTimEditOpen" x-transition:enter="transition ease-out duration-150"
             x-transition:enter-start="opacity-0 transform translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
             x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-            x-transition:leave-end="opacity-0  transform translate-y-4 sm:translate-y-0 sm:scale-95" @click.away="closeModalTimEdit"
+            x-transition:leave-end="opacity-0  transform translate-y-4 sm:translate-y-0 sm:scale-95"
             @keydown.escape="closeModalTimEdit"
             class="w-full px-6 py-4 bg-white rounded-t-lg my-2 dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
             role="dialog" id="modal">
@@ -450,12 +450,10 @@
                                 <select id="prodi_edit" name="prodi"
                                     class="mt-1 block w-full py-2 disabled px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">`;
 
-                form += `<option value="${data.has_prodi ?? 'NaN'}" ${data.has_prodi ? '': 'disabled'}>${data.has_prodi ? data.has_prodi.nama_prodi : 'Pilih Prodi'}</option>`;
+                // form += `<option value="${data.has_prodi ?? 'NaN'}" ${data.has_prodi ? '': 'disabled'}>${data.has_prodi ? data.has_prodi.nama_prodi : 'Pilih Prodi'}</option>`;
 
             prodi.forEach((item, index) => {
-                if (item.id_prodi != data.prodi) {
-                    form += `<option value="${item.id_prodi}">${item.nama_prodi}</option>`;
-                }
+                    form += `<option value="${item.id_prodi}" ${ item.id_prodi == data.has_prodi?.id_prodi ? 'selected' : ''}>${item.nama_prodi}</option>`;
             })
 
             form += `

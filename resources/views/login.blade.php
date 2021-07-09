@@ -50,9 +50,9 @@
                         </div>
 
                         <div class="text-sm">
-                            <a href="#" class="font-medium text-lightBlue-600 hover:text-lightBlue-500">
+                            {{-- <a href="#" class="font-medium text-lightBlue-600 hover:text-lightBlue-500">
                                 Forgot your password?
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
 

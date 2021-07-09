@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\KasAdminExport;
 use App\Exports\KasExport;
+use App\Exports\LampiranExport;
 use App\Exports\MonevExport;
+use App\Exports\PrestasiExport;
 use App\Exports\TenantExport;
+use App\Exports\TimExport;
 use App\Http\Controllers\Controller;
 use App\Models\Anggota;
 use App\Models\Detail_user;
@@ -72,6 +75,14 @@ class TenantController extends Controller
 
     public function addSertifikat(Request $request)
     {
+        $request->validate(
+            [
+                'upload_file' => 'required'
+            ],
+            [
+                'upload_file.required' => 'Formulir tidak diisi dengan lengkap, penambahan sertifikat tidak berhasil'
+            ]
+        );
         $id_user = $request->id_user;
         $lulus = $request->kelulusan;
         $kelulusan = new Kelulusan;
@@ -201,6 +212,24 @@ class TenantController extends Controller
     public function exporttenant()
     {
         return Excel::download(new TenantExport, 'Data Seluruh Tenant.xlsx');
+    }
+
+    public function exporttim($id_user)
+    {
+        $dataUser = Detail_user::where('id_detail', $id_user)->first();
+        return Excel::download(new TimExport($id_user), "$dataUser->nama_brand Profile Tim.xlsx");
+    }
+
+    public function exportLampiran($id_user)
+    {
+        $dataUser = Detail_user::where('id_detail', $id_user)->first();
+        return Excel::download(new LampiranExport($id_user), "$dataUser->nama_brand Pencatatan Inkubasi.xlsx");
+    }
+    
+    public function exportPrestasi($id_user)
+    {
+        $dataUser = Detail_user::where('id_detail', $id_user)->first();
+        return Excel::download(new PrestasiExport($id_user), "$dataUser->nama_brand Prestasi.xlsx");
     }
 
     private static function _uploadFile($request, $upload_name)

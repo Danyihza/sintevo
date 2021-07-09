@@ -32,9 +32,7 @@
                     <span class="md:inline">
                         {{ session('success') }}
                         {{ session('error') }}
-                        @foreach($errors->all() as $error)
-                        {{ $error }}
-                        @endforeach
+                        {{ $errors->first() }}
                     </span>
                 </p>
             </div>

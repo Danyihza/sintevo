@@ -234,7 +234,8 @@ $id_user = end($url);
                                                 height="24">
                                                 <path fill="none" d="M0 0h24v24H0z" />
                                                 <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z"
-                                                    fill="rgba(38,132,199,1)" /></svg>
+                                                    fill="rgba(38,132,199,1)" />
+                                            </svg>
                                         </div>
                                     </button>
 
@@ -243,6 +244,26 @@ $id_user = end($url);
                                         x-bind:style="selected == 2 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''">
                                         <div class="p-6">
                                             <!-- New Table -->
+                                            <div class="flex justify-end mb-3">
+                                                <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                                    href="{{ route('admin.exporttim', $id_user) }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                                                        viewBox="0 0 172 172" style=" fill:#000000;">
+                                                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                                            stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+                                                            stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+                                                            font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                                                            <g fill="#ffffff">
+                                                                <path
+                                                                    d="M43,14.33333c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333h-7.16667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333c0,7.91917 6.41417,14.33333 14.33333,14.33333h7.16667v14.33333c0,7.91917 6.41417,14.33333 14.33333,14.33333h58.5651l-14.33333,-14.33333h-44.23177v-14.33333h71.66667v-21.5c0,-3.956 3.21067,-7.16667 7.16667,-7.16667h21.5v-50.16667l-35.83333,-35.83333zM43,28.66667h57.33333v28.66667h28.66667v7.16667h-86zM21.68197,78.83333h8.94434l5.19303,12.30371l5.20703,-12.30371h8.93034l-9.08431,17.7627l9.29427,18.07064h-9.04232l-5.30501,-12.52767l-5.27702,12.52767h-9.04232l9.28027,-18.07064zM57.33333,78.83333h7.16667v28.66667h14.33333v7.16667h-21.5zM96.68001,78.83333c10.19817,0.29383 10.81999,9.19416 10.81999,10.77799h-6.94271c0.00072,-0.75797 0.1117,-4.99707 -4.00326,-4.99707c-1.25417,0 -4.06428,0.55575 -3.84928,4.01725c0.20783,3.1605 4.38421,4.66706 5.15104,5.01106c1.60533,0.58767 9.55171,4.12789 9.61621,11.35189c0.01433,1.53367 -0.38218,9.5647 -10.65202,9.6722c-11.17283,0.12183 -11.92578,-9.4927 -11.92578,-11.47786h6.9847c0,1.0535 0.08925,6.14709 4.94109,5.75293c2.91683,-0.24367 3.55298,-2.34294 3.65332,-3.90527c0.16483,-2.63017 -2.3454,-4.21131 -4.99707,-5.48698c-3.72667,-1.79167 -9.62069,-3.99362 -9.72819,-10.97396c-0.09317,-6.28517 4.52496,-9.92135 10.93196,-9.74219zM129,114.66667v28.66667h-21.5l28.66667,28.66667l28.66667,-28.66667h-21.5v-28.66667z">
+                                                                </path>
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                    <span>Export Excel</span>
+                                                </a>
+                                            </div>
                                             <div class="w-full overflow-hidden rounded-sm border">
                                                 <div class="w-full overflow-x-auto">
                                                     <table class="w-full whitespace-no-wrap">
@@ -1312,7 +1333,29 @@ $id_user = end($url);
                             <h1 class="font-medium pb-4">File & Lampiran</h1>
                             <div class="border border-gray-300 sm:overflow-hidden">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                                    <h1 class="text-lg">Pencatatan Monev</h1>
+                                    <div class="flex justify-between">
+                                        <h1 class="text-lg">Pencatatan Inkubasi</h1>
+                                        @if(count($lampiran) > 0)
+                                        <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                            href="{{ route('admin.exportLampiran', $id_user) }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                                                viewBox="0 0 172 172" style=" fill:#000000;">
+                                                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                                    stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+                                                    stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+                                                    font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                                    <path d="M0,172v-172h172v172z" fill="none"></path>
+                                                    <g fill="#ffffff">
+                                                        <path
+                                                            d="M43,14.33333c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333h-7.16667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333c0,7.91917 6.41417,14.33333 14.33333,14.33333h7.16667v14.33333c0,7.91917 6.41417,14.33333 14.33333,14.33333h58.5651l-14.33333,-14.33333h-44.23177v-14.33333h71.66667v-21.5c0,-3.956 3.21067,-7.16667 7.16667,-7.16667h21.5v-50.16667l-35.83333,-35.83333zM43,28.66667h57.33333v28.66667h28.66667v7.16667h-86zM21.68197,78.83333h8.94434l5.19303,12.30371l5.20703,-12.30371h8.93034l-9.08431,17.7627l9.29427,18.07064h-9.04232l-5.30501,-12.52767l-5.27702,12.52767h-9.04232l9.28027,-18.07064zM57.33333,78.83333h7.16667v28.66667h14.33333v7.16667h-21.5zM96.68001,78.83333c10.19817,0.29383 10.81999,9.19416 10.81999,10.77799h-6.94271c0.00072,-0.75797 0.1117,-4.99707 -4.00326,-4.99707c-1.25417,0 -4.06428,0.55575 -3.84928,4.01725c0.20783,3.1605 4.38421,4.66706 5.15104,5.01106c1.60533,0.58767 9.55171,4.12789 9.61621,11.35189c0.01433,1.53367 -0.38218,9.5647 -10.65202,9.6722c-11.17283,0.12183 -11.92578,-9.4927 -11.92578,-11.47786h6.9847c0,1.0535 0.08925,6.14709 4.94109,5.75293c2.91683,-0.24367 3.55298,-2.34294 3.65332,-3.90527c0.16483,-2.63017 -2.3454,-4.21131 -4.99707,-5.48698c-3.72667,-1.79167 -9.62069,-3.99362 -9.72819,-10.97396c-0.09317,-6.28517 4.52496,-9.92135 10.93196,-9.74219zM129,114.66667v28.66667h-21.5l28.66667,28.66667l28.66667,-28.66667h-21.5v-28.66667z">
+                                                        </path>
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                            <span>Export Excel</span>
+                                        </a>
+                                        @endif
+                                    </div>
                                     <div class="w-full overflow-hidden rounded-sm border mb-6">
                                         <div class="w-full overflow-x-auto">
                                             <table class="w-full whitespace-no-wrap">
@@ -1327,7 +1370,7 @@ $id_user = end($url);
                                                     </tr>
                                                 </thead>
                                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                                    @if(count($prestasi) == 0)
+                                                    @if(count($lampiran) == 0)
                                                     <tr>
                                                         <td class="text-center px-4 py-3" colspan="5">
                                                             <span class="font-normal italic opacity-30 px-2 py-1">
@@ -1414,7 +1457,29 @@ $id_user = end($url);
                             <h1 class="font-medium pb-4">Prestasi</h1>
                             <div class="border border-gray-300 sm:overflow-hidden">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                                    <h1 class="text-lg">Prestasi Tenant</h1>
+                                    <div class="flex justify-between">
+                                        <h1 class="text-lg">Prestasi Tenant</h1>
+                                        @if(count($prestasi) > 0)
+                                        <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                            href="{{ route('admin.exportLampiran', $id_user) }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                                                viewBox="0 0 172 172" style=" fill:#000000;">
+                                                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                                    stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+                                                    stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+                                                    font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                                    <path d="M0,172v-172h172v172z" fill="none"></path>
+                                                    <g fill="#ffffff">
+                                                        <path
+                                                            d="M43,14.33333c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333h-7.16667c-7.91917,0 -14.33333,6.41417 -14.33333,14.33333v35.83333c0,7.91917 6.41417,14.33333 14.33333,14.33333h7.16667v14.33333c0,7.91917 6.41417,14.33333 14.33333,14.33333h58.5651l-14.33333,-14.33333h-44.23177v-14.33333h71.66667v-21.5c0,-3.956 3.21067,-7.16667 7.16667,-7.16667h21.5v-50.16667l-35.83333,-35.83333zM43,28.66667h57.33333v28.66667h28.66667v7.16667h-86zM21.68197,78.83333h8.94434l5.19303,12.30371l5.20703,-12.30371h8.93034l-9.08431,17.7627l9.29427,18.07064h-9.04232l-5.30501,-12.52767l-5.27702,12.52767h-9.04232l9.28027,-18.07064zM57.33333,78.83333h7.16667v28.66667h14.33333v7.16667h-21.5zM96.68001,78.83333c10.19817,0.29383 10.81999,9.19416 10.81999,10.77799h-6.94271c0.00072,-0.75797 0.1117,-4.99707 -4.00326,-4.99707c-1.25417,0 -4.06428,0.55575 -3.84928,4.01725c0.20783,3.1605 4.38421,4.66706 5.15104,5.01106c1.60533,0.58767 9.55171,4.12789 9.61621,11.35189c0.01433,1.53367 -0.38218,9.5647 -10.65202,9.6722c-11.17283,0.12183 -11.92578,-9.4927 -11.92578,-11.47786h6.9847c0,1.0535 0.08925,6.14709 4.94109,5.75293c2.91683,-0.24367 3.55298,-2.34294 3.65332,-3.90527c0.16483,-2.63017 -2.3454,-4.21131 -4.99707,-5.48698c-3.72667,-1.79167 -9.62069,-3.99362 -9.72819,-10.97396c-0.09317,-6.28517 4.52496,-9.92135 10.93196,-9.74219zM129,114.66667v28.66667h-21.5l28.66667,28.66667l28.66667,-28.66667h-21.5v-28.66667z">
+                                                        </path>
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                            <span>Export Excel</span>
+                                        </a>
+                                        @endif
+                                    </div>
                                     <div class="w-full overflow-hidden rounded-sm border mb-6">
                                         <div class="w-full overflow-x-auto">
                                             <table class="w-full whitespace-no-wrap">
@@ -1673,7 +1738,7 @@ $id_user = end($url);
                         <div class="px-4 bg-white md:space-y-1 sm:py-1">
                             <div class="col-span-6 sm:col-span-4">
                                 <label for="kelulusan" class="block text-sm font-medium text-gray-700">Kelulusan</label>
-                                <input type="text" name="kelulusan" id="kelulusan" placeholder="Masukan Kelulusan"
+                                <input type="text" name="kelulusan" id="kelulusan" placeholder="Masukan Kelulusan" required oninvalid="this.setCustomValidity('Mohon isi bagian ini')"
                                     class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
                         </div>
@@ -1695,16 +1760,16 @@ $id_user = end($url);
                             </label>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-
-        <footer
+            
+            <footer
             class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
-            <button type="button" id="btn_submit" onclick="submit('formAddSertifikat')"
-                class="w-full text-center px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-lightBlue-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:shadow-outline-lightBlue">
-                Tambah
-            </button>
+            <button type="submit"
+            class="w-full text-center px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-lightBlue-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:shadow-outline-lightBlue">
+            Tambah
+        </button>
+    </form>
         </footer>
     </div>
 </div>

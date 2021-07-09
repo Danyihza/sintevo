@@ -275,7 +275,7 @@
                                         </td>
                                         <td class="px-4 py-3 flex items-center text-sm">
                                             @if($p->file)
-                                            <a href="download?file={{ $p->file }}" target="_blank">
+                                            <a href="{{ route('download') }}?file={{ $p->file }}" target="_blank">
                                                 <?php $get = explode('.', $p->hasFile->nama_file); $extention = end($get); ?>
                                                 @switch($extention)
                                                 @case('pdf')
@@ -324,7 +324,7 @@
                                                 </svg>
                                             </button>
                                             <br>
-                                            <a data-tippy-content="Delete" onclick="return confirm('Are you sure you want to delete this ?')" href="{{ route('user.deletePrestasi', $p->id_prestasi) }}">
+                                            <a data-tippy-content="Delete" onclick="return confirm('Konfirmasi penghapusan. Apakah anda yakin menghapus data ini?')" href="{{ route('user.deletePrestasi', $p->id_prestasi) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                                     viewBox="0 0 24 24" stroke="#FF0000">
                                                     <path stroke-linecap="round" stroke-linejoin="round"

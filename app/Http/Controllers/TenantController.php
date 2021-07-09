@@ -85,11 +85,19 @@ class TenantController extends Controller
 
     function tambahAnggota(Request $request)
     {
-        $validated = $request->validate([
-            'nama' => 'required',
-            'no_identify' => 'required|numeric',
-            'jabatan' => 'required'
-        ]);
+        $request->validate(
+            [
+                'nama' => 'required',
+                'no_identify' => 'required|numeric',
+                'jabatan' => 'required'
+            ],
+            [
+                'nama.required' => 'Formulir tidak diisi dengan lengkap, penambahan anggota tidak berhasil',
+                'no_identify.required' => 'Formulir tidak diisi dengan lengkap, penambahan anggota tidak berhasil',
+                'jabatan.required' => 'Formulir tidak diisi dengan lengkap, penambahan anggota tidak berhasil'
+            ]
+        );
+
 
         if ($request->isMahasiswa == 'true') {
             $data = $request->except(['_token', 'isMahasiswa']);
@@ -107,19 +115,34 @@ class TenantController extends Controller
 
     function updateAnggota(Request $request)
     {
+
+        $request->validate(
+            [
+                'nama' => 'required',
+                'no_identify' => 'required',
+                'jabatan' => 'required',
+            ],
+            [
+                'nama.required' => 'Formulir tidak diisi dengan lengkap, edit anggota tidak berhasil',
+                'no_identify.required' => 'Formulir tidak diisi dengan lengkap, edit anggota tidak berhasil',
+                'jabatan.required' => 'Formulir tidak diisi dengan lengkap, edit anggota tidak berhasil'
+            ]
+        );
         if ($request->isMahasiswa == 'true') {
             $data = $request->except(['_token', 'isMahasiswa', 'id_user']);
         } else {
             $data = $request->except(['_token', 'isMahasiswa', 'id_user']);
             $data['prodi'] = null;
         }
+
+        // dd($data);
         try {
-            Anggota::where('id_anggota', $request->id_anggota)
+            Anggota::where('id_anggota', $request->id_anggota)->first()
                 ->update($data);
+            return Redirect::back()->with('success', 'Data berhasil diubah');
         } catch (\Throwable $th) {
             return Redirect::back()->with('error', 'Something Went Wrong: ' . $th->getMessage());
         }
-        return Redirect::back()->with('success', 'Data berhasil diubah');
     }
 
     function updateUsaha(Request $request)
@@ -396,6 +419,18 @@ class TenantController extends Controller
 
     public function addFileMonev(Request $request)
     {
+        $request->validate(
+            [
+                'jenis_kegiatan' => 'required',
+                'keterangan_file' => 'required',
+                'upload_file' => 'required'
+            ],
+            [
+                'jenis_kegiatan.required' => 'Formulir tidak diisi dengan lengkap, penambahan pencatatan inkubasi tidak berhasil',
+                'keterangan_file.required' => 'Formulir tidak diisi dengan lengkap, penambahan pencatatan inkubasi tidak berhasil',
+                'upload_file.required' => 'Formulir tidak diisi dengan lengkap, penambahan pencatatan inkubasi tidak berhasil'
+            ]
+        );
         $tanggal = explode('/', $request->tanggal);
         $jenis_kegiatan = $request->jenis_kegiatan;
         $keterangan_file = $request->keterangan_file;
@@ -545,6 +580,14 @@ class TenantController extends Controller
 
     public function addPrestasi(Request $request)
     {
+        $request->validate([
+            'jenis_kegiatan' => 'required',
+            'prestasi' => 'required',
+            'tingkat_prestasi' => 'required',
+            'upload_file' => 'required'
+        ], [
+            'required' => 'Formulir tidak diisi dengan lengkap, penambahan prestasi tidak berhasil'
+        ]);
         try {
             $prestasi = new Prestasi;
             $prestasi->id_prestasi = Str::random(16);

@@ -64,8 +64,8 @@
                                 </thead>
                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                                     @foreach ($tenant as $t)
-                                    <tr class="text-gray-700 dark:text-gray-400 hover:bg-gray-100 active:bg-gray-200 cursor-pointer" onclick="window.location.href = '{{ route('admin.tenant') . '/' . $t->id_detail }}'">
-                                        <td class="py-3">
+                                    <tr class="text-gray-700 dark:text-gray-400 hover:bg-gray-100 active:bg-gray-200 cursor-pointer">
+                                        <td class="py-3" onclick="window.location.href = '{{ route('admin.tenant') . '/' . $t->id_detail }}'">
                                             <div class="flex items-center text-sm">
                                                 <!-- Avatar with inset shadow -->
                                                 <div class="relative hidden w-10 h-10 mr-3 rounded-full md:block">

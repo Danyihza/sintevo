@@ -42,7 +42,7 @@
                                             <div class="col-span-6 sm:col-span-4">
                                                 <label for="username" class="block text-sm font-medium text-gray-700">Email/Username</label>
                                                 <input type="text" name="username" id="username"
-                                                    placeholder="Masukkan Username atau Email"
+                                                    placeholder="Masukkan Username atau Email" required oninvalid="this.setCustomValidity('Mohon isi bagian ini')"
                                                     class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
                                             <div class="col-span-6 sm:col-span-4">
@@ -50,6 +50,7 @@
                                                 <input type="password" id="password"
                                                     placeholder="Masukkan Password"
                                                     oninput="checkPassword()"
+                                                    required oninvalid="this.setCustomValidity('Mohon isi bagian ini')"
                                                     class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
                                             <div class="col-span-6 sm:col-span-4">
@@ -57,6 +58,7 @@
                                                 <input type="password" name="password" id="conf_password"
                                                     placeholder="Masukkan Konfirmasi Password"
                                                     oninput="checkPassword()"
+                                                    required oninvalid="this.setCustomValidity('Mohon isi bagian ini')"
                                                     class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
     
@@ -155,7 +157,7 @@
         function checkPassword(){
             const password = document.getElementById('password').value;
             const conf_password = document.getElementById('conf_password').value;
-            if (password == conf_password) {
+            if (password == conf_password && password != '' && conf_password != '') {
                 $('#btn-submit').attr('disabled',false);
             } else {
                 $('#btn-submit').attr('disabled',true);

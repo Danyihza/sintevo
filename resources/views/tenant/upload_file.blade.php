@@ -262,7 +262,7 @@
                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                                     @if(count($fileMonev) == 0)
                                     <tr>
-                                        <td class="text-center px-4 py-3" colspan="5">
+                                        <td class="text-center px-4 py-3" colspan="6">
                                             <span class="font-normal italic opacity-30 px-2 py-1">
                                                 Data tidak tersedia
                                             </span>
@@ -323,7 +323,7 @@
                                                 class="px-2 py-1 font-semibold leading-tight text-sm text-yellow-700 bg-yellow-100 rounded-full">
                                                 Edit
                                             </button>
-                                            <a onclick="return confirm('Are you sure ?')"
+                                            <a onclick="return confirm('Konfirmasi penghapusan. Apakah anda yakin menghapus data ini?')"
                                                 href="{{ route('user.hapusfileMonev', $file->id_filemonev) }}"
                                                 class="px-2 py-1 font-semibold leading-tight text-sm text-red-700 bg-red-100 rounded-full">
                                                 Delete
