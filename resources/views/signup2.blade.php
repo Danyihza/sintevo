@@ -18,6 +18,9 @@
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <form id="form-user" action="{{ route('registration') }}" method="POST">
                         @csrf
+                        @foreach($input as $key => $value)
+                            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                        @endforeach
                         <div class="shadow sm:rounded-md sm:overflow-hidden">
                             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                 <h2 class="text-2xl font-light text-gray-900">

@@ -26,27 +26,55 @@ class AuthController extends Controller
         if ($request->method() != 'POST') {
             return redirect('signup');
         }
-        $input = $request->except(['_token']);
-        session(['form-data' => $input]);
-        return view('signup2');
+        $data['input'] = $request->except(['_token']);
+        // dd($input);
+        // session(['form-data' => $input]);
+        return view('signup2', $data);
     }
 
     public function registration(Request $request)
     {
-        $form = session()->get('form-data');
-        $user = $request->except(['conf_password', '_token']);
-        $id = User::generateId($form['status']);
-        $form['id_detail'] = $id;
+        $status = $request->status;
+        $prodi = $request->prodi;
+        $kategori = $request->kategori;
+        $nama_brand = $request->nama_brand;
+        $deskripsi = $request->deskripsi;
+        $alamat = $request->alamat;
+        $nama_ketua = $request->nama_ketua;
+        $no_whatsapp = $request->no_whatsapp;
+        $website = $request->website;
+        $instagram = $request->instagram;
 
-        $user['id_user'] = $id;
-        $user['password'] = hash('sha256', $user['password']);
-        $user['role'] = (int) $form['status'];
-        $user['token'] = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), 1, 8);
+        try {
+            // $form = session()->get('form-data');
+            $user = $request->except(['conf_password', '_token']);
+            $id = User::generateId($status);
+            $id_detail = $id;
 
-        User::create($user);
-        Detail_user::create($form);
-        session()->forget('form-data');
-        return redirect('login')->with('success', 'Please Login to Continue');
+            $user['id_user'] = $id;
+            $user['password'] = hash('sha256', $user['password']);
+            $user['role'] = (int) $status;
+            $user['token'] = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), 1, 8);
+
+            User::create($user);
+            // Detail_user::create($form);
+            $newDetailUser = new Detail_user;
+            $newDetailUser->id_detail = $id_detail;
+            $newDetailUser->status = $status;
+            $newDetailUser->prodi = $prodi;
+            $newDetailUser->kategori = $kategori;
+            $newDetailUser->nama_brand = $nama_brand;
+            $newDetailUser->deskripsi = $deskripsi;
+            $newDetailUser->alamat = $alamat;
+            $newDetailUser->nama_ketua = $nama_ketua;
+            $newDetailUser->no_whatsapp = $no_whatsapp;
+            $newDetailUser->website = $website;
+            $newDetailUser->instagram = $instagram;
+            $newDetailUser->save();
+            return redirect('login')->with('success', 'Please Login to Continue');
+        } catch (\Throwable $th) {
+            return redirect()->route('signup')->with('error','Ada kesalahan server silahkan ulangi pendaftaran');
+        }
     }
 
     public function test()

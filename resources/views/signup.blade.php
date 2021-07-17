@@ -30,6 +30,8 @@
                                     </div>
                                 </div>
 
+                                @include('template.tenant.notification')
+
                                 <div class="grid grid-cols-3 gap-6">
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="status"
