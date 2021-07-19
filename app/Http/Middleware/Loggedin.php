@@ -25,7 +25,7 @@ class Loggedin
                 ];
                 break;
             case 'user':
-                $route = [2];
+                $route = [2,3,4,5];
                 break;
             default:
                 $route = [];

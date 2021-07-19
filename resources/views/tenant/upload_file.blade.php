@@ -161,8 +161,16 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        
+                                        <div class="col-span-6 sm:col-span-4">
+                                            <label for="keterangan_file" class="block text-sm font-medium text-gray-700">Keterangan File</label>
+                                            <input required type="text" name="keterangan_file" id="keterangan_file"
+                                                placeholder="Masukkan Keterangan File"
+                                                class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                >
+                                        </div>
 
-                                        <div class="grid grid-cols-3 gap-6">
+                                        {{-- <div class="grid grid-cols-3 gap-6">
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="keterangan_file"
                                                     class="block text-sm font-medium text-gray-700">Keterangan
@@ -180,7 +188,7 @@
                                                     <option value="Lainnya">Lainnya</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="col-span-6 sm:col-span-4">
                                             <label for="upload_file" class="block text-sm font-medium text-gray-700">
@@ -496,12 +504,11 @@
                         </div>
                         <div class="px-4 bg-white md:space-y-1 sm:py-1">
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="keterangan_file"
-                                    class="block text-sm font-medium text-gray-700">Keterangan File</label>
-                                <select id="keterangan_file_update" name="keterangan_file"
-                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
-                                    <option value="" disabled selected>Pilih Keterangan Transaksi</option>
-                                </select>
+                                <label for="keterangan_file_update" class="block text-sm font-medium text-gray-700">Keterangan File</label>
+                                <input required type="text" name="keterangan_file" id="keterangan_file_update"
+                                    placeholder="Masukkan Keterangan File"
+                                    class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                    >
                             </div>
                         </div>
                         <div class="px-4 bg-white md:space-y-1 sm:py-1">
@@ -571,22 +578,24 @@
             'Inkubasi Internal',
             'Lainnya'
         ];
-        const KETERANGAN_FILE = [
-            'Lembar Pengesahan',
-            'Laporan Kemajuan',
-            'Laporan Akhir',
-            'Laporan Kemajuan Keuangan',
-            'Laporan Akhir Keuangan',
-            'Lainnya'
-        ];
+        // const KETERANGAN_FILE = [
+        //     'Lembar Pengesahan',
+        //     'Laporan Kemajuan',
+        //     'Laporan Akhir',
+        //     'Laporan Kemajuan Keuangan',
+        //     'Laporan Akhir Keuangan',
+        //     'Lainnya'
+        // ];
         let kegiatan = '';
         let keterangan = '';
         JENIS_KEGIATAN.forEach((item, index) => {
             kegiatan += `<option value="${item}" ${ item == filemonev.jenis_kegiatan ? 'selected' : '' }>${item}</option>`;
         });
-        KETERANGAN_FILE.forEach((item, index) => {
-            keterangan += `<option value="${item}" ${ item == filemonev.keterangan_file ? 'selected' : '' }>${item}</option>`;
-        })
+        // KETERANGAN_FILE.forEach((item, index) => {
+        //     keterangan += `<option value="${item}" ${ item == filemonev.keterangan_file ? 'selected' : '' }>${item}</option>`;
+        // })
+
+        $('#keterangan_file_update').val(filemonev.keterangan_file)
         $('#id_filemonev').val(id_filemonev);
         $('#jenis_kegiatan_update').html(kegiatan)
         $('#keterangan_file_update').html(keterangan)

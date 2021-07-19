@@ -107,6 +107,9 @@ class AuthController extends Controller
                 ];
                 session(['login-data' => $dataLogin]);
                 switch ($data->role) {
+                    case 5:
+                    case 4:
+                    case 3:
                     case 2:
                         return redirect('tenant/home');
                         break;

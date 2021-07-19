@@ -260,7 +260,7 @@ class TenantController extends Controller
             // dd($request->file('upload_file'));
             $request->validate([
                 'status_progress' => 'required',
-                'uraian' => 'required',
+                'uraian_progress' => 'required',
             ],[
                 'required' => 'Formulir tidak diisi dengan lengkap, penambahan monev tidak berhasil'
             ]);
