@@ -31,7 +31,7 @@
                                     <span>Aftermeet</span>
                                 </div>
                             </a> --}}
-    
+                        @if(session()->get('login-data')['role'] == 0)
                         <div class="md:grid md:gap-6 mb-8">
                             <div class="mt-5 md:mt-0 md:col-span-2">
                                 <form action="{{ route('admin.addAdmin') }}" method="POST" enctype="multipart/form-data">
@@ -72,6 +72,7 @@
                                 </form>
                             </div>
                         </div>
+                        @endif
     
                         <h2 class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200">
                             List Administrator
@@ -84,7 +85,9 @@
                                         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                             <th class="px-4 py-3">Username/Email</th>
                                             <th class="px-4 py-3">ID</th>
+                                            @if(session()->get('login-data')['role'] == 0)
                                             <th class="px-4 py-3">Aksi</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -115,6 +118,7 @@
                                             <td class="px-4 py-3 text-sm">
                                                 {{ $adm->id_user }}
                                             </td>
+                                            @if(session()->get('login-data')['role'] == 0)
                                             <td class="px-4 py-3 text-xs">
                                                 {{-- <a  href="{{ route('admin.removePengumuman', $adm->id_pengumuman) }}"
                                                     onclick="return confirm('Apakah anda yakin ?')"
@@ -127,6 +131,7 @@
                                                     Delete
                                                 </a>
                                             </td>
+                                            @endif
                                         </tr>
                                         @endforeach
                                     </tbody>

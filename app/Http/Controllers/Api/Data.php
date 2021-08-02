@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Anggota;
+use App\Models\Faq;
 use App\Models\File;
 use App\Models\FileMonev;
 use App\Models\Monev;
@@ -177,6 +178,26 @@ class Data extends Controller
                 'success' => false,
                 'message' => $th->getMessage()
             ], 500);
+        }
+    }
+
+    public function addFeedbackFaq(Request $request)
+    {
+        try {
+            $id_faq = $request->id_faq;
+            $tanggapan = $request->tanggapan;
+            $faq = Faq::where('id_faq', $id_faq)->first();
+            $faq->tanggapan = $tanggapan;
+            $faq->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Tanggapan Telah Ditambahkan'
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal'
+            ]);
         }
     }
 

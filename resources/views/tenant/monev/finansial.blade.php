@@ -175,6 +175,7 @@
                                                     <select id="keterangan_transaksi" name="keterangan_transaksi"
                                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
                                                         <option value="" disabled selected>Pilih Keterangan Transaksi</option>
+                                                        <option value="Penerimaan Hibah">Penerimaan Hibah</option>
                                                         <option value="Pendapatan tunai">Pendapatan tunai</option>
                                                         <option value="Pendapatan uang muka oleh konsumen">Pendapatan uang muka oleh konsumen</option>
                                                         <option value="Penerimaan kas dari piutang">Penerimaan kas dari piutang</option>
@@ -252,7 +253,7 @@
                     <!-- New Table -->
                     <div class="w-full overflow-hidden rounded-lg border mb-6">
                         <div class="w-full overflow-x-auto">
-                            <table class="w-full whitespace-no-wrap">
+                            <table id="datatable" class="w-full whitespace-no-wrap">
                                 <thead>
                                     <tr
                                         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
@@ -497,6 +498,7 @@
                                     <select id="keterangan_transaksi_update" name="keterangan_transaksi"
                                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-lightBlue-500 focus:border-lightBlue-500 sm:text-sm">
                                         <option value="" disabled selected>Pilih Keterangan Transaksi</option>
+                                        <option value="Penerimaan Hibah">Penerimaan Hibah</option>
                                         <option value="Pendapatan tunai">Pendapatan tunai</option>
                                         <option value="Pendapatan uang muka oleh konsumen">Pendapatan uang muka oleh konsumen</option>
                                         <option value="Penerimaan kas dari piutang">Penerimaan kas dari piutang</option>
@@ -594,6 +596,7 @@ async function editFinansial(element){
         'Pengeluaran'
     ];
     const KETERANGAN_TRANSAKSI = [
+        'Penerimaan Hibah',
         'Pendapatan tunai',
         'Pendapatan uang muka oleh konsumen',
         'Penerimaan kas dari piutang',

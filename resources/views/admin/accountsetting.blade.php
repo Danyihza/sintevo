@@ -34,7 +34,7 @@
 
                     <div class="md:grid md:gap-6 mb-8">
                         <div class="mt-5 md:mt-0 md:col-span-2">
-                            <form action="{{ route('admin.updateAdmin') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.changePassword') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id_user" value="{{ session('login-data')['id'] }}">
                                 <div class="shadow sm:rounded-md sm:overflow-hidden">

@@ -6,8 +6,10 @@ use App\Http\Controllers\Admin\TenantController as AdminTenant;
 use App\Http\Controllers\Admin\AdminController as AdminManager;
 use App\Http\Controllers\Admin\PengumumanController as AdminPengumuman;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Api\Auth as ApiAuth;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ExportPdfController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\UserController;
@@ -36,6 +38,16 @@ use Illuminate\Support\Facades\Route;
     Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
     Route::get('/download', [FileController::class, 'downloadFile'])->name('download');
 
+    Route::group(['prefix' => 'export', 'as' => 'export.'], function() {
+        Route::get('/profileusaha/{id_user?}', [ExportPdfController::class, 'profileUsaha'])->name('profileUsaha');
+        Route::get('/bukukas/{id_user?}', [ExportPdfController::class, 'bukuKas'])->name('bukuKas');
+        Route::get('/allTenants', [ExportPdfController::class, 'allTenants'])->name('allTenants');
+        Route::get('/allFaq', [ExportPdfController::class, 'allFaq'])->name('allFaq');
+        Route::get('/allDataTenant/{id_user?}', [ExportPdfController::class, 'allDataTenant'])->name('allDataTenant');
+        Route::get('/exportFaqExcel', [FaqController::class, 'exportFaqExcel'])->name('exportFaqExcel');
+        
+    });
+
 
     Route::group(['prefix' => 'tenant', 'middleware' => 'loggedin', 'as' => 'user'], function () {
         Route::any('/home', [TenantController::class, 'index'])->name('.home');
@@ -51,6 +63,8 @@ use Illuminate\Support\Facades\Route;
         Route::get('/exporttim', [TenantController::class, 'exporttim'])->name('.exporttim');
         Route::get('/exportLampiran', [TenantController::class, 'exportLampiran'])->name('.exportLampiran');
         Route::get('/exportPrestasi', [TenantController::class, 'exportPrestasi'])->name('.exportPrestasi');
+        Route::post('/faq/add', [TenantController::class, 'addFaq'])->name('.addFaq');
+        Route::get('/faq', [TenantController::class, 'faq'])->name('.faqView');
         
         Route::post('/changePassword', [AuthController::class, 'changePassword'])->name('.changenewpassword');
         Route::post('/updateProfileUsaha', [TenantController::class, 'updateUsaha'])->name('.updateProfileUsaha');
@@ -74,6 +88,8 @@ use Illuminate\Support\Facades\Route;
         Route::get('/test', [AdminController::class, 'index']);
         Route::post('/updateinformasidashboard', [AdminDashboard::class, 'updateinformasidashboard'])->name('updateinformasidashboard');
         Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
+        Route::get('/changepasswordview/{id_user?}', [AdminTenant::class, 'changePasswordView'])->name('changePasswordView');
+        Route::post('/changepassword', [AdminTenant::class, 'changePassword'])->name('changePassword');
         Route::get('/tenant', [AdminTenant::class, 'index'])->name('listTenants');
         Route::get('/tenant/{id_tenant?}', [AdminTenant::class, 'tenantDetail'])->name('tenant');
         Route::get('/tenant/hapus/{id_tenant?}', [AdminTenant::class, 'hapusSeluruhDataTenant'])->name('hapusTenant');
@@ -90,8 +106,9 @@ use Illuminate\Support\Facades\Route;
         Route::get('/kelulusan/hapus/{id_kelulusan?}', [AdminTenant::class, 'removeSertifikat'])->name('removeSertifikat');
         Route::get('/accountpage', [AccountController::class, 'accountPage'])->name('accountPage');
         Route::post('/updateAdmin', [AccountController::class, 'updateAdmin'])->name('updateAdmin');
+        Route::get('/faqview', [FaqController::class, 'faqView'])->name('faqView');
         
-
+        
         Route::get('/export/{jenis_monev?}/{id_user?}', [AdminTenant::class, 'exportToExcel'])->name('export');
         Route::get('/exporttenant', [AdminTenant::class, 'exporttenant'])->name('exporttenant');
         Route::get('/exporttim/{id_user?}', [AdminTenant::class, 'exporttim'])->name('exporttim');

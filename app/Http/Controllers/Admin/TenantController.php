@@ -69,8 +69,26 @@ class TenantController extends Controller
             }
         }
         $data['saldos'] = array_reverse($data['saldo']);
+        $data['id_user'] = $id_detail;
 
         return view('admin.tenant.detail', $data);
+    }
+
+    public function changePasswordView($id_user)
+    {
+        $data['title'] = 'Change Password';
+        $data['user'] = User::where('id_user', $id_user)->first();
+        return view('admin.tenant.changepassword', $data);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $id_user = $request->id_user;
+        $password = $request->password;
+        $user = User::where('id_user', $id_user)->first();
+        $user->password = hash('sha256', $password);
+        $user->save();
+        return Redirect::back()->with('success', 'Password Berhasil Diubah');
     }
 
     public function addSertifikat(Request $request)

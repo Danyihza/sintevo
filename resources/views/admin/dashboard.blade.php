@@ -14,13 +14,21 @@
                 {{-- Content --}}
                 <main class="h-full overflow-y-auto">
                     @include('template.admin.notification')
-                    <div class="container px-6 mx-auto grid">
+                    <div class="container px-6 mx-auto grid ">
                         <h2 class="my-6 text-2xl font-bold text-gray-700 dark:text-gray-200">
                             Dashboard
                         </h2>
-                        <h2 class="my-2 text-md font-semibold text-gray-700">
-                            Informasi pada dashboard tenant
-                        </h2>
+                        <div class="flex justify-between mb-5">
+                            <h2 class="my-2 text-md font-semibold text-gray-700">
+                                Informasi pada dashboard tenant
+                            </h2>
+                            <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-md text-sm font-medium rounded-md text-white bg-lightBlue-600 hover:bg-lightBlue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightBlue-500"
+                                href="{{ route('download') }}?file={{ $informasi->file }}"
+                                target="_blank">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                <span>Download File</span>
+                            </a>
+                        </div>
 
                         <form action="{{ route('admin.updateinformasidashboard') }}" method="post" enctype="multipart/form-data" id="formDashboard">
                             @csrf
@@ -161,6 +169,8 @@
             const fileName = value.split('\\').pop();
             $(target).val(fileName);
         }
+
+        function download
     </script>
 
     </html>

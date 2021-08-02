@@ -6,6 +6,7 @@
             <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Kategori Usaha</th>
             <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Nama Ketua</th>
             <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Status Ketua</th>
+            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">No WhatsApp</th>
         </tr>
     </thead>
     <tbody>
@@ -16,6 +17,7 @@
             <td align="center" style="border: 1px solid #000000;">{{ $tnt->kategoris->nama_kategori }}</td>
             <td align="center" style="border: 1px solid #000000;">{{ $tnt->nama_ketua }}</td>
             <td align="center" style="border: 1px solid #000000;">{{ $tnt->statuses->jenis_status }}</td>
+            <td align="center" style="border: 1px solid #000000;">{{ $tnt->no_whatsapp }}</td>
         </tr>
         @endforeach
     </tbody>

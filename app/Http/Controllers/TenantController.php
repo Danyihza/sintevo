@@ -19,6 +19,7 @@ use App\Models\Dashboard;
 use App\Models\Kategori;
 use App\Models\Prestasi;
 use App\Models\Detail_user;
+use App\Models\Faq;
 use App\Models\FileMonev;
 use App\Models\Juknis;
 use App\Models\Kelulusan;
@@ -59,6 +60,7 @@ class TenantController extends Controller
             case 'usaha':
                 $data['state'] = 'usaha';
                 $data['usaha'] = Detail_user::where('id_detail', $session['id'])->first();
+                $data['user'] = User::where('id_user', $session['id'])->first();
                 // dd($data['usaha']);
                 return view('tenant.profile.usaha', $data);
                 break;
@@ -160,6 +162,7 @@ class TenantController extends Controller
         $website = $request->website;
         $instagram = $request->instagram;
         $gambar = $request->file('picture');
+        $email = $request->email;
         // dd($gambar);
 
         $profil = Detail_user::find($id_detail);
@@ -183,10 +186,14 @@ class TenantController extends Controller
         $profil->no_whatsapp = $no_whatsapp;
         $profil->website = $website;
         $profil->instagram = $instagram;
-        if ($profil->isClean() == true) {
+
+        $user = User::where('id_user', $id_detail)->first();
+        $user->email = $email;
+        if ($profil->isClean() == true && $user->isClean() == true) {
             return Redirect::back()->with('error', 'Data tidak ada yang berubah');
         }
         $profil->save();
+        $user->save();
 
         return Redirect::back()->with('success', 'Sukses! Data berhasil diperbarui');
     }
@@ -664,6 +671,30 @@ class TenantController extends Controller
         $data['title'] = 'kelulusan';
         $data['sertifikat'] = Kelulusan::where('id_user', session('login-data')['id'])->get();
         return view('tenant.kelulusan', $data);
+    }
+
+    public function faq()
+    {
+        $data['title'] = 'faq';
+        $data['faq'] = Faq::orderBy('tanggal', 'ASC')->get();
+        $data['brand'] = Detail_user::where('id_detail', session('login-data')['id'])->first()->nama_brand;
+        return view('tenant.faq', $data);
+    }
+
+    public function addFaq(Request $request)
+    {
+        $tanggal = explode('/', $request->tanggal);
+        $nama_usaha = $request->nama_usaha;
+        $pertanyaan = $request->pertanyaan;
+        
+        $newFaq = new Faq;
+        $newFaq->id_faq = Str::random(32);
+        $newFaq->nama_usaha = $nama_usaha;
+        $newFaq->pertanyaan = $pertanyaan;
+        $newFaq->tanggal = $tanggal[2] . '-' . $tanggal[1] . '-' . $tanggal[0];
+        $newFaq->save();
+
+        return Redirect::back()->with('success', 'Data Faq baru berhasil ditambahkan');
     }
 
     public function changePassword()

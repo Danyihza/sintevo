@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('isSuperAdmin');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('isSuperAdmin');
+    // }
 
     public function index()
     {

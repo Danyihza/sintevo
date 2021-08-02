@@ -44,3 +44,4 @@ use App\Http\Controllers\Api\Auth as ApiAuth;
     Route::get('/getMonev/{id_monev?}', [ApiData::class, 'getMonev'])->name('getMonev');
     Route::get('/getBukuKas/{id_user?}', [ApiData::class, 'getBukuKas'])->name('getBukuKas');
     Route::get('/countPrestasi/{id_user?}', [ApiData::class, 'countPrestasi'])->name('countPrestasi');
+    Route::get('/addFeedbackFaq', [ApiData::class, 'addFeedbackFaq'])->name('addFeedbackFaq');

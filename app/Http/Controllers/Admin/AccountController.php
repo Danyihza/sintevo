@@ -19,19 +19,19 @@ class AccountController extends Controller
 
     public function updateAdmin(Request $request)
     {
-        // try {
+        try {
             $id_user = $request->id_user;
             $admin = User::where('id_user', $id_user)->first();
             $current_password = hash('sha256', $request->current_password);
             if ($current_password != $admin->password) {
-                throw new Exception('Password lama tidak sesuai');
+                throw new Exception('Current password tidak sesuai');
             }
             $admin->email = $request->username;
             $admin->password = hash('sha256', $request->password);
             $admin->save();
             return Redirect::back()->with('success', 'Sukses Menambahkan Data');
-        // } catch (\Throwable $th) {
-        //     return Redirect::back()->with('error', $th->getMessage());
-        // }
+        } catch (\Throwable $th) {
+            return Redirect::back()->with('error', $th->getMessage());
+        }
     }
 }

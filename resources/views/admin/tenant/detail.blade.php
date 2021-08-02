@@ -20,15 +20,31 @@ $id_user = end($url);
             <main class="h-full overflow-y-auto pb-10">
                 @include('template.tenant.notification')
                 <div class="container px-6 pt-10 mx-auto grid">
-                    <a href="{{ route('admin.listTenants') }}"
-                        class="flex flex-row flex-wrap w-max text-lightBlue-700 rounded-md p-1 hover:bg-lightBlue-100 active:bg-lightBlue-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"
-                            fill="currentColor">
-                            <path fill="none" d="M0 0h24v24H0z" />
-                            <path d="M7.828 11H20v2H7.828l5.364 5.364-1.414 1.414L4 12l7.778-7.778 1.414 1.414z" />
-                        </svg>
-                        <span class="ml-1 text-md">Back to all tenants</span>
-                    </a>
+                    <div class="flex justify-between">
+                        <a href="{{ route('admin.listTenants') }}"
+                            class="flex flex-row flex-wrap w-max text-lightBlue-700 rounded-md p-1 hover:bg-lightBlue-100 active:bg-lightBlue-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"
+                                fill="currentColor">
+                                <path fill="none" d="M0 0h24v24H0z" />
+                                <path d="M7.828 11H20v2H7.828l5.364 5.364-1.414 1.414L4 12l7.778-7.778 1.414 1.414z" />
+                            </svg>
+                            <span class="ml-1 text-md">Back to all tenants</span>
+                        </a>
+                        <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-md text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                            href="{{ route('export.allDataTenant', $id_user) }}"
+                            target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                width="24" height="24"
+                                viewBox="0 0 172 172"
+                                style=" fill:#000000;">
+                                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                    <path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M43,14.33333c-7.90483,0 -14.33333,6.4285 -14.33333,14.33333v114.66667c0,7.90483 6.4285,14.33333 14.33333,14.33333h58.5651l-14.33333,-14.33333h-44.23177v-114.66667h50.16667v35.83333h35.83333v35.83333h14.33333v-43l-43,-43zM84.79622,64.5c-3.94167,0 -6.89411,2.6763 -7.47461,7.33464c-0.57333,4.65117 1.73243,12.78454 5.75293,20.33821c-1.72717,5.23167 -3.45243,9.87813 -5.75293,14.5293c-7.47483,2.322 -14.37095,5.8041 -17.24479,9.29427c-4.59383,5.2245 -2.29445,8.71455 -1.14779,10.45605c1.15383,1.7415 2.87854,2.54753 5.17904,2.54753c1.15383,0 2.30352,-0.23135 3.45736,-0.81185c4.601,-1.7415 9.18644,-8.7187 13.78743,-16.85287c4.02051,-1.161 8.04526,-2.31696 12.06576,-2.89746c4.0205,4.644 8.05869,7.55938 11.50586,8.72038c4.0205,1.161 7.46912,-0.59046 9.19629,-4.66113c1.14667,-3.49017 0.56426,-6.38382 -2.30957,-8.13249c-3.45433,-2.322 -9.20267,-2.33018 -16.097,-1.74968c-2.3005,-3.483 -4.58566,-6.96589 -6.31283,-10.45605c2.87383,-8.71467 4.01614,-16.26094 2.86947,-20.91211c-1.15383,-4.07067 -3.53294,-6.74674 -7.47461,-6.74674zM129,114.66667v28.66667h-21.5l28.66667,28.66667l28.66667,-28.66667h-21.5v-28.66667z"></path></g>
+                                </g>
+                            </svg>
+                            <span>Export PDF Data Tenant</span>
+                        </a>
+                    </div>
+
 
                     <div class="flex mt-10 flex-row">
                         <div class="">
@@ -1566,7 +1582,7 @@ $id_user = end($url);
 
                     <div class="my-5 md:grid md:gap-6">
                         <div class="mt-5 md:mt-0 md:col-span-2">
-                            <h1 class="font-medium pb-4">Kelulusan & Sertifikat</h1>
+                            <h1 class="font-medium pb-4">Berkas & Kelulusan</h1>
                             <div class="border border-gray-300 sm:overflow-hidden">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                     <div class="flex flex-row w- justify-between">
@@ -1574,7 +1590,7 @@ $id_user = end($url);
                                         <button @click="openModalAddSertifikat"
                                             class="disabled:opacity-50 disabled:cursor-not-allowed inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightBlue-500"
                                             type="button">
-                                            Tambah Sertifikat
+                                            Tambah
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                                 fill="currentColor">
                                                 <path fill-rule="evenodd"
@@ -1589,8 +1605,8 @@ $id_user = end($url);
                                                 <thead>
                                                     <tr
                                                         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                                        <th class="px-4 py-3">Kelulusan</th>
-                                                        <th class="px-4 py-3">Sertifikat</th>
+                                                        <th class="px-4 py-3">Keterangan</th>
+                                                        <th class="px-4 py-3">File</th>
                                                         <th class="px-4 py-3">Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -1651,6 +1667,29 @@ $id_user = end($url);
                                                     @endforeach
                                                 </tbody>
                                             </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-5 md:grid md:gap-6 mb-8">
+                        <div class="mt-5 md:mt-0 md:col-span-2">
+                            <h1 class="font-medium pb-4">Pengaturan Akun</h1>
+                            <div class="sm:rounded-md border border-lightBlue-500 sm:overflow-hidden">
+                                <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                                    <div class="flex justify-between">
+                                        <div class="left">
+                                            <div class="font-normal">
+                                                Ganti Password
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <a href="{{ route('admin.changePasswordView', $usaha->id_detail) }}"
+                                                class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-lightBlue-500 hover:text-white-500 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightBlue-500">
+                                                Ganti Password
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -1723,7 +1762,7 @@ $id_user = end($url);
         <!-- Modal body -->
         <div class="mt-4 mb-6">
             <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
-                Tambah Sertifikat
+                Tambah
             </p>
             <div class="mt-5 md:col-span-2" id="form_regis">
                 <form action="{{ route('admin.addSertifikat') }}" id="formAddSertifikat" method="POST"
@@ -1737,14 +1776,14 @@ $id_user = end($url);
                     <div class="sm:rounded-md">
                         <div class="px-4 bg-white md:space-y-1 sm:py-1">
                             <div class="col-span-6 sm:col-span-4">
-                                <label for="kelulusan" class="block text-sm font-medium text-gray-700">Kelulusan</label>
+                                <label for="kelulusan" class="block text-sm font-medium text-gray-700">Keterangan</label>
                                 <input type="text" name="kelulusan" id="kelulusan" placeholder="Masukan Kelulusan" required oninvalid="this.setCustomValidity('Mohon isi bagian ini')"
                                     class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
                         </div>
                         <div class="px-4 bg-white md:space-y-1 sm:py-1">
                             <label for="upload_file" class="block text-sm font-medium text-gray-700">
-                                Upload Sertifikat
+                                Upload File
                             </label>
                             <label class="mt-1 flex rounded-md shadow-sm cursor-pointer">
                                 <input class="hidden" type="file" name="upload_file" id="upload_file"
