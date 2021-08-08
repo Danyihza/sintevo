@@ -9,9 +9,16 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
 class KasExport implements FromView, ShouldAutoSize
 {
+    protected $id_user;
+
+    public function __construct(String $id_user)
+    {
+        $this->id_user = $id_user;
+    }
+
     public function view(): View
     {
-        $data['buku_kas'] = Monev_Finansial::where('id_user', session('login-data')['id'])->orderby('tanggal', 'DESC')->orderby('created_at', 'DESC')->get();
+        $data['buku_kas'] = Monev_Finansial::where('id_user', $this->id_user)->orderby('tanggal', 'DESC')->orderby('created_at', 'DESC')->get();
         $saldo = 0;
         $data['saldo'] = [];
         for ($i = count($data['buku_kas']) - 1; $i >= 0; $i--) {

@@ -128,14 +128,14 @@
                                             <div class="col-span-6 sm:col-span-4">
                                                 <label for="kode" class="block text-sm font-medium text-gray-700">Kode</label>
                                                 <input type="text" name="kode" id="kode"
-                                                    placeholder="Masukkan Kode Pengumuman" required oninvalid="this.setCustomValidity('Mohon isi bagian ini')"
+                                                    placeholder="Masukkan Kode Pengumuman"
                                                     class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
                                             
                                             <div class="col-span-6 sm:col-span-4">
                                                 <label for="pengumuman" class="block text-sm font-medium text-gray-700">Keterangan Pengumuman</label>
                                                 <input type="text" name="pengumuman" id="pengumuman"
-                                                    placeholder="Masukkan Keterangan Pengumuman" required oninvalid="this.setCustomValidity('Mohon isi bagian ini')"
+                                                    placeholder="Masukkan Keterangan Pengumuman"
                                                     class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
     

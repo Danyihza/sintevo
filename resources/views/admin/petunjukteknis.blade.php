@@ -45,7 +45,7 @@
                                             <div class="col-span-6 sm:col-span-4">
                                                 <label for="kode" class="block text-sm font-medium text-gray-700">Kode</label>
                                                 <input type="text" name="kode" id="kode"
-                                                    placeholder="Masukkan Kode Petunjuk Teknis" required oninvalid="this.setCustomValidity('Mohon isi bagian ini')"
+                                                    placeholder="Masukkan Kode Petunjuk Teknis"
                                                     class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
                                             

@@ -174,6 +174,7 @@
                         <h2 class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200">
                             Tabel FAQ
                         </h2>
+                        @if(count($faq) > 0)
                         <div class="my-auto">
                             <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                                 href="{{ route('export.exportFaqExcel') }}">
@@ -207,6 +208,7 @@
                                 <span>Export PDF</span>
                             </a>
                         </div>
+                        @endif
 
                     </div>
                     <div class="w-full overflow-hidden rounded-lg border mb-6">

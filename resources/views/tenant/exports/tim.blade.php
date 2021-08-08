@@ -1,11 +1,11 @@
 <table>
     <thead>
         <tr>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">No</th>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Nama Lengkap</th>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Status</th>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">NRP/NIDN</th>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Jabatan</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">No</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">Nama Lengkap</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">Status</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">NRP/NIDN</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">Jabatan</th>
         </tr>
     </thead>
     <tbody>

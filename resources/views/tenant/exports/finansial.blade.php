@@ -1,10 +1,10 @@
 <table>
     <thead>
         <tr>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Tanggal Transaksi</th>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Jenis Transaksi</th>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Keterangan Transaksi</th>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Jumlah</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">Tanggal Transaksi</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">Jenis Transaksi</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">Keterangan Transaksi</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">Jumlah (Rp)</th>
         </tr>
     </thead>
     <tbody>

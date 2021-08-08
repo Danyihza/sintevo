@@ -150,6 +150,19 @@ class TenantController extends Controller
 
     function updateUsaha(Request $request)
     {
+        // Validation
+        $request->validate([
+            'nama_brand' => 'required',
+            'deskripsi' => 'required',
+            'alamat' => 'required',
+            'nama_ketua' => 'required',
+            'no_whatsapp' => 'required',
+            'email' => 'required'
+        ], [
+            'required' => 'Profil Usaha tidak diisi dengan lengkap, penyimpanan tidak berhasil'
+        ]);
+
+
         $id_detail = $request->id_detail;
         $prodi = $request->prodi;
         // dd($prodi);
@@ -268,7 +281,7 @@ class TenantController extends Controller
             $request->validate([
                 'status_progress' => 'required',
                 'uraian_progress' => 'required',
-            ],[
+            ], [
                 'required' => 'Formulir tidak diisi dengan lengkap, penambahan monev tidak berhasil'
             ]);
             try {
@@ -333,7 +346,7 @@ class TenantController extends Controller
             'jenis_transaksi' => 'required',
             'keterangan_transaksi' => 'required',
             'jumlah' => 'required'
-        ],[
+        ], [
             'required' => 'Formulir tidak diisi dengan lengkap, penambahan monev tidak berhasil'
         ]);
         try {
@@ -364,6 +377,12 @@ class TenantController extends Controller
 
     public function updateFinansial(Request $request)
     {
+        $request->validate([
+            'jumlah' => 'required',
+        ],[
+            'required' => 'Formulir tidak diisi dengan lengkap, penyimpanan tidak berhasil'
+        ]);
+
         $id_finansial = $request->id_finansial;
         $finansial = Monev_Finansial::where('id_finansial', $id_finansial)->first();
         $tanggal = explode('/', $request->tanggal);
@@ -475,58 +494,79 @@ class TenantController extends Controller
     {
         $userdata = User::where('id_user', session('login-data')['id'])->first();
         $file_name = $userdata->hasDetail->nama_brand . '_' . 'Monev' . '_' . ucwords($jenis_monev) . '.xlsx';
-        if ($jenis_monev == 'kas') {
-            try {
-                $kas = Monev_Finansial::where('id_user', session('login-data')['id'])->get();
-                $file_name = $userdata->hasDetail->nama_brand . '_' . 'Buku Kas' . '_' . ucwords($jenis_monev) . '.xlsx';
-                if (count($kas) == 0) {
-                    throw new Exception('not found');
-                }
-                return Excel::download(new KasExport, $file_name);
-            } catch (\Throwable $th) {
-                return abort(404);
-            }
-        }
-        if ($jenis_monev == 'finansial') {
-            try {
-                $finansial = Monev_Finansial::orderBy('tanggal', 'DESC')->where('id_user', session('login-data')['id'])->get();
-                $data = $finansial->map(function ($item) {
-                    return [
-                        date('d/m/Y', strtotime($item['tanggal'])),
-                        $item['jenis_transaksi'],
-                        $item['keterangan_transaksi'],
-                        $item['jumlah'],
-                        date('d/m/Y', strtotime($item['created_at']))
-                    ];
-                });
-                if (count($data) == 0) {
-                    throw new Exception('not found', 1);
-                }
-                return Excel::download(new MonevExport(session('login-data')['id'], true), $file_name);
-            } catch (\Throwable $th) {
-                return abort(404);
-            }
-        }
-        try {
-            $monev = Monev::orderBy('tanggal', 'DESC')->where('id_user', session('login-data')['id'])->where('jenis_monev', $jenis_monev)->get();
-            $data = $monev->map(function ($item) {
-                return [
-                    date('d/m/Y', strtotime($item['tanggal'])),
-                    $item['status_progress'],
-                    $item['uraian'],
-                    $item['file'] ? 'Ada' : 'Tidak Ada',
-                    $item['feedback'],
-                    date('d/m/Y', strtotime($item['created_at']))
-                ];
-            });
-            if (count($data) == 0) {
-                throw new Exception('not found', 1);
-            }
-            return Excel::download(new MonevExport(session('login-data')['id']), $file_name);
-        } catch (\Throwable $th) {
-            return abort(404);
+
+        // if ($jenis_monev == 'kas') {
+        // }
+        switch ($jenis_monev) {
+            case 'kas':
+                $file_name = $userdata->hasDetail->nama_brand . '_' . 'Buku Kas' . '.xlsx';
+                return Excel::download(new KasExport(session('login-data')['id']), $file_name);
+                break;
+            case 'finansial':
+                return Excel::download(new MonevExport(session('login-data')['id'], true, $jenis_monev), $file_name);
+                break;
+            default:
+                return Excel::download(new MonevExport(session('login-data')['id'], false, $jenis_monev), $file_name);
+                break;
         }
     }
+
+    // public function exportToExcel($jenis_monev)
+    // {
+    //     $userdata = User::where('id_user', session('login-data')['id'])->first();
+    //     $file_name = $userdata->hasDetail->nama_brand . '_' . 'Monev' . '_' . ucwords($jenis_monev) . '.xlsx';
+    //     if ($jenis_monev == 'kas') {
+    //         try {
+    //             $kas = Monev_Finansial::where('id_user', session('login-data')['id'])->get();
+    //             $file_name = $userdata->hasDetail->nama_brand . '_' . 'Buku Kas' . '_' . ucwords($jenis_monev) . '.xlsx';
+    //             if (count($kas) == 0) {
+    //                 throw new Exception('not found');
+    //             }
+    //             return Excel::download(new KasExport, $file_name);
+    //         } catch (\Throwable $th) {
+    //             return abort(404);
+    //         }
+    //     }
+    //     if ($jenis_monev == 'finansial') {
+    //         try {
+    //             $finansial = Monev_Finansial::orderBy('tanggal', 'DESC')->where('id_user', session('login-data')['id'])->get();
+    //             $data = $finansial->map(function ($item) {
+    //                 return [
+    //                     date('d/m/Y', strtotime($item['tanggal'])),
+    //                     $item['jenis_transaksi'],
+    //                     $item['keterangan_transaksi'],
+    //                     $item['jumlah'],
+    //                     date('d/m/Y', strtotime($item['created_at']))
+    //                 ];
+    //             });
+    //             if (count($data) == 0) {
+    //                 throw new Exception('not found', 1);
+    //             }
+    //             return Excel::download(new MonevExport(session('login-data')['id'], true), $file_name);
+    //         } catch (\Throwable $th) {
+    //             return abort(404);
+    //         }
+    //     }
+    //     try {
+    //         $monev = Monev::orderBy('tanggal', 'DESC')->where('id_user', session('login-data')['id'])->where('jenis_monev', $jenis_monev)->get();
+    //         $data = $monev->map(function ($item) {
+    //             return [
+    //                 date('d/m/Y', strtotime($item['tanggal'])),
+    //                 $item['status_progress'],
+    //                 $item['uraian'],
+    //                 $item['file'] ? 'Ada' : 'Tidak Ada',
+    //                 $item['feedback'],
+    //                 date('d/m/Y', strtotime($item['created_at']))
+    //             ];
+    //         });
+    //         if (count($data) == 0) {
+    //             throw new Exception('not found', 1);
+    //         }
+    //         return Excel::download(new MonevExport(session('login-data')['id']), $file_name);
+    //     } catch (\Throwable $th) {
+    //         return abort(404);
+    //     }
+    // }
 
     public function exporttim()
     {
@@ -683,10 +723,16 @@ class TenantController extends Controller
 
     public function addFaq(Request $request)
     {
+        $request->validate([
+            'pertanyaan' => 'required'
+        ], [
+            'required' => 'Formulir tidak diisi dengan lengkap, penyimpanan tidak berhasil'
+        ]);
+
         $tanggal = explode('/', $request->tanggal);
         $nama_usaha = $request->nama_usaha;
         $pertanyaan = $request->pertanyaan;
-        
+
         $newFaq = new Faq;
         $newFaq->id_faq = Str::random(32);
         $newFaq->nama_usaha = $nama_usaha;

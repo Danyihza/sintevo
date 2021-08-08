@@ -32,10 +32,11 @@ class PengumumanController extends Controller
     {
         $request->validate(
             [
+                'kode' => 'required',
                 'upload_file' => 'required'
             ],
             [
-                'upload_file.required' => 'Formulir tidak diisi dengan lengkap, penambahan petunjuk teknis tidak berhasil'
+                'required' => 'Formulir tidak diisi dengan lengkap, penambahan petunjuk teknis tidak berhasil'
             ]
         );
         try {
@@ -70,10 +71,12 @@ class PengumumanController extends Controller
     {
         $request->validate(
             [
+                'kode' => 'required',
+                'pengumuman' => 'required',
                 'upload_file' => 'required'
             ],
             [
-                'upload_file.required' => 'Formulir tidak diisi dengan lengkap, penambahan pengumuman tidak berhasil'
+                'required' => 'Formulir tidak diisi dengan lengkap, penambahan pengumuman tidak berhasil'
             ]
         );
         try {

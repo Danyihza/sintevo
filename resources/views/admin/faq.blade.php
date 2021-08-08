@@ -78,6 +78,7 @@
                                         <th class="px-4 py-3">Nama Usaha</th>
                                         <th class="px-4 py-3">Pertanyaan/Feedback</th>
                                         <th class="px-4 py-3">Tanggapan</th>
+                                        <th class="px-4 py-3">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -113,6 +114,13 @@
                                             data-id="{{ $fq->id_faq }}"
                                             class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             @endif
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            <a onclick="return confirm('Konfirmasi penghapusan. Apakah anda yakin menghapus data ini?')"
+                                                href="{{ route('admin.deleteFaq', $fq->id_faq) }}"
+                                                class="px-2 py-1 font-semibold leading-tight text-sm text-red-700 bg-red-100 rounded-full">
+                                                Delete
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach

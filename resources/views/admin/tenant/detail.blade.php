@@ -208,6 +208,14 @@ $id_user = end($url);
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-4">
+                                                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                                    <input required type="text" name="email" id="email"
+                                                        placeholder="Masukkan Email"
+                                                        class="mt-1 focus:ring-lightBlue-500 focus:border-lightBlue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                        value="{{ $tim->email }}" readonly>
+                                                </div>
+
+                                                <div class="col-span-6 sm:col-span-4">
                                                     <label for="website"
                                                         class="block text-sm font-medium text-gray-700">
                                                         Website
@@ -289,7 +297,7 @@ $id_user = end($url);
                                                                 <th class="px-4 py-3 text-left">No</th>
                                                                 <th class="px-4 py-3 text-left">Nama Lengkap</th>
                                                                 <th class="px-4 py-3 text-left">Status</th>
-                                                                <th class="px-4 py-3 text-left">NRP/NIDN</th>
+                                                                <th class="px-4 py-3 text-left">NRP/NIDN/NIP</th>
                                                                 <th class="px-4 py-3 text-left">Jabatan</th>
                                                             </tr>
                                                         </thead>
@@ -1477,7 +1485,7 @@ $id_user = end($url);
                                         <h1 class="text-lg">Prestasi Tenant</h1>
                                         @if(count($prestasi) > 0)
                                         <a class="inline-flex justify-center py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                                            href="{{ route('admin.exportLampiran', $id_user) }}">
+                                            href="{{ route('admin.exportPrestasi', $id_user) }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
                                                 viewBox="0 0 172 172" style=" fill:#000000;">
                                                 <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1"
@@ -1586,7 +1594,7 @@ $id_user = end($url);
                             <div class="border border-gray-300 sm:overflow-hidden">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                     <div class="flex flex-row w- justify-between">
-                                        <h1 class="text-lg">Sertifikat Tenant</h1>
+                                        <h1 class="text-lg">Berkas dan Kelulusan Tenant</h1>
                                         <button @click="openModalAddSertifikat"
                                             class="disabled:opacity-50 disabled:cursor-not-allowed inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-lightBlue-600 hover:bg-lightBlue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightBlue-500"
                                             type="button">

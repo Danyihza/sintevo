@@ -107,6 +107,7 @@ use Illuminate\Support\Facades\Route;
         Route::get('/accountpage', [AccountController::class, 'accountPage'])->name('accountPage');
         Route::post('/updateAdmin', [AccountController::class, 'updateAdmin'])->name('updateAdmin');
         Route::get('/faqview', [FaqController::class, 'faqView'])->name('faqView');
+        Route::get('/faqdelete/{id_faq?}', [FaqController::class, 'deleteFaq'])->name('deleteFaq');
         
         
         Route::get('/export/{jenis_monev?}/{id_user?}', [AdminTenant::class, 'exportToExcel'])->name('export');

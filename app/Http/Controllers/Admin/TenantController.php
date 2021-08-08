@@ -174,58 +174,79 @@ class TenantController extends Controller
     {
         $userdata = User::where('id_user', $id_user)->first();
         $file_name = $userdata->hasDetail->nama_brand . '_' . 'Monev' . '_' . ucwords($jenis_monev) . '.xlsx';
-        if ($jenis_monev == 'kas') {
-            try {
-                $kas = Monev_Finansial::where('id_user', $id_user)->get();
-                $file_name = $userdata->hasDetail->nama_brand . '_' . 'Buku Kas' . '_' . ucwords($jenis_monev) . '.xlsx';
-                if (count($kas) == 0) {
-                    throw new Exception('not found');
-                }
-                return Excel::download(new KasAdminExport($id_user), $file_name);
-            } catch (\Throwable $th) {
-                return abort(404);
-            }
-        }
-        if ($jenis_monev == 'finansial') {
-            try {
-                $finansial = Monev_Finansial::orderBy('tanggal', 'DESC')->where('id_user', $id_user)->get();
-                $data = $finansial->map(function ($item) {
-                    return [
-                        date('d/m/Y', strtotime($item['tanggal'])),
-                        $item['jenis_transaksi'],
-                        $item['keterangan_transaksi'],
-                        $item['jumlah'],
-                        date('d/m/Y', strtotime($item['created_at']))
-                    ];
-                });
-                if (count($data) == 0) {
-                    throw new Exception('not found', 1);
-                }
-                return Excel::download(new MonevExport($data->toArray(), true), $file_name);
-            } catch (\Throwable $th) {
-                return abort(404);
-            }
-        }
-        try {
-            $monev = Monev::orderBy('tanggal', 'DESC')->where('id_user', $id_user)->where('jenis_monev', $jenis_monev)->get();
-            $data = $monev->map(function ($item) {
-                return [
-                    date('d/m/Y', strtotime($item['tanggal'])),
-                    $item['status_progress'],
-                    $item['uraian'],
-                    $item['file'] ? 'Ada' : 'Tidak Ada',
-                    $item['feedback'],
-                    date('d/m/Y', strtotime($item['created_at']))
-                ];
-            });
-            if (count($data) == 0) {
-                throw new Exception('not found', 1);
-            }
-            return Excel::download(new MonevExport($data->toArray()), $file_name);
-        } catch (\Throwable $th) {
-            return abort(404);
+
+        // if ($jenis_monev == 'kas') {
+        // }
+        switch ($jenis_monev) {
+            case 'kas':
+                $file_name = $userdata->hasDetail->nama_brand . '_' . 'Buku Kas' . '.xlsx';
+                return Excel::download(new KasExport($id_user), $file_name);
+                break;
+            case 'finansial':
+                return Excel::download(new MonevExport($id_user, true, $jenis_monev), $file_name);
+                break;
+            default:
+                return Excel::download(new MonevExport($id_user, false, $jenis_monev), $file_name);
+                break;
         }
     }
+
+    // public function exportToExcel($jenis_monev, $id_user)
+    // {
+    //     $userdata = User::where('id_user', $id_user)->first();
+    //     $file_name = $userdata->hasDetail->nama_brand . '_' . 'Monev' . '_' . ucwords($jenis_monev) . '.xlsx';
+    //     if ($jenis_monev == 'kas') {
+    //         try {
+    //             $kas = Monev_Finansial::where('id_user', $id_user)->get();
+    //             $file_name = $userdata->hasDetail->nama_brand . '_' . 'Buku Kas' . '_' . ucwords($jenis_monev) . '.xlsx';
+    //             if (count($kas) == 0) {
+    //                 throw new Exception('not found');
+    //             }
+    //             return Excel::download(new KasAdminExport($id_user), $file_name);
+    //         } catch (\Throwable $th) {
+    //             return abort(404);
+    //         }
+    //     }
+    //     if ($jenis_monev == 'finansial') {
+    //         try {
+    //             $finansial = Monev_Finansial::orderBy('tanggal', 'DESC')->where('id_user', $id_user)->get();
+    //             $data = $finansial->map(function ($item) {
+    //                 return [
+    //                     date('d/m/Y', strtotime($item['tanggal'])),
+    //                     $item['jenis_transaksi'],
+    //                     $item['keterangan_transaksi'],
+    //                     $item['jumlah'],
+    //                     date('d/m/Y', strtotime($item['created_at']))
+    //                 ];
+    //             });
+    //             if (count($data) == 0) {
+    //                 throw new Exception('not found', 1);
+    //             }
+    //             return Excel::download(new MonevExport($data->toArray(), true), $file_name);
+    //         } catch (\Throwable $th) {
+    //             return abort(404);
+    //         }
+    //     }
+    //     try {
+    //         $monev = Monev::orderBy('tanggal', 'DESC')->where('id_user', $id_user)->where('jenis_monev', $jenis_monev)->get();
+    //         $data = $monev->map(function ($item) {
+    //             return [
+    //                 date('d/m/Y', strtotime($item['tanggal'])),
+    //                 $item['status_progress'],
+    //                 $item['uraian'],
+    //                 $item['file'] ? 'Ada' : 'Tidak Ada',
+    //                 $item['feedback'],
+    //                 date('d/m/Y', strtotime($item['created_at']))
+    //             ];
+    //         });
+    //         if (count($data) == 0) {
+    //             throw new Exception('not found', 1);
+    //         }
+    //         return Excel::download(new MonevExport($data->toArray()), $file_name);
+    //     } catch (\Throwable $th) {
+    //         return abort(404);
+    //     }
+    // }
 
     public function exporttenant()
     {

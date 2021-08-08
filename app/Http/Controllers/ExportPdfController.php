@@ -22,7 +22,7 @@ class ExportPdfController extends Controller
         $data['user'] = User::where('id_user', $id_user)->first();
         // dd($data);
         $pdf = PDF::loadView('print.profileusaha', $data);
-        return $pdf->download('profile usaha.pdf');
+        return $pdf->download('Profile Usaha - ' . $data['detail']->nama_brand . '.pdf');
         // return view('print.profileusaha', $data);
     }
 

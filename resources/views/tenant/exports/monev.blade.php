@@ -1,10 +1,10 @@
 <table>
     <thead>
         <tr>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Tanggal</th>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Status</th>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Uraian</th>
-            <th align="center" style="background-color: darkgreen; border: 1px solid #000000;">Feedback</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">Tanggal</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">Status</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">Uraian</th>
+            <th align="center" style="background-color: #92D050; border: 1px solid #000000;">Feedback</th>
         </tr>
     </thead>
     <tbody>

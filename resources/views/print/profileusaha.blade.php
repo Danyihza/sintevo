@@ -43,8 +43,8 @@
     <table>
         <tbody>
             <tr>
-                <td class="bold w-48">
-                    <span>Status</span>
+                <td class="bold">
+                    <span class="w-36">Status</span>
                 </td>
                 <td>
                     <span>:</span>
@@ -54,8 +54,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="bold w-48">
-                    <span>Kategori Usaha</span>
+                <td class="bold">
+                    <span class="w-36">Kategori Usaha</span>
                 </td>
                 <td>
                     <span>:</span>
@@ -65,8 +65,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="bold w-48">
-                    <span>Nama Brand / Usaha</span>
+                <td class="bold">
+                    <span class="w-36">Nama Brand / Usaha</span>
                 </td>
                 <td>
                     <span>:</span>
@@ -76,8 +76,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="bold w-48">
-                    <span>Deskripsi Usaha</span>
+                <td class="bold">
+                    <span class="w-36">Deskripsi Usaha</span>
                 </td>
                 <td>
                     <span>:</span>
@@ -87,8 +87,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="bold w-48">
-                    <span>Alamat</span>
+                <td class="bold">
+                    <span class="w-36">Alamat</span>
                 </td>
                 <td>
                     <span>:</span>
@@ -98,8 +98,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="bold w-48">
-                    <span>Nama Ketua</span>
+                <td class="bold">
+                    <span class="w-36">Nama Ketua</span>
                 </td>
                 <td>
                     <span>:</span>
@@ -109,8 +109,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="bold w-48">
-                    <span>Nomor WhatsApp</span>
+                <td class="bold">
+                    <span class="w-36">Nomor WhatsApp</span>
                 </td>
                 <td>
                     <span>:</span>
@@ -120,8 +120,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="bold w-48">
-                    <span>Email Akun</span>
+                <td class="bold">
+                    <span class="w-36">Email Akun</span>
                 </td>
                 <td>
                     <span>:</span>
@@ -131,8 +131,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="bold w-48">
-                    <span>Website</span>
+                <td class="bold">
+                    <span class="w-36">Website</span>
                 </td>
                 <td>
                     <span>:</span>
@@ -142,8 +142,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="bold w-48">
-                    <span>Instagram</span>
+                <td class="bold">
+                    <span class="w-36">Instagram</span>
                 </td>
                 <td>
                     <span>:</span>
