@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('') }}css/tailwind.output.css" />
+    <link rel="stylesheet" href="{{ asset('') }}css/tailwind.output.css"/>
     <title>Seluruh Tenant</title>
 </head>
 
@@ -31,7 +31,7 @@
     }
 
     table td, table td * {
-        vertical-align: top;
+        vertical-align: middle;
     }
 
     table {
@@ -51,22 +51,30 @@
         font-family: 'Times New Roman', Times, serif;
         font-size: 12pt;
     }
+
+    .text-center {
+        text-align: center;
+        vertical-align: middle;
+    }
 </style>
 
 <body>
     <div class="text-center">
-        <span class="bold">Seluruh Tenant</span>
+        <span class="bold">
+            Daftar Tenant Vokasi <br> Inkubator Bisnis PPNS
+        </span>
     </div>
     <div class="my-5"></div>
-    <table border="1" class="mx-auto">
+    <table border="1" class="mx-auto text-center">
         <thead>
-            <tr>
+            <tr style="background: #00B0F0;">
                 <th>No</th>
                 <th>Nama Tenant</th>
                 <th>Kategori Usaha</th>
                 <th>Nama Ketua</th>
                 <th>Status Ketua</th>
                 <th>No WhatsApp</th>
+                <th>Alamat</th>
             </tr>
         </thead>
         <tbody>
@@ -89,6 +97,9 @@
                 </td>
                 <td>
                     {{ $tnt->no_whatsapp }}
+                </td>
+                <td style="text-align: justify;">
+                    {{ $tnt->alamat }}
                 </td>
             </tr>
             @endforeach

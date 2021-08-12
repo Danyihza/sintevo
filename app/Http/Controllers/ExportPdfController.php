@@ -58,7 +58,7 @@ class ExportPdfController extends Controller
     {
         $data['faq'] = Faq::all();
         $pdf = PDF::loadView('print.allfaq', $data);
-        return $pdf->download('All Faq.pdf');
+        return $pdf->download('Rekapitulasi Frequently Asked Questions (FAQ).pdf');
     }
 
     public function allDataTenant($id_user)

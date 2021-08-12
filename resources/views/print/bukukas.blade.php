@@ -61,7 +61,7 @@
     <div class="my-5"></div>
     <table border="1" class="mx-auto">
         <thead>
-            <tr>
+            <tr style="background: #00B0F0;">
                 <th>Tanggal Transaksi</th>
                 <th>Keterangan Transaksi</th>
                 <th>Pendapatan (Rp)</th>
@@ -78,7 +78,7 @@
                 <td>
                     {{ $buku_kas[$i]->keterangan_transaksi }}
                 </td>
-                <td align="center">
+                <td align="right">
                     @if ($buku_kas[$i]->jenis_transaksi == 'Pendapatan')
                         +
                         {{ $buku_kas[$i]->jumlah }}
@@ -86,7 +86,7 @@
                     -
                     @endif
                 </td>
-                <td align="center">
+                <td align="right">
                     @if ($buku_kas[$i]->jenis_transaksi == 'Pengeluaran')
                         -
                         {{ $buku_kas[$i]->jumlah }}
@@ -94,7 +94,7 @@
                     -
                     @endif
                 </td>
-                <td align="center" class="py-3 jumlah" id="saldo">
+                <td align="right" class="py-3 jumlah" id="saldo">
                     {{ $saldos[$i] }}
                 </td>
             </tr>

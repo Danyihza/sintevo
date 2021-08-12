@@ -55,12 +55,14 @@
 
 <body>
     <div class="text-center">
-        <span class="bold">Seluruh Faq</span>
+        <span class="bold">
+            Rekapitulasi <i>Frequently Asked Questions (FAQ)</i> <br> Inkubator Bisnis PPNS
+        </span>
     </div>
     <div class="my-5"></div>
     <table border="1" class="mx-auto">
         <thead>
-            <tr>
+            <tr style="background: #00B0F0;">
                 <th>Nomor</th>
                 <th>Tanggal</th>
                 <th>Nama Usaha</th>
@@ -71,19 +73,19 @@
         <tbody>
             @foreach($faq as $fq)
             <tr>
-                <td>
+                <td style="text-align: center;">
                     {{ $loop->iteration }}
                 </td>
-                <td>
+                <td style="text-align: center;">
                     {{ date('d/m/Y', strtotime($fq->tanggal)) }}
                 </td>
-                <td>
+                <td style="text-align: center;">
                     {{ $fq->nama_usaha }}
                 </td>
-                <td>
+                <td style="text-align: justify;">
                     {{ $fq->pertanyaan }}
                 </td>
-                <td>
+                <td style="text-align: justify;">
                     {{ $fq->tanggapan ?? '-' }}
                 </td>
             </tr>

@@ -40,6 +40,9 @@
         <span class="bold">Profil Usaha Tenant Vokasi</span>
     </div>
     <div class="my-5"></div>
+    <div class="text-center">
+        <img src="{{ asset('assets') }}/img/tenant/{{ $detail->gambar }}" width="150px" alt="">
+    </div>
     <table>
         <tbody>
             <tr>

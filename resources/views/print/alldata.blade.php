@@ -102,6 +102,9 @@
     </div>
     <div class="page_break"></div>
     <span class="bold">Profil Usaha Tenant Vokasi</span>
+    <div class="text-center">
+        <img src="{{ asset('assets') }}/img/tenant/{{ $detail->gambar }}" width="150px" alt="">
+    </div>
     <table border="0" style="margin-top: 12px; width: 100%; margin-bottom: 12px;">
         <tbody>
             <tr>
@@ -187,7 +190,7 @@
         </tbody>
     </table>
 
-    <span class="bold">Profil Usaha Tenant Vokasi</span>
+    <span class="bold">Profil Tim Tenant Vokasi</span>
     <table border="0" class="border" style="width: 100%; margin-top: 12px; margin-bottom: 12px;">
         <thead>
             <tr>
@@ -323,7 +326,7 @@
                 <td>{{$mp->file ? 'Ada' : '-'}}</td>
                 <td>{{$mp->jenis_transaksi}}</td>
                 <td>{{$mp->keterangan_transaksi ? 'Ada' : '-'}}</td>
-                <td>{{$mp->jumlah}}</td>
+                <td align="right">{{$mp->jumlah}}</td>
             </tr>
             @endforeach
         </tbody>
@@ -396,7 +399,7 @@
                 <td>
                     {{ $buku_kas[$i]->keterangan_transaksi }}
                 </td>
-                <td align="center">
+                <td align="right">
                     @if ($buku_kas[$i]->jenis_transaksi == 'Pendapatan')
                         +
                         {{ $buku_kas[$i]->jumlah }}
@@ -404,7 +407,7 @@
                     -
                     @endif
                 </td>
-                <td align="center">
+                <td align="right">
                     @if ($buku_kas[$i]->jenis_transaksi == 'Pengeluaran')
                         -
                         {{ $buku_kas[$i]->jumlah }}
@@ -412,7 +415,7 @@
                     -
                     @endif
                 </td>
-                <td align="center" class="py-3 jumlah" id="saldo">
+                <td align="right" class="py-3 jumlah" id="saldo">
                     {{ $saldos[$i] }}
                 </td>
             </tr>
