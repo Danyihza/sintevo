@@ -57,7 +57,7 @@
                                         </div>
                                     </div>
                                     <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                        <a href="{{ url()->previous() }}" id="btn-submit"
+                                        <a href="{{ url()->previous() }}"
                                             class="disabled:opacity-50 disabled:cursor-not-allowed inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-grey bg-white hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lightBlue-500">
                                             Batal
                                         </a>
@@ -86,7 +86,7 @@
 @section('script')
 <script src="{{ asset('') }}js/date-picker.js"></script>
 <script>
-    isEmptyCurrentPassword();
+    isEmptyPassword();
     function showFileName(param) {
         const value = $(param).val();
         const fileName = value.split('\\').pop();
@@ -105,9 +105,10 @@
         }
     }
 
-    function isEmptyCurrentPassword(){
-        const current_password = document.getElementById('current_password').value;
-        if (!current_password) {
+    function isEmptyPassword(){
+        const password = document.getElementById('password').value;
+        const conf_password = document.getElementById('conf_password').value;
+        if (!conf_password || !password) {
             $('#btn-submit').attr('disabled', true);
         } else {
             $('#btn-submit').attr('disabled', false);
